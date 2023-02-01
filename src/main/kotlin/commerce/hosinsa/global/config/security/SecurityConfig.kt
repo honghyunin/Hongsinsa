@@ -1,5 +1,8 @@
 package commerce.hosinsa.global.config.security
 
+import commerce.hosinsa.global.config.security.detail.UserDetailsServiceImpl
+import commerce.hosinsa.global.config.security.filter.JwtAuthenticationFilter
+import commerce.hosinsa.global.config.utils.TokenUtils
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -10,10 +13,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig{
+class SecurityConfig(
+    private val userDetailsService: UserDetailsServiceImpl,
+    private val tokenUtils: TokenUtils
+){
 
     @Bean
     @Throws(Exception::class)
@@ -38,6 +45,8 @@ class SecurityConfig{
         }
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+        http.addFilterBefore(JwtAuthenticationFilter(userDetailsService, tokenUtils), UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
     }
