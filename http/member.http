@@ -1,0 +1,29 @@
+### SignUp | 회원가입
+
+POST http://localhost:8080/api/v1/member/signUp
+Content-Type: application/json
+
+{
+  "email": "hyunin0102@gmail.com",
+  "id": "hyunin0102",
+  "pw": "password1234",
+  "name": "홍현인",
+  "nickname": "gowl_hayng",
+  "weight": 71,
+  "height": 168,
+  "gender": "M",
+  "age" : 20,
+  "phoneNumber" : "01020322671",
+  "address": "광주 선운휴먼시아",
+  "birthday" : "2004-01-02T11:44:30.327959"
+}
+
+### SignIn | 로그인
+
+POST http://localhost:8080/api/v1/member/signIn
+Content-Type: application/json
+
+{
+  "id": "hyunin0102",
+  "pw": "password1234"
+}

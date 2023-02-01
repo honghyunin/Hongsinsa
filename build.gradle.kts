@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.7.4"
+	id("org.springframework.boot") version "2.7.8"
 	id("io.spring.dependency-management") version "1.0.6.RELEASE"
 	kotlin("jvm") version "1.7.22"
 	kotlin("plugin.spring") version "1.7.22"
@@ -42,7 +42,16 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+
+	testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
+
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:4.4.3")
+	testImplementation("io.kotest:kotest-assertions-core-jvm:4.4.3")
+
+	testImplementation("io.mockk:mockk:1.12.4")
+
 }
+extra["kotlin-coroutines.version"] = "1.6.0"
 
 allOpen {
 	annotation("jakarta.persistence.Entity")
