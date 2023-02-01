@@ -4,25 +4,29 @@ import commerce.hosinsa.domain.baseTime.entity.BaseTimeEntity
 import commerce.hosinsa.domain.cart.entity.Cart
 import commerce.hosinsa.domain.coupon.entity.Coupon
 import commerce.hosinsa.domain.order.entity.Order
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
 import java.time.LocalDateTime
+import java.util.stream.Collectors
 
 @Entity
 class Member(
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, length = 50)
     var email: String,
 
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, length = 20)
     val id: String,
 
-    @Column(name = "pw", nullable = false)
+    @Column(name = "pw", nullable = false, length = 100)
     var pw: String,
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 10)
     var name: String, // 실명
 
-    @Column(name = "nickname", nullable = true)
+    @Column(name = "nickname", nullable = true, length = 24)
     var nickname: String? = null, // 닉네임
 
     @Column(name = "weight", nullable = true)
@@ -34,22 +38,24 @@ class Member(
     @Column(name = "age", nullable = true)
     val age: Short? = null,
 
-    @Column(name = "phone_number", nullable = true)
-    var phoneNumber: Short? = null,
+    @Column(name = "phone_number", nullable = true, length = 14)
+    var phoneNumber: String? = null,
 
-    @Column(name = "gender", nullable = true)
+    @Column(name = "gender", nullable = true, length = 1)
     val gender: Char? = null,
 
-    @Column(name = "address", nullable = true)
+    @Column(name = "address", nullable = true, length = 100)
     var address: String? = null,
 
     @Column(name = "birthday", nullable = true)
     val birthday: LocalDateTime? = null,
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member_id")])
     @Column(name = "role", nullable = false) @Enumerated(EnumType.STRING)
-    val role: Role
+    var roles: MutableList<Role>
 
-) : BaseTimeEntity() {
+) : BaseTimeEntity(), UserDetails {
 
     @Column(name = "member_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,5 +79,22 @@ class Member(
         mappedBy = "member"
     )
     val order: MutableList<Order> = mutableListOf()
+
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
+        roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(
+            Collectors.toList()
+        )
+
+    override fun getPassword(): String = this.pw
+
+    override fun getUsername(): String = this.name
+
+    override fun isAccountNonExpired(): Boolean = this.isAccountNonExpired
+
+    override fun isAccountNonLocked(): Boolean = this.isAccountNonLocked
+
+    override fun isCredentialsNonExpired(): Boolean = this.isCredentialsNonExpired
+
+    override fun isEnabled(): Boolean = this.isEnabled
 
 }

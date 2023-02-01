@@ -13,8 +13,8 @@ import javax.persistence.MappedSuperclass
 open class BaseTimeEntity(
 
     @CreatedDate @Column(name = "create_at", nullable = false)
-    var createdAt: LocalDateTime? = null,
+    var createdAt: LocalDateTime? = LocalDateTime.now(),
 
     @LastModifiedDate @Column(name = "update_at", nullable = false)
-    var updatedAt: LocalDateTime? = null
+    var updatedAt: LocalDateTime? = LocalDateTime.now()
 )
