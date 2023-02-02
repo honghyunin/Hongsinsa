@@ -7,5 +7,9 @@ interface MemberRepository: JpaRepository<Member, Int> {
 
     fun findById(id: String): Member?
 
+    fun findByEmail(email: String): Member?
+
+    fun findByPw(pw: String): Member?
+
     fun existsById(id: String): Boolean
 }

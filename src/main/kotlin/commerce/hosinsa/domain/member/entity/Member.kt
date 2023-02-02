@@ -4,6 +4,7 @@ import commerce.hosinsa.domain.baseTime.entity.BaseTimeEntity
 import commerce.hosinsa.domain.cart.entity.Cart
 import commerce.hosinsa.domain.coupon.entity.Coupon
 import commerce.hosinsa.domain.order.entity.Order
+import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -11,6 +12,7 @@ import javax.persistence.*
 import java.time.LocalDateTime
 import java.util.stream.Collectors
 
+@DynamicUpdate
 @Entity
 class Member(
 
