@@ -1,20 +1,17 @@
 package commerce.hosinsa.domain.member.service
 
-import commerce.hosinsa.domain.member.fixtures.failSignIn
-import commerce.hosinsa.domain.member.fixtures.getSignInDto
-import commerce.hosinsa.domain.member.fixtures.getSignUpDto
-import commerce.hosinsa.domain.member.fixtures.getTokenResponse
+import commerce.hosinsa.domain.member.dto.PWChangeDto
+import commerce.hosinsa.domain.member.fixtures.*
 import commerce.hosinsa.domain.member.repository.MemberRepository
+import commerce.hosinsa.global.config.utils.pwMatches
 import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.Runs
-import io.mockk.every
-import io.mockk.just
-import io.mockk.mockk
+import io.mockk.*
 
 internal class MemberServiceTest : DescribeSpec() {
 
@@ -81,12 +78,74 @@ internal class MemberServiceTest : DescribeSpec() {
                 }
             }
         }
+
+        this.describe("profileUpdate") {
+
+            context("올바른 회원 정보가 입력되면") {
+
+                every { memberService.profileUpdate(profileUpdateDto) } just Runs
+
+                it("회원정보가 변경된다")
+
+                memberService.profileUpdate(profileUpdateDto)
+
+                verify(exactly = 1) { memberService.profileUpdate(profileUpdateDto) }
+            }
+
+            context("올바르지 않은 회원 정보가 입력되면") {
+                every { memberService.profileUpdate(profileUpdateDto) } throws CustomException(USER_NOT_FOUND)
+
+                it("회원정보 변경에 실패한다") {
+                    shouldThrow<CustomException> {
+                        memberService.profileUpdate(profileUpdateDto)
+                    }
+                }
+            }
+        }
+
+        this.describe("pwChange") {
+
+            context("올바른 패스워드가 입력되면") {
+                every { memberService.pwChange(pwChangeDto) } returns CHANGED_PW
+
+                val pw = memberService.pwChange(pwChangeDto)
+
+                it("패스워드가 변경된다") {
+                    CHANGED_PW shouldBe pw
+                }
+            }
+
+            context("신규 패스워드와 재입력 비밀번호가 같지 않을 때") {
+                every { memberService.pwChange(notMatchPWChangeDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+                it("패스워드가 변경에 실패한다") {
+                    shouldThrow<CustomException> {
+                        memberService.pwChange(notMatchPWChangeDto)
+                    }
+                }
+            }
+
+            context("기존 패스워드가 일치하지 않을 때") {
+                every { memberService.pwChange(notMatchCurrentPWChangeDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+
+                it("패스워드가 변경에 실패한다") {
+                    shouldThrow<CustomException> {
+                        memberService.pwChange(notMatchCurrentPWChangeDto)
+                    }
+                }
+
+            }
+        }
     }
 
     companion object {
         val signUpDto = getSignUpDto()
         val signInDto = getSignInDto()
         val tokenResponse = getTokenResponse()
+        val profileUpdateDto = getProfileUpdateDto()
+        val pwChangeDto = getPWChangeDto()
+        val notMatchPWChangeDto = getNotMatchPWChangeDto()
+        val notMatchCurrentPWChangeDto = getNotMatchCurrentPWChangeDto()
+        const val CHANGED_PW = PASSWORD + "1234"
 
         val member = signUpDto.toMember()
 

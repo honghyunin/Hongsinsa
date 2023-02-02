@@ -4,18 +4,18 @@ POST http://localhost:8080/api/v1/member/signUp
 Content-Type: application/json
 
 {
-  "email": "hyunin0102@gmail.com",
-  "id": "hyunin0102",
+  "email": "email1234@gmail.com",
+  "id": "id1234",
   "pw": "password1234",
-  "name": "홍현인",
-  "nickname": "gowl_hayng",
+  "name": "name2222",
+  "nickname": "nickname222",
   "weight": 71,
-  "height": 168,
+  "height": 180,
   "gender": "M",
-  "age" : 20,
-  "phoneNumber" : "01020322671",
-  "address": "광주 선운휴먼시아",
-  "birthday" : "2004-01-02T11:44:30.327959"
+  "age" : 25,
+  "phoneNumber" : "01000000000",
+  "address": "address",
+  "birthday" : "2000-01-01T11:44:30.327959"
 }
 
 ### SignIn | 로그인
@@ -24,6 +24,34 @@ POST http://localhost:8080/api/v1/member/signIn
 Content-Type: application/json
 
 {
-  "id": "hyunin0102",
-  "pw": "password1234"
+  "id": "id1234",
+  "pw": "pw12345678"
+}
+
+### ProfileUpdate | 프로필 업데이트
+
+PUT http://localhost:8080/api/v1/member/update
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDM4OTE4LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNCIsInRva2VuVHlwZSI6IkFjY2Vzc1Rva2VuIiwiZXhwIjoxNjc1MzU5NjM4fQ.8x8SQaCVQg92yVfLeiA-j_7-fj7FjDE_J0_2TjmCmKQ
+Content-Type: application/json
+
+{
+  "pw": "password1234",
+  "name": "name2222",
+  "nickname": "nickname222",
+  "email": "email1234@gmail.com",
+  "weight": 71,
+  "height": 180,
+  "phoneNumber" : "01000000000"
+}
+
+### PWChange | 패스워드 변경
+
+PUT http://localhost:8080/api/v1/member/pw/change
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDE3NjM0LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNCIsInRva2VuVHlwZSI6IkFjY2Vzc1Rva2VuIiwiZXhwIjoxNjc1MzU5NjE3fQ.rsbtYaKY9WKAJRDR3mVU3efIR6LpR_RL3enJ6j7L4tE
+Content-Type: application/json
+
+{
+  "currentPW": "password1234",
+  "newPW": "pw12345678",
+  "reNewPW": "pw12345678"
 }

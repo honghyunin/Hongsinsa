@@ -1,8 +1,6 @@
 package commerce.hosinsa.domain.member.fixtures
 
-import commerce.hosinsa.domain.member.dto.SignInDto
-import commerce.hosinsa.domain.member.dto.SignUpDto
-import commerce.hosinsa.domain.member.dto.TokenResponse
+import commerce.hosinsa.domain.member.dto.*
 import commerce.hosinsa.domain.member.service.MemberServiceTest
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow
@@ -54,3 +52,31 @@ fun getTokenResponse() = TokenResponse(
 fun failSignIn() = shouldThrow<CustomException> {
     MemberServiceTest.memberService.signIn(MemberServiceTest.signInDto)
 }
+
+fun getProfileUpdateDto() = ProfileUpdateDto(
+    pw = PASSWORD,
+    name = NAME,
+    nickname = NICKNAME,
+    email = EMAIL,
+    weight = WEIGHT,
+    height = HEIGHT,
+    phoneNumber = PHONE_NUMBER
+)
+
+fun getPWChangeDto() = PWChangeDto(
+    currentPW = PASSWORD,
+    newPW = PASSWORD + "1234",
+    reNewPW = PASSWORD + "1234"
+)
+
+fun getNotMatchPWChangeDto() = PWChangeDto(
+    currentPW = PASSWORD,
+    newPW = PASSWORD + "12345",
+    reNewPW = PASSWORD + "1234"
+)
+
+fun getNotMatchCurrentPWChangeDto() = PWChangeDto(
+    currentPW = PASSWORD + "1111",
+    newPW = PASSWORD + "12345",
+    reNewPW = PASSWORD + "1234"
+)
