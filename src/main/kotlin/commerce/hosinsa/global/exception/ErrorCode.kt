@@ -6,6 +6,7 @@ enum class ErrorCode(val status: Int, val msg: String) {
     USER_NOT_FOUND(400, "User Not Found"),
     USER_ALREADY_EXISTS(400, "User Already Exists"),
 
+    CHANGE_PASSWORD_NOT_MATCH(400, "New Password and RePassword Do Not Match"),
     // Authentication Exception
     PASSWORD_NOT_MATCH(400, "Password Does Not Match"),
 
