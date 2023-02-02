@@ -61,12 +61,11 @@ class Member(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val memberId: Int? = null
 
-    @OneToOne(
+    @OneToMany(
         fetch = FetchType.LAZY,
         mappedBy = "member"
     )
-    @JoinColumn(name = "cart_id")
-    val cart: Cart? = null
+    val cart: MutableList<Cart> = mutableListOf()
 
     @OneToMany(
         fetch = FetchType.LAZY,
@@ -87,7 +86,7 @@ class Member(
 
     override fun getPassword(): String = this.pw
 
-    override fun getUsername(): String = this.name
+    override fun getUsername(): String = this.id
 
     override fun isAccountNonExpired(): Boolean = this.isAccountNonExpired
 
