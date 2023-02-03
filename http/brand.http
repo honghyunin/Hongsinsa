@@ -1,0 +1,37 @@
+### BrandAvailable | 브랜드 입점
+POST http://localhost:8080/api/v1/brand/available
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NDA5NDIzMjMxLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIlNFTExFUiIsIkFETUlOIiwiTUVNQkVSIl0sImlkIjoiaWQxMjM0IiwidG9rZW5UeXBlIjoiQWNjZXNzVG9rZW4iLCJleHAiOjE2NzU0MzEwMjN9.3wsbGUNcgJsfrAGulxsP4Rn8hc2xBLGo8W0L0Psr6DU
+Content-Type: application/json
+
+{
+  "name": "gowl",
+  "email": "this.email",
+  "homepageUrl": "this.homepageUrl",
+  "introduce": "this.introduce",
+  "company": "this.company",
+  "businessNumber": "1111111",
+  "managerName": "this.managerName",
+  "businessAddress": "this.businessAddress",
+  "phoneNumber": "this.phoneNumber",
+  "isAudit": "false"
+}
+
+### AuditAvailable | 브랜드 입점 심사
+PUT http://localhost:8080/api/v1/brand/audit/available/gowl
+
+### BrandUpdate | 브랜드 업데이트
+PUT http://localhost:8080/api/v1/brand/update
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NDI4OTE2OTUyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTQ1MDUxNn0.0hzMaXmeLo-o39340c3bZVWku39r8wWA42NEhw76DRA
+Content-Type: application/json
+
+{
+  "name": "gowl",
+  "email": "emailemail@gmail.com",
+  "homepageUrl": "this.homepageUrl",
+  "introduce": "my brand introduce",
+  "company": "Hongpany",
+  "businessNumber": "0010204040",
+  "managerName": "HHI",
+  "businessAddress": "Address",
+  "phoneNumber": "00000000000"
+}
