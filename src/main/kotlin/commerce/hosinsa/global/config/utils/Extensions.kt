@@ -1,5 +1,8 @@
 package commerce.hosinsa.global.config.utils
 
+import commerce.hosinsa.domain.brand.dto.BrandAvailableDto
+import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
+import commerce.hosinsa.domain.brand.entity.Brand
 import commerce.hosinsa.domain.member.dto.PWChangeDto
 import commerce.hosinsa.domain.member.dto.ProfileUpdateDto
 import commerce.hosinsa.domain.member.dto.SignUpDto
@@ -43,6 +46,36 @@ fun Member.pwChange(changePW: String): Member {
 }
 
 fun PWChangeDto.pwMatches(): PWChangeDto =
-    if (this.newPW != this.reNewPW)
-        throw CustomException(CHANGE_PASSWORD_NOT_MATCH)
+    if (this.newPW != this.reNewPW) throw CustomException(CHANGE_PASSWORD_NOT_MATCH)
     else this
+
+fun BrandAvailableDto.toBrand(): Brand = Brand(
+    name = this.name,
+    email = this.email,
+    homepageUrl = this.homepageUrl,
+    introduce = this.introduce,
+    company = this.company,
+    businessNumber = this.businessNumber,
+    managerName = this.managerName,
+    businessAddress = this.businessAddress,
+    phoneNumber = this.phoneNumber,
+    isAudit = this.isAudit,
+)
+
+fun Brand.setIsAudit() {
+    this.isAudit = true
+}
+
+fun Brand.updateBrand(brandUpdateDto: BrandUpdateDto): Brand {
+    name = brandUpdateDto.name
+    email = brandUpdateDto.email
+    homepageUrl = brandUpdateDto.homepageUrl
+    introduce = brandUpdateDto.introduce
+    company = brandUpdateDto.company
+    businessNumber = brandUpdateDto.businessNumber
+    managerName = brandUpdateDto.managerName
+    businessAddress = brandUpdateDto.businessAddress
+    phoneNumber = brandUpdateDto.phoneNumber
+
+    return this
+}

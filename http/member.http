@@ -5,9 +5,9 @@ Content-Type: application/json
 
 {
   "email": "email1234@gmail.com",
-  "id": "id1234",
+  "id": "id12345",
   "pw": "password1234",
-  "name": "name2222",
+  "name": "name",
   "nickname": "nickname222",
   "weight": 71,
   "height": 180,
@@ -24,8 +24,8 @@ POST http://localhost:8080/api/v1/member/signIn
 Content-Type: application/json
 
 {
-  "id": "id1234",
-  "pw": "pw12345678"
+  "id": "id12345",
+  "pw": "password1234"
 }
 
 ### ProfileUpdate | 프로필 업데이트
