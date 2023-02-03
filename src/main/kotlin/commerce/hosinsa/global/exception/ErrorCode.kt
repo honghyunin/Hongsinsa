@@ -2,6 +2,9 @@ package commerce.hosinsa.global.exception
 
 enum class ErrorCode(val status: Int, val msg: String) {
 
+    // Brand Exception
+    BRAND_NOT_FOUND(400, "Brand Not Found"),
+    BRAND_ALREADY_EXISTS(400, "Brand Already Exists"),
     // User Exception
     USER_NOT_FOUND(400, "User Not Found"),
     USER_ALREADY_EXISTS(400, "User Already Exists"),
