@@ -41,6 +41,9 @@ class SecurityConfig(
         http.authorizeRequests {
             it.antMatchers("/api/v1/member/signUp").permitAll()
                 .antMatchers("/api/v1/member/signIn").permitAll()
+
+                .antMatchers("/api/v1/audit/available/**").hasRole("ADMIN")
+                .antMatchers("/api/v1/brand/update").hasRole("SELLER")
                 .anyRequest().authenticated()
         }
 
