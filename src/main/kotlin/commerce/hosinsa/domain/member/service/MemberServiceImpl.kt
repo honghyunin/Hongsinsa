@@ -7,7 +7,6 @@ import commerce.hosinsa.global.config.utils.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import commerce.hosinsa.global.exception.CustomException
-import commerce.hosinsa.global.exception.ErrorCode
 import commerce.hosinsa.global.exception.ErrorCode.*
 import javax.transaction.Transactional
 
@@ -36,8 +35,8 @@ class MemberServiceImpl(
                 throw CustomException(PASSWORD_NOT_MATCH)
 
             return TokenResponse(
-                accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember()),
-                refreshToken = tokenUtils.createRefreshToken(findMember.id, getRoleMember()),
+                accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember(findMember.roles)),
+                refreshToken = tokenUtils.createRefreshToken(findMember.id, getRoleMember(findMember.roles)),
                 findMember.id
             )
         }
@@ -68,5 +67,7 @@ class MemberServiceImpl(
     private fun passwordNotMatches(rawPassword: String, encodedPassword: String): Boolean =
         !passwordEncoder.matches(rawPassword, encodedPassword)
 
-    private fun getRoleMember(): MutableList<Role> = mutableListOf(Role.MEMBER)
+
+    private fun getRoleMember(roles: MutableList<Role>): MutableList<Role> =
+        roles.filter { it != Role.MEMBER }.toMutableList().also { it.add(Role.MEMBER) }
 }
