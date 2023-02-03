@@ -19,7 +19,7 @@ class Member(
     @Column(name = "email", nullable = false, length = 50)
     var email: String,
 
-    @Column(name = "id", nullable = false, length = 20)
+    @Column(name = "id", nullable = false, length = 20, unique =  true)
     val id: String,
 
     @Column(name = "pw", nullable = false, length = 100)
