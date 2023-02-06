@@ -18,13 +18,21 @@ class Product(
     @Column(name = "gender", nullable = false)
     var gender: Char,
 
+    @Column(name = "stock", nullable = false)
+    var stock: Int,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     val brand: Brand
 
-): BaseTimeEntity() {
+) : BaseTimeEntity() {
 
     @Column(name = "product_id")
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val productId: Int? = null
+
+    @Column(name = "is_soludout")
+    var isSoldOut: Boolean = false
+
 }
