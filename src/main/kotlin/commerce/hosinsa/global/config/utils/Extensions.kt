@@ -1,20 +1,24 @@
 package commerce.hosinsa.global.config.utils
 
-import commerce.hosinsa.domain.brand.dto.BrandAvailableDto
+import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
 import commerce.hosinsa.domain.brand.entity.Brand
-import commerce.hosinsa.domain.member.dto.PWChangeDto
-import commerce.hosinsa.domain.member.dto.ProfileUpdateDto
+import commerce.hosinsa.domain.member.dto.ChangePasswordDto
 import commerce.hosinsa.domain.member.dto.SignUpDto
+import commerce.hosinsa.domain.member.dto.UpdateProfileDto
 import commerce.hosinsa.domain.member.entity.Member
 import commerce.hosinsa.domain.member.entity.Role
+import commerce.hosinsa.domain.product.dto.ProductResponse
+import commerce.hosinsa.domain.product.dto.RegistrationProductDto
+import commerce.hosinsa.domain.product.dto.UpdateProductDto
+import commerce.hosinsa.domain.product.entity.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.CHANGE_PASSWORD_NOT_MATCH
 
 fun SignUpDto.toMember() = Member(
     email = this.email,
     id = this.id,
-    pw = this.pw,
+    pw = this.password,
     name = this.name,
     nickname = this.nickname,
     weight = this.weight,
@@ -27,29 +31,29 @@ fun SignUpDto.toMember() = Member(
     roles = mutableListOf(Role.MEMBER)
 )
 
-fun Member.profileUpdate(profileUpdateDto: ProfileUpdateDto): Member {
-    this.pw = profileUpdateDto.pw
-    this.name = profileUpdateDto.name
-    this.nickname = profileUpdateDto.nickname
-    this.email = profileUpdateDto.email
-    this.weight = profileUpdateDto.weight
-    this.height = profileUpdateDto.height
-    this.phoneNumber = profileUpdateDto.phoneNumber
+fun Member.updateProfile(updateProfileDto: UpdateProfileDto): Member {
+    this.pw = updateProfileDto.password
+    this.name = updateProfileDto.name
+    this.nickname = updateProfileDto.nickname
+    this.email = updateProfileDto.email
+    this.weight = updateProfileDto.weight
+    this.height = updateProfileDto.height
+    this.phoneNumber = updateProfileDto.phoneNumber
 
     return this
 }
 
-fun Member.pwChange(changePW: String): Member {
-    this.pw = changePW
+fun Member.changePassword(changePassword: String): Member {
+    this.pw = changePassword
 
     return this
 }
 
-fun PWChangeDto.pwMatches(): PWChangeDto =
-    if (this.newPW != this.reNewPW) throw CustomException(CHANGE_PASSWORD_NOT_MATCH)
+fun ChangePasswordDto.matchesPassword(): ChangePasswordDto =
+    if (this.newPassword != this.reNewPassword) throw CustomException(CHANGE_PASSWORD_NOT_MATCH)
     else this
 
-fun BrandAvailableDto.toBrand(): Brand = Brand(
+fun AvailableBrandDto.toBrand(): Brand = Brand(
     name = this.name,
     email = this.email,
     homepageUrl = this.homepageUrl,
@@ -66,7 +70,7 @@ fun Brand.setIsAudit() {
     this.isAudit = true
 }
 
-fun Brand.updateBrand(brandUpdateDto: BrandUpdateDto): Brand {
+fun Brand.updateBrand(brandUpdateDto: BrandUpdateDto) {
     name = brandUpdateDto.name
     email = brandUpdateDto.email
     homepageUrl = brandUpdateDto.homepageUrl
@@ -76,6 +80,24 @@ fun Brand.updateBrand(brandUpdateDto: BrandUpdateDto): Brand {
     managerName = brandUpdateDto.managerName
     businessAddress = brandUpdateDto.businessAddress
     phoneNumber = brandUpdateDto.phoneNumber
+}
 
-    return this
+fun RegistrationProductDto.toProduct(brand: Brand) = Product(
+    name = this.name,
+    price = this.price,
+    category = this.category,
+    gender = this.gender,
+    stock = this.stock,
+    brand = brand
+)
+
+fun Product.updateProduct(updateProductDto: UpdateProductDto) {
+    this.name = updateProductDto.name
+    this.price = updateProductDto.price
+    this.category = updateProductDto.category
+    this.gender = updateProductDto.gender
+}
+
+fun Product.soldOut() {
+    this.isSoldOut = true
 }
