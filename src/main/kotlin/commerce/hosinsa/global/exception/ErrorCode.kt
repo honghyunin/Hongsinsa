@@ -2,6 +2,10 @@ package commerce.hosinsa.global.exception
 
 enum class ErrorCode(val status: Int, val msg: String) {
 
+    // Product Exception
+    PRODUCT_NOT_FOUND(404, "Product Not Found"),
+    PRODUCT_IS_ALREADY_EXISTS(409, "Product Already Exists"),
+
     // Brand Exception
     BRAND_NOT_FOUND(400, "Brand Not Found"),
     BRAND_ALREADY_EXISTS(400, "Brand Already Exists"),
