@@ -6,17 +6,17 @@ import javax.persistence.*
 
 @Entity
 class Product(
-    @Column(name = "name", nullable = false)
-    val name: String,
+    @Column(name = "name", nullable = false, unique = true)
+    var name: String,
 
     @Column(name = "price", nullable = false)
-    val price: Int,
+    var price: Int,
 
     @Column(name = "category", nullable = false)
-    val category: String,
+    var category: String,
 
     @Column(name = "gender", nullable = false)
-    val gender: Char,
+    var gender: Char,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
