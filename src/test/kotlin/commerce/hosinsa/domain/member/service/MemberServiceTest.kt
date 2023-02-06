@@ -79,21 +79,21 @@ internal class MemberServiceTest : DescribeSpec({
 
         context("올바른 회원 정보가 입력되면") {
 
-            every { memberService.profileUpdate(profileUpdateDto) } just Runs
+            every { memberService.updateProfile(profileUpdateDto) } just Runs
 
             it("회원정보가 변경된다") {
-                memberService.profileUpdate(profileUpdateDto)
+                memberService.updateProfile(profileUpdateDto)
 
-                verify(exactly = 1) { memberService.profileUpdate(profileUpdateDto) }
+                verify(exactly = 1) { memberService.updateProfile(profileUpdateDto) }
             }
         }
 
         context("올바르지 않은 회원 정보가 입력되면") {
-            every { memberService.profileUpdate(profileUpdateDto) } throws CustomException(USER_NOT_FOUND)
+            every { memberService.updateProfile(profileUpdateDto) } throws CustomException(USER_NOT_FOUND)
 
             it("회원정보 변경에 실패한다") {
                 shouldThrow<CustomException> {
-                    memberService.profileUpdate(profileUpdateDto)
+                    memberService.updateProfile(profileUpdateDto)
                 }
             }
         }
@@ -102,32 +102,32 @@ internal class MemberServiceTest : DescribeSpec({
     describe("pwChange") {
 
         context("올바른 패스워드가 입력되면") {
-            every { memberService.pwChange(pwChangeDto) } returns CHANGED_PW
+            every { memberService.changePassword(changePasswordDto) } returns CHANGED_PW
 
             it("패스워드가 변경된다") {
-                val pw = memberService.pwChange(pwChangeDto)
+                val password = memberService.changePassword(changePasswordDto)
 
-                CHANGED_PW shouldBe pw
+                CHANGED_PW shouldBe password
             }
         }
 
         context("신규 패스워드와 재입력 비밀번호가 같지 않을 때") {
-            every { memberService.pwChange(notMatchPWChangeDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+            every { memberService.changePassword(notMatchChangePasswordDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
 
             it("패스워드가 변경에 실패한다") {
                 shouldThrow<CustomException> {
-                    memberService.pwChange(notMatchPWChangeDto)
+                    memberService.changePassword(notMatchChangePasswordDto)
                 }
             }
         }
 
         context("기존 패스워드가 일치하지 않을 때") {
 
-            every { memberService.pwChange(notMatchCurrentPWChangeDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+            every { memberService.changePassword(notMatchCurrentChangePasswordDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
 
             it("패스워드가 변경에 실패한다") {
                 shouldThrow<CustomException> {
-                    memberService.pwChange(notMatchCurrentPWChangeDto)
+                    memberService.changePassword(notMatchCurrentChangePasswordDto)
                 }
             }
         }
@@ -137,10 +137,10 @@ internal class MemberServiceTest : DescribeSpec({
         val signUpDto = getSignUpDto()
         val signInDto = getSignInDto()
         val tokenResponse = getTokenResponse()
-        val profileUpdateDto = getProfileUpdateDto()
-        val pwChangeDto = getPWChangeDto()
-        val notMatchPWChangeDto = getNotMatchPWChangeDto()
-        val notMatchCurrentPWChangeDto = getNotMatchCurrentPWChangeDto()
+        val profileUpdateDto = getUpdateProfileDto()
+        val changePasswordDto = getChangePasswordDto()
+        val notMatchChangePasswordDto = getNotMatchChangePasswordDto()
+        val notMatchCurrentChangePasswordDto = getNotMatchCurrentChangePasswordDto()
         const val CHANGED_PW = PASSWORD + "1234"
 
         val member = signUpDto.toMember()

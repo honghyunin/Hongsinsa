@@ -6,6 +6,6 @@ interface MemberService {
 
     fun signUp(signUpDto: SignUpDto)
     fun signIn(signInDto: SignInDto): TokenResponse
-    fun profileUpdate(profileUpdateDto: ProfileUpdateDto)
-    fun pwChange(pwChangeDto: PWChangeDto): String
+    fun updateProfile(updateProfileDto: UpdateProfileDto)
+    fun changePassword(changePasswordDto: ChangePasswordDto): String
 }

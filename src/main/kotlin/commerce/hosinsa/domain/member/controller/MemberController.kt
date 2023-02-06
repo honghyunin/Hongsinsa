@@ -19,8 +19,8 @@ class MemberController(private val memberService: MemberService) {
     fun signIn(@RequestBody signInDto: SignInDto): TokenResponse = memberService.signIn(signInDto)
 
     @PutMapping("/update")
-    fun profileUpdate(@RequestBody profileUpdateDto: ProfileUpdateDto): Unit = memberService.profileUpdate(profileUpdateDto)
+    fun updateProfile(@RequestBody updateProfileDto: UpdateProfileDto): Unit = memberService.updateProfile(updateProfileDto)
 
     @PutMapping("/pw/change")
-    fun pwChange(@RequestBody pwChangeDto: PWChangeDto): String = memberService.pwChange(pwChangeDto)
+    fun changePW(@RequestBody changePasswordDto: ChangePasswordDto): String = memberService.changePassword(changePasswordDto)
 }

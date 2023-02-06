@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.member.dto
 
-class ProfileUpdateDto(
-    var pw: String,
+class UpdateProfileDto(
+    var password: String,
     val name: String,
     val nickname: String,
     val email: String,

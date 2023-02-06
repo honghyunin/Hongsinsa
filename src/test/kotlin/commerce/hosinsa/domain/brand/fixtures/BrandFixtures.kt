@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.brand.fixtures
 
-import commerce.hosinsa.domain.brand.dto.BrandAvailableDto
+import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
 
 const val NAME: String = "gowl"
@@ -13,7 +13,7 @@ const val MANAGER_NAME: String = "this.managerName"
 const val BUSINESS_ADDRESS: String = "this.businessAddress"
 const val PHONE_NUMBER: String = "this.phoneNumber"
 const val IS_AUDIT: Boolean = false
-fun getBrandAvailableDto() = BrandAvailableDto(
+fun getBrandAvailableDto() = AvailableBrandDto(
     name = NAME,
     email = EMAIL,
     homepageUrl = HOMEPAGE_URL,

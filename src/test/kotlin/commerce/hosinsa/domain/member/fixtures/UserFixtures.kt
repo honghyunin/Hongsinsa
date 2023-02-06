@@ -26,7 +26,7 @@ const val REFRESH_TOKEN = "REFRESH_TOKEN"
 fun getSignUpDto() = SignUpDto(
     email = EMAIL,
     id = ID,
-    pw = PASSWORD,
+    password = PASSWORD,
     birthday = BIRTHDAY,
     name = NAME,
     nickname = NICKNAME,
@@ -40,7 +40,7 @@ fun getSignUpDto() = SignUpDto(
 
 fun getSignInDto() = SignInDto(
     id = ID,
-    pw = PASSWORD
+    password = PASSWORD
 )
 
 fun getTokenResponse() = TokenResponse(
@@ -53,8 +53,8 @@ fun failSignIn() = shouldThrow<CustomException> {
     MemberServiceTest.memberService.signIn(MemberServiceTest.signInDto)
 }
 
-fun getProfileUpdateDto() = ProfileUpdateDto(
-    pw = PASSWORD,
+fun getUpdateProfileDto() = UpdateProfileDto(
+    password = PASSWORD,
     name = NAME,
     nickname = NICKNAME,
     email = EMAIL,
@@ -63,20 +63,20 @@ fun getProfileUpdateDto() = ProfileUpdateDto(
     phoneNumber = PHONE_NUMBER
 )
 
-fun getPWChangeDto() = PWChangeDto(
-    currentPW = PASSWORD,
-    newPW = PASSWORD + "1234",
-    reNewPW = PASSWORD + "1234"
+fun getChangePasswordDto() = ChangePasswordDto(
+    currentPassword = PASSWORD,
+    newPassword = PASSWORD + "1234",
+    reNewPassword = PASSWORD + "1234"
 )
 
-fun getNotMatchPWChangeDto() = PWChangeDto(
-    currentPW = PASSWORD,
-    newPW = PASSWORD + "12345",
-    reNewPW = PASSWORD + "1234"
+fun getNotMatchChangePasswordDto() = ChangePasswordDto(
+    currentPassword = PASSWORD,
+    newPassword = PASSWORD + "12345",
+    reNewPassword = PASSWORD + "1234"
 )
 
-fun getNotMatchCurrentPWChangeDto() = PWChangeDto(
-    currentPW = PASSWORD + "1111",
-    newPW = PASSWORD + "12345",
-    reNewPW = PASSWORD + "1234"
+fun getNotMatchCurrentChangePasswordDto() = ChangePasswordDto(
+    currentPassword = PASSWORD + "1111",
+    newPassword = PASSWORD + "12345",
+    reNewPassword = PASSWORD + "1234"
 )

@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.brand.dto
 
-class BrandUpdateDto(
+class AvailableBrandDto(
     val name: String,
     val email: String,
     val homepageUrl: String,
@@ -10,4 +10,5 @@ class BrandUpdateDto(
     val businessAddress: String,
     val managerName: String,
     val phoneNumber: String,
+    val isAudit: Boolean = false
 )

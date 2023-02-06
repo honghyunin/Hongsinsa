@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.brand.service
 
-import commerce.hosinsa.domain.brand.dto.BrandAvailableDto
+import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
 import commerce.hosinsa.domain.brand.repository.BrandRepository
 import commerce.hosinsa.global.config.utils.setIsAudit
@@ -16,12 +16,12 @@ import javax.transaction.Transactional
 class BrandServiceImpl(
     private val brandRepository: BrandRepository
 ): BrandService {
-    override fun brandAvailable(brandAvailableDto: BrandAvailableDto) {
+    override fun brandAvailable(availableBrandDto: AvailableBrandDto) {
 
-        if(existsByName(brandAvailableDto))
+        if(existsByName(availableBrandDto))
             throw CustomException(BRAND_ALREADY_EXISTS)
 
-        brandRepository.save(brandAvailableDto.toBrand())
+        brandRepository.save(availableBrandDto.toBrand())
     }
 
     override fun auditAvailable(brandName: String) {
@@ -40,5 +40,5 @@ class BrandServiceImpl(
     }
 
 
-    fun existsByName(brandAvailableDto: BrandAvailableDto) = brandRepository.existsByName(brandAvailableDto.name)
+    fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByName(availableBrandDto.name)
 }

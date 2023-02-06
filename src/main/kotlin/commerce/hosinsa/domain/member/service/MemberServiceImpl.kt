@@ -23,7 +23,7 @@ class MemberServiceImpl(
         if (memberRepository.existsById(signUpDto.id))
             throw CustomException(USER_ALREADY_EXISTS)
 
-        signUpDto.apply { pw = passwordEncoder.encode(this.pw) }
+        signUpDto.apply { password = passwordEncoder.encode(this.password) }
             .let { memberRepository.save(it.toMember()) }
     }
 
@@ -31,7 +31,7 @@ class MemberServiceImpl(
         signInDto.let {
             val findMember = memberRepository.findById(it.id) ?: throw CustomException(USER_NOT_FOUND)
 
-            if (passwordNotMatches(signInDto.pw, findMember.pw))
+            if (notMatchesPassword(signInDto.password, findMember.pw))
                 throw CustomException(PASSWORD_NOT_MATCH)
 
             return TokenResponse(
@@ -43,28 +43,28 @@ class MemberServiceImpl(
     }
 
     @Transactional
-    override fun profileUpdate(profileUpdateDto: ProfileUpdateDto) {
+    override fun updateProfile(updateProfileDto: UpdateProfileDto) {
 
-        val member = profileUpdateDto.apply { pw = passwordEncoder.encode(pw) }
-            .let { memberRepository.findByEmail(profileUpdateDto.email) }
+        val member = updateProfileDto.apply { password = passwordEncoder.encode(password) }
+            .let { memberRepository.findByEmail(updateProfileDto.email) }
             ?: throw CustomException(USER_NOT_FOUND)
 
-        member.profileUpdate(profileUpdateDto)
+        member.updateProfile(updateProfileDto)
     }
 
     @Transactional
-    override fun pwChange(pwChangeDto: PWChangeDto): String {
+    override fun changePassword(changePasswordDto: ChangePasswordDto): String {
         val currentUser = currentUserUtil.currentUser
             ?: throw CustomException(USER_NOT_FOUND)
 
-        if (passwordNotMatches(pwChangeDto.currentPW, currentUser.pw))
+        if (notMatchesPassword(changePasswordDto.currentPassword, currentUser.pw))
             throw CustomException(PASSWORD_NOT_MATCH)
 
-        return pwChangeDto.pwMatches()
-            .also { currentUser.pwChange(passwordEncoder.encode(it.newPW)) }.newPW
+        return changePasswordDto.matchesPassword()
+            .also { currentUser.changePassword(passwordEncoder.encode(it.newPassword)) }.newPassword
     }
 
-    private fun passwordNotMatches(rawPassword: String, encodedPassword: String): Boolean =
+    private fun notMatchesPassword(rawPassword: String, encodedPassword: String): Boolean =
         !passwordEncoder.matches(rawPassword, encodedPassword)
 
 

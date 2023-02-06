@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 class SignUpDto(
     val email: String,
     val id: String,
-    var pw: String,
+    var password: String,
     val name: String,
     val nickname: String,
     val weight: Short,
