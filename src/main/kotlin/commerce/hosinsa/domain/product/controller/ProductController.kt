@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController
 class ProductController(private val productService: ProductService) {
 
     @PostMapping("/registration")
-    fun registrationProduct(@RequestBody registrationProductDto: RegistrationProductDto) = productService.registrationProduct(registrationProductDto)
+    fun registrationProduct(@RequestBody registrationProductDto: RegistrationProductDto) =
+        productService.registrationProduct(registrationProductDto)
 
     @PutMapping("/update")
     fun updateProduct(@RequestBody updateProduct: UpdateProductDto) = productService.updateProduct(updateProduct)
 
-    @PutMapping("/soldOut/{productName}")
-    fun updateIsSoldOut(@PathVariable productName: String) = productService.updateIsSoldOut(productName)
+    @PutMapping("/soldOut/{productId}")
+    fun updateIsSoldOut(@PathVariable productId: Int) = productService.updateIsSoldOut(productId)
 
     @GetMapping("/{productId}")
     fun getProduct(@PathVariable productId: Int) = productService.getProduct(productId)

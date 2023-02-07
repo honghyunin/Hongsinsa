@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 class Product(
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     var name: String,
 
     @Column(name = "price", nullable = false)

@@ -7,6 +7,6 @@ import commerce.hosinsa.domain.product.dto.UpdateProductDto
 interface ProductService {
     fun registrationProduct(registrationProductDto: RegistrationProductDto)
     fun updateProduct(updateProductDto: UpdateProductDto)
-    fun updateIsSoldOut(productName: String)
+    fun updateIsSoldOut(productId: Int)
     fun getProduct(productId: Int): ProductResponse
 }

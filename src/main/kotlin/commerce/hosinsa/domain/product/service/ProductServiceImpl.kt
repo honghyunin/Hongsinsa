@@ -21,8 +21,6 @@ class ProductServiceImpl(
 ) : ProductService {
     override fun registrationProduct(registrationProductDto: RegistrationProductDto) {
 
-        if (existsByName(registrationProductDto.name)) throw CustomException(PRODUCT_IS_ALREADY_EXISTS)
-
         brandRepository.findByName(registrationProductDto.brandName).also { brand ->
             if (brand == null) throw CustomException(BRAND_NOT_FOUND)
 
@@ -37,8 +35,8 @@ class ProductServiceImpl(
         }!!.updateProduct(updateProductDto)
 
     @Transactional
-    override fun updateIsSoldOut(productName: String) =
-        productRepository.findByName(productName).also { product ->
+    override fun updateIsSoldOut(productId: Int) =
+        productRepository.findByProductId(productId).also { product ->
             if (product == null) throw CustomException(PRODUCT_NOT_FOUND)
         }!!.soldOut()
 
