@@ -50,11 +50,6 @@ class ProductServiceImpl(
             if (product == null) throw CustomException(PRODUCT_NOT_FOUND)
         }!!.toProductResponse()
 
-    override fun getProducts(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<ProductResponse> {
-
-        return getProductFilterDto?.let { productCustomRepository.findByFilter(it, pageable) }!!
-    }
-
-
-    private fun existsByName(name: String) = productRepository.existsByName(name)
+    override fun getProducts(getProductFilterDto: GetProductFilterDto, pageable: Pageable) =
+        productCustomRepository.findByFilter(getProductFilterDto, pageable)
 }

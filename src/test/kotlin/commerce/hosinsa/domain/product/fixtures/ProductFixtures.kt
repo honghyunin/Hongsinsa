@@ -1,10 +1,14 @@
 package commerce.hosinsa.domain.product.fixtures
 
+import commerce.hosinsa.domain.product.dto.GetProductFilterDto
 import commerce.hosinsa.domain.product.dto.ProductResponse
 import commerce.hosinsa.domain.product.dto.RegistrationProductDto
 import commerce.hosinsa.domain.product.dto.UpdateProductDto
+import commerce.hosinsa.domain.product.enumerated.Price
 import commerce.hosinsa.domain.product.service.ProductService
 import io.mockk.mockk
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.Pageable
 
 const val PRODUCT_ID = 1
 const val PRODUCT_NAME = "OVAINE-GYERUIK"
@@ -40,5 +44,16 @@ val productResponse = ProductResponse(
     gender = GENDER,
     brand = BRAND_NAME
 )
+
+val getProductFilterDto = GetProductFilterDto(
+    name = PRODUCT_NAME,
+    price = Price.PRICE1,
+    category = CATEGORY,
+    gender = GENDER,
+    brandName = BRAND_NAME
+)
+val pageable = Pageable.ofSize(2)
+val products = mutableListOf(productResponse, productResponse)
+val productsPage = PageImpl(products, pageable, 2)
 
 val productService = mockk<ProductService>()
