@@ -8,12 +8,15 @@ import javax.persistence.*
 @Entity
 class Cart(
 
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     val member: Member,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     val product: Product
 
 ): BaseTimeEntity() {
