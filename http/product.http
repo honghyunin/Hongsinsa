@@ -4,13 +4,12 @@ Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOi
 Content-Type: application/json
 
 {
-  "productId": 1,
-  "name": "OvANG GYRACEK",
-  "price": "20000",
-  "category": "반팔티",
-  "gender": "M",
+  "name": "CHAGARI",
+  "price": "50000",
+  "category": "차가리 반팔티",
+  "gender": "W",
   "stock": "200",
-  "brandName": "gowl"
+  "brandName": "woowakgood"
 }
 
 ### UpdateProduct | 상품 업데이트
@@ -33,3 +32,6 @@ PUT http://localhost:8080/api/v1/product/soldOut/OVANG GYRACEK 반팔
 
 ### GetProduct | 상품 단일 조회
 GET http://localhost:8080/api/v1/product/1
+
+### GetProducts | 상품 전체 태그 조회
+GET http://localhost:8080/api/v1/product/?page=0&size=10&name=CHAGARI
