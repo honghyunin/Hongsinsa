@@ -52,6 +52,9 @@ class Member(
     @Column(name = "birthday", nullable = true)
     val birthday: LocalDateTime? = null,
 
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member_id")])
     @Column(name = "role", nullable = false) @Enumerated(EnumType.STRING)

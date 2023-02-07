@@ -23,6 +23,9 @@ class Order(
     @JoinColumn(name = "product_id")
     val product: Product,
 
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     val member: Member

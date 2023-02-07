@@ -20,7 +20,10 @@ class Coupon(
     val expiredAt: LocalDateTime? = null,
 
     @Column(name = "status", nullable = false)
-    val status: Char, // E(expired or Valid)
+    val status: Char, // E(expired or Valid),
+
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = true)

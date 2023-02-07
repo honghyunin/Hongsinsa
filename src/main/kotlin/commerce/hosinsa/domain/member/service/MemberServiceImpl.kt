@@ -67,7 +67,6 @@ class MemberServiceImpl(
     private fun notMatchesPassword(rawPassword: String, encodedPassword: String): Boolean =
         !passwordEncoder.matches(rawPassword, encodedPassword)
 
-
     private fun getRoleMember(roles: MutableList<Role>): MutableList<Role> =
         roles.filter { it != Role.MEMBER }.toMutableList().also { it.add(Role.MEMBER) }
 }

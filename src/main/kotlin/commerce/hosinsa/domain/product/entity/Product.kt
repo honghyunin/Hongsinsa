@@ -21,6 +21,9 @@ class Product(
     @Column(name = "stock", nullable = false)
     var stock: Int,
 
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     val brand: Brand

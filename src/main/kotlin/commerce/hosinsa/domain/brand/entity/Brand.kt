@@ -33,7 +33,10 @@ class Brand(
     var phoneNumber: String,
 
     @Column(name = "is_audit", nullable = false)
-    var isAudit: Boolean = false
+    var isAudit: Boolean = false,
+
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false,
 ) {
 
     @Column(name = "brand_id")
