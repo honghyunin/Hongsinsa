@@ -3,6 +3,8 @@ package commerce.hosinsa.domain.product.controller
 import commerce.hosinsa.domain.product.dto.RegistrationProductDto
 import commerce.hosinsa.domain.product.dto.UpdateProductDto
 import commerce.hosinsa.domain.product.service.ProductService
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,4 +20,10 @@ class ProductController(private val productService: ProductService) {
 
     @PutMapping("/update")
     fun updateProduct(@RequestBody updateProduct: UpdateProductDto) = productService.updateProduct(updateProduct)
+
+    @PutMapping("/soldOut/{productName}")
+    fun updateIsSoldOut(@PathVariable productName: String) = productService.updateIsSoldOut(productName)
+
+    @GetMapping("/{productId}")
+    fun getProduct(@PathVariable productId: Int) = productService.getProduct(productId)
 }

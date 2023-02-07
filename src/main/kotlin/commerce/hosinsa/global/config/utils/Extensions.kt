@@ -101,3 +101,12 @@ fun Product.updateProduct(updateProductDto: UpdateProductDto) {
 fun Product.soldOut() {
     this.isSoldOut = true
 }
+
+fun Product.toProductResponse() = ProductResponse(
+    productId = productId!!,
+    name = name,
+    price = price,
+    category = category,
+    gender = gender,
+    brand = brand.name
+)
