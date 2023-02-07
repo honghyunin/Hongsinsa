@@ -1,9 +1,12 @@
 package commerce.hosinsa.domain.member.fixtures
 
 import commerce.hosinsa.domain.member.dto.*
-import commerce.hosinsa.domain.member.service.MemberServiceTest
+import commerce.hosinsa.domain.member.repository.MemberRepository
+import commerce.hosinsa.domain.member.service.MemberServiceImpl
+import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow
+import io.mockk.mockk
 import java.time.LocalDateTime
 
 
@@ -50,7 +53,7 @@ fun getTokenResponse() = TokenResponse(
 )
 
 fun failSignIn() = shouldThrow<CustomException> {
-    MemberServiceTest.memberService.signIn(MemberServiceTest.signInDto)
+    memberService.signIn(signInDto)
 }
 
 fun getUpdateProfileDto() = UpdateProfileDto(
@@ -80,3 +83,17 @@ fun getNotMatchCurrentChangePasswordDto() = ChangePasswordDto(
     newPassword = PASSWORD + "12345",
     reNewPassword = PASSWORD + "1234"
 )
+
+val signUpDto = getSignUpDto()
+val signInDto = getSignInDto()
+val tokenResponse = getTokenResponse()
+val profileUpdateDto = getUpdateProfileDto()
+val changePasswordDto = getChangePasswordDto()
+val notMatchChangePasswordDto = getNotMatchChangePasswordDto()
+val notMatchCurrentChangePasswordDto = getNotMatchCurrentChangePasswordDto()
+const val CHANGED_PW = PASSWORD + "1234"
+
+val member = signUpDto.toMember()
+
+val memberRepository = mockk<MemberRepository>()
+val memberService = mockk<MemberServiceImpl>()

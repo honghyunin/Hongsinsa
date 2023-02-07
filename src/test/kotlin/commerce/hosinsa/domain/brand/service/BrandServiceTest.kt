@@ -1,8 +1,6 @@
 package commerce.hosinsa.domain.brand.service
 
-import commerce.hosinsa.domain.brand.fixtures.NAME
-import commerce.hosinsa.domain.brand.fixtures.getBrandAvailableDto
-import commerce.hosinsa.domain.brand.fixtures.getBrandUpdateDto
+import commerce.hosinsa.domain.brand.fixtures.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.BRAND_NOT_FOUND
 import io.kotest.assertions.throwables.shouldThrow
@@ -75,11 +73,4 @@ internal class BrandServiceTest : DescribeSpec({
             }
         }
     }
-}) {
-
-    companion object {
-        val brandAvailableDto = getBrandAvailableDto()
-        val brandUpdateDto = getBrandUpdateDto()
-        val brandService = mockk<BrandService>()
-    }
-}
+})

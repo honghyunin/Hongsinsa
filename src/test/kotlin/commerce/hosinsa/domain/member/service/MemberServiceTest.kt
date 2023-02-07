@@ -132,20 +132,4 @@ internal class MemberServiceTest : DescribeSpec({
             }
         }
     }
-}) {
-    companion object {
-        val signUpDto = getSignUpDto()
-        val signInDto = getSignInDto()
-        val tokenResponse = getTokenResponse()
-        val profileUpdateDto = getUpdateProfileDto()
-        val changePasswordDto = getChangePasswordDto()
-        val notMatchChangePasswordDto = getNotMatchChangePasswordDto()
-        val notMatchCurrentChangePasswordDto = getNotMatchCurrentChangePasswordDto()
-        const val CHANGED_PW = PASSWORD + "1234"
-
-        val member = signUpDto.toMember()
-
-        val memberRepository = mockk<MemberRepository>()
-        val memberService = mockk<MemberServiceImpl>()
-    }
-}
+})

@@ -2,6 +2,8 @@ package commerce.hosinsa.domain.brand.fixtures
 
 import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
+import commerce.hosinsa.domain.brand.service.BrandService
+import io.mockk.mockk
 
 const val NAME: String = "gowl"
 const val EMAIL: String = "this.email"
@@ -37,3 +39,7 @@ fun getBrandUpdateDto() = BrandUpdateDto(
     businessAddress = BUSINESS_ADDRESS,
     phoneNumber = PHONE_NUMBER,
 )
+
+val brandAvailableDto = getBrandAvailableDto()
+val brandUpdateDto = getBrandUpdateDto()
+val brandService = mockk<BrandService>()
