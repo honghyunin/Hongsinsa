@@ -15,7 +15,8 @@ const val MANAGER_NAME: String = "this.managerName"
 const val BUSINESS_ADDRESS: String = "this.businessAddress"
 const val PHONE_NUMBER: String = "this.phoneNumber"
 const val IS_AUDIT: Boolean = false
-fun getBrandAvailableDto() = AvailableBrandDto(
+
+val brandAvailableDto = AvailableBrandDto(
     name = NAME,
     email = EMAIL,
     homepageUrl = HOMEPAGE_URL,
@@ -28,7 +29,7 @@ fun getBrandAvailableDto() = AvailableBrandDto(
     isAudit = IS_AUDIT
 )
 
-fun getBrandUpdateDto() = BrandUpdateDto(
+val brandUpdateDto = BrandUpdateDto(
     name = NAME,
     email = EMAIL,
     homepageUrl = HOMEPAGE_URL,
@@ -40,6 +41,4 @@ fun getBrandUpdateDto() = BrandUpdateDto(
     phoneNumber = PHONE_NUMBER,
 )
 
-val brandAvailableDto = getBrandAvailableDto()
-val brandUpdateDto = getBrandUpdateDto()
 val brandService = mockk<BrandService>()

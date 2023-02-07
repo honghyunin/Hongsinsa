@@ -26,7 +26,11 @@ val BIRTHDAY: LocalDateTime = LocalDateTime.of(2000, 1, 1, 0, 0, 0)
 const val ACCESS_TOKEN = "ACCESS_TOKEN"
 const val REFRESH_TOKEN = "REFRESH_TOKEN"
 
-fun getSignUpDto() = SignUpDto(
+fun failSignIn() = shouldThrow<CustomException> {
+    memberService.signIn(signInDto)
+}
+
+val signUpDto = SignUpDto(
     email = EMAIL,
     id = ID,
     password = PASSWORD,
@@ -41,22 +45,18 @@ fun getSignUpDto() = SignUpDto(
     address = ADDRESS
 )
 
-fun getSignInDto() = SignInDto(
+val signInDto = SignInDto(
     id = ID,
     password = PASSWORD
 )
 
-fun getTokenResponse() = TokenResponse(
+val tokenResponse = TokenResponse(
     accessToken = ACCESS_TOKEN,
     refreshToken = REFRESH_TOKEN,
     id = ID
 )
 
-fun failSignIn() = shouldThrow<CustomException> {
-    memberService.signIn(signInDto)
-}
-
-fun getUpdateProfileDto() = UpdateProfileDto(
+val profileUpdateDto = UpdateProfileDto(
     password = PASSWORD,
     name = NAME,
     nickname = NICKNAME,
@@ -66,31 +66,24 @@ fun getUpdateProfileDto() = UpdateProfileDto(
     phoneNumber = PHONE_NUMBER
 )
 
-fun getChangePasswordDto() = ChangePasswordDto(
+val changePasswordDto = ChangePasswordDto(
     currentPassword = PASSWORD,
     newPassword = PASSWORD + "1234",
     reNewPassword = PASSWORD + "1234"
 )
 
-fun getNotMatchChangePasswordDto() = ChangePasswordDto(
+val notMatchChangePasswordDto = ChangePasswordDto(
     currentPassword = PASSWORD,
     newPassword = PASSWORD + "12345",
     reNewPassword = PASSWORD + "1234"
 )
 
-fun getNotMatchCurrentChangePasswordDto() = ChangePasswordDto(
+val notMatchCurrentChangePasswordDto = ChangePasswordDto(
     currentPassword = PASSWORD + "1111",
     newPassword = PASSWORD + "12345",
     reNewPassword = PASSWORD + "1234"
 )
 
-val signUpDto = getSignUpDto()
-val signInDto = getSignInDto()
-val tokenResponse = getTokenResponse()
-val profileUpdateDto = getUpdateProfileDto()
-val changePasswordDto = getChangePasswordDto()
-val notMatchChangePasswordDto = getNotMatchChangePasswordDto()
-val notMatchCurrentChangePasswordDto = getNotMatchCurrentChangePasswordDto()
 const val CHANGED_PW = PASSWORD + "1234"
 
 val member = signUpDto.toMember()

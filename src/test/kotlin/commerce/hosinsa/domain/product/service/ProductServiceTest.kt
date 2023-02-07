@@ -1,5 +1,6 @@
 package commerce.hosinsa.domain.product.service
 
+import commerce.hosinsa.domain.product.dto.ProductResponse
 import commerce.hosinsa.domain.product.fixtures.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
@@ -10,6 +11,7 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.verify
+import org.springframework.data.domain.Page
 
 internal class ProductServiceTest : DescribeSpec({
 
@@ -77,23 +79,23 @@ internal class ProductServiceTest : DescribeSpec({
 
         context("올바른 인자값을 받을 경우") {
 
-            every { productService.updateIsSoldOut(PRODUCT_NAME) } just Runs
+            every { productService.updateIsSoldOut(PRODUCT_ID) } just Runs
 
             it("재고 품절 업데이트에 성공한다") {
-                productService.updateIsSoldOut(PRODUCT_NAME)
+                productService.updateIsSoldOut(PRODUCT_ID)
 
-                verify(exactly = 1) { productService.updateIsSoldOut(PRODUCT_NAME) }
+                verify(exactly = 1) { productService.updateIsSoldOut(PRODUCT_ID) }
             }
         }
 
         context("상품이 존재하지 않을 경우") {
 
-            every { productService.updateIsSoldOut(PRODUCT_NAME) } throws CustomException(
+            every { productService.updateIsSoldOut(PRODUCT_ID) } throws CustomException(
                 PRODUCT_NOT_FOUND
             )
 
             it("상품 업데이트에 실패한다") {
-                shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_NAME) }
+                shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_ID) }
             }
         }
     }
@@ -123,5 +125,19 @@ internal class ProductServiceTest : DescribeSpec({
             }
         }
     }
-}) {
-}
+
+    describe("getProducts") {
+
+        context("올바른 인자값을 받을 경우") {
+
+            every { productService.getProducts(getProductFilterDto, pageable) } returns productsPage
+
+            it("상품 전체 태그조회에 성공한다") {
+
+                val products = productService.getProducts(getProductFilterDto, pageable)
+
+                products shouldBe productsPage
+            }
+        }
+    }
+})
