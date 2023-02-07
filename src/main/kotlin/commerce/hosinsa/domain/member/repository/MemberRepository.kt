@@ -9,7 +9,7 @@ interface MemberRepository: JpaRepository<Member, Int> {
 
     fun findByEmail(email: String): Member?
 
-    fun findByPassword(pw: String): Member?
+    fun findByPw(pw: String): Member?
 
     fun existsById(id: String): Boolean
 }

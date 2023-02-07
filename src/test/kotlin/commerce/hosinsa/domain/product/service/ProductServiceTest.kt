@@ -1,13 +1,11 @@
 package commerce.hosinsa.domain.product.service
 
-import commerce.hosinsa.domain.product.fixtures.PRODUCT_NAME
-import commerce.hosinsa.domain.product.fixtures.productService
-import commerce.hosinsa.domain.product.fixtures.registrationProductDto
-import commerce.hosinsa.domain.product.fixtures.updateProductDto
+import commerce.hosinsa.domain.product.fixtures.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -96,6 +94,32 @@ internal class ProductServiceTest : DescribeSpec({
 
             it("상품 업데이트에 실패한다") {
                 shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_NAME) }
+            }
+        }
+    }
+
+    describe("getProduct") {
+
+        context("올바른 인자값을 받을 경우") {
+
+            every { productService.getProduct(PRODUCT_ID) } returns productResponse
+
+            it("상품 단일 조회에 성공한다") {
+
+                val product = productService.getProduct(PRODUCT_ID)
+
+                product.name shouldBe PRODUCT_NAME
+                product.price shouldBe PRICE
+                product.brand shouldBe BRAND_NAME
+            }
+        }
+
+        context("상품이 존재하지 않을 경우") {
+
+            every { productService.getProduct(PRODUCT_ID) } throws CustomException(PRODUCT_NOT_FOUND)
+
+            it("상품 단일 조회에 실패한다") {
+                shouldThrow<CustomException> { productService.getProduct(PRODUCT_ID) }
             }
         }
     }

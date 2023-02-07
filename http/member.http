@@ -6,7 +6,7 @@ Content-Type: application/json
 {
   "email": "email1234@gmail.com",
   "id": "id12345",
-  "pw": "password1234",
+  "password": "password1234",
   "name": "name",
   "nickname": "nickname222",
   "weight": 71,
@@ -25,17 +25,17 @@ Content-Type: application/json
 
 {
   "id": "id12345",
-  "pw": "password1234"
+  "password": "password1234"
 }
 
 ### ProfileUpdate | 프로필 업데이트
 
 PUT http://localhost:8080/api/v1/member/update
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDM4OTE4LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNCIsInRva2VuVHlwZSI6IkFjY2Vzc1Rva2VuIiwiZXhwIjoxNjc1MzU5NjM4fQ.8x8SQaCVQg92yVfLeiA-j_7-fj7FjDE_J0_2TjmCmKQ
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
 Content-Type: application/json
 
 {
-  "pw": "password1234",
+  "password": "password1234",
   "name": "name2222",
   "nickname": "nickname222",
   "email": "email1234@gmail.com",
@@ -51,7 +51,7 @@ Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDE3NjM0LCJ0eXAiOiJKV1QiLCJhbGciOi
 Content-Type: application/json
 
 {
-  "currentPW": "password1234",
-  "newPW": "pw12345678",
-  "reNewPW": "pw12345678"
+  "currentPassword": "password1234",
+  "newPassword": "pw12345678",
+  "reNewPassword": "pw12345678"
 }

@@ -1,5 +1,6 @@
 package commerce.hosinsa.domain.product.fixtures
 
+import commerce.hosinsa.domain.product.dto.ProductResponse
 import commerce.hosinsa.domain.product.dto.RegistrationProductDto
 import commerce.hosinsa.domain.product.dto.UpdateProductDto
 import commerce.hosinsa.domain.product.service.ProductService
@@ -29,6 +30,15 @@ val updateProductDto = UpdateProductDto(
     category = CATEGORY,
     gender = GENDER,
     stock = STOCK
+)
+
+val productResponse = ProductResponse(
+    productId = PRODUCT_ID,
+    name = PRODUCT_NAME,
+    price = PRICE,
+    category = CATEGORY,
+    gender = GENDER,
+    brand = BRAND_NAME
 )
 
 val productService = mockk<ProductService>()
