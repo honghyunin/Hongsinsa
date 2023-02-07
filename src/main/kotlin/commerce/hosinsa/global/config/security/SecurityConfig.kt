@@ -44,6 +44,9 @@ class SecurityConfig(
 
                 .antMatchers("/api/v1/audit/available/**").hasRole("ADMIN")
                 .antMatchers("/api/v1/brand/update").hasRole("SELLER")
+                .antMatchers("/api/v1/coupon/issued").hasRole("ADMIN")
+                .antMatchers("/api/v1/coupon/apply").hasRole("ADMIN")
+                .antMatchers("/api/v1/coupon/delete").hasRole("ADMIN")
                 .anyRequest().authenticated()
         }
 
