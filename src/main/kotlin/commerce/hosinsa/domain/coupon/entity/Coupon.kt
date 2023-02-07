@@ -23,8 +23,8 @@ class Coupon(
     val status: Char, // E(expired or Valid)
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    val member: Member
+    @JoinColumn(name = "member_id", nullable = true)
+    val member: Member? = null
 
 ) {
 
