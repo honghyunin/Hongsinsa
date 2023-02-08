@@ -14,10 +14,10 @@ class Coupon(
     val discount: Short,
 
     @Column(name = "assigned_at", nullable = false)
-    val assignedAt: LocalDateTime? = LocalDateTime.now(),
+    val assignedAt: LocalDateTime? = null,
 
     @Column(name = "expired_at", nullable = false)
-    var expiredAt: LocalDateTime,
+    var expiredAt: LocalDateTime? = null,
 
     @Column(name = "status", nullable = false)
     var status: Char, // E(expired or Valid),
@@ -27,7 +27,7 @@ class Coupon(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id", nullable = true)
-    val brand: Brand? = null
+    var brand: Brand? = null
 
 ) {
 

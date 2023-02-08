@@ -3,6 +3,8 @@ package commerce.hosinsa.global.config.utils
 import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
 import commerce.hosinsa.domain.brand.entity.Brand
+import commerce.hosinsa.domain.coupon.dto.SaveCouponDto
+import commerce.hosinsa.domain.coupon.entity.Coupon
 import commerce.hosinsa.domain.member.dto.ChangePasswordDto
 import commerce.hosinsa.domain.member.dto.SignUpDto
 import commerce.hosinsa.domain.member.dto.UpdateProfileDto
@@ -14,6 +16,8 @@ import commerce.hosinsa.domain.product.dto.UpdateProductDto
 import commerce.hosinsa.domain.product.entity.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.CHANGE_PASSWORD_NOT_MATCH
+import java.time.LocalDateTime
+import java.util.*
 
 fun SignUpDto.toMember() = Member(
     email = this.email,
@@ -109,4 +113,18 @@ fun Product.toProductResponse() = ProductResponse(
     category = category,
     gender = gender,
     brand = brand.name
+)
+
+fun SaveCouponDto.settingAt() {
+    assignedAt = LocalDateTime.now()
+    expiredAt = LocalDateTime.now().plusDays(14)
+}
+
+fun SaveCouponDto.toCoupon(brand: Brand?) = Coupon(
+    name = name,
+    discount = discount,
+    assignedAt = assignedAt,
+    expiredAt = expiredAt,
+    status = status,
+    brand = brand
 )

@@ -1,0 +1,12 @@
+### saveCoupon | 쿠폰 추가
+POST {{basic-url}}/coupon/save
+Content-Type: application/json
+
+{
+  "name": "name",
+  "discount": "10",
+  "assignedAt": "",
+  "expiredAt": "",
+  "status": "V",
+  "brandName": "gowl"
+}
