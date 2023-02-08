@@ -1,5 +1,5 @@
 ### BrandAvailable | 브랜드 입점
-POST http://localhost:8080/api/v1/brand/available
+POST {{basic-url}}/brand/available
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
 Content-Type: application/json
 
@@ -17,10 +17,10 @@ Content-Type: application/json
 }
 
 ### AuditAvailable | 브랜드 입점 심사
-PUT http://localhost:8080/api/v1/brand/audit/available/gowl
+PUT {{basic-url}}/brand/audit/available/gowl
 
 ### BrandUpdate | 브랜드 업데이트
-PUT http://localhost:8080/api/v1/brand/update
+PUT {{basic-url}}/brand/update
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NDI4OTE2OTUyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTQ1MDUxNn0.0hzMaXmeLo-o39340c3bZVWku39r8wWA42NEhw76DRA
 Content-Type: application/json
 

@@ -1,6 +1,6 @@
 ### SignUp | 회원가입
 
-POST http://localhost:8080/api/v1/member/signUp
+POST {{basic-url}}/member/signUp
 Content-Type: application/json
 
 {
@@ -12,15 +12,15 @@ Content-Type: application/json
   "weight": 71,
   "height": 180,
   "gender": "M",
-  "age" : 25,
+  "age": 25,
   "phoneNumber" : "01000000000",
   "address": "address",
-  "birthday" : "2000-01-01T11:44:30.327959"
+  "birthday": "2000-01-01T11:44:30.327959"
 }
 
 ### SignIn | 로그인
 
-POST http://localhost:8080/api/v1/member/signIn
+POST {{basic-url}}/member/signIn
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 
 ### ProfileUpdate | 프로필 업데이트
 
-PUT http://localhost:8080/api/v1/member/update
+PUT {{basic-url}}/member/update
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
 Content-Type: application/json
 
@@ -41,12 +41,12 @@ Content-Type: application/json
   "email": "email1234@gmail.com",
   "weight": 71,
   "height": 180,
-  "phoneNumber" : "01000000000"
+  "phoneNumber": "01000000000"
 }
 
-### PWChange | 패스워드 변경
+### PasswordChange | 패스워드 변경
 
-PUT http://localhost:8080/api/v1/member/pw/change
+PUT {{basic-url}}/member/pw/change
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDE3NjM0LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNCIsInRva2VuVHlwZSI6IkFjY2Vzc1Rva2VuIiwiZXhwIjoxNjc1MzU5NjE3fQ.rsbtYaKY9WKAJRDR3mVU3efIR6LpR_RL3enJ6j7L4tE
 Content-Type: application/json
 

@@ -22,5 +22,5 @@ class MemberController(private val memberService: MemberService) {
     fun updateProfile(@RequestBody updateProfileDto: UpdateProfileDto): Unit = memberService.updateProfile(updateProfileDto)
 
     @PutMapping("/pw/change")
-    fun changePW(@RequestBody changePasswordDto: ChangePasswordDto): String = memberService.changePassword(changePasswordDto)
+    fun changePassword(@RequestBody changePasswordDto: ChangePasswordDto): String = memberService.changePassword(changePasswordDto)
 }
