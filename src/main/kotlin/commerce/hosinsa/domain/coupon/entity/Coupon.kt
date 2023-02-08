@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.coupon.entity
 
-import commerce.hosinsa.domain.member.entity.Member
+import commerce.hosinsa.domain.brand.entity.Brand
 import javax.persistence.*
 import java.time.LocalDateTime
 
@@ -11,23 +11,23 @@ class Coupon(
     val name: String? = null,
 
     @Column(name = "discount", nullable = false)
-    val discount: Short? = null,
+    val discount: Short,
 
     @Column(name = "assigned_at", nullable = false)
     val assignedAt: LocalDateTime? = LocalDateTime.now(),
 
     @Column(name = "expired_at", nullable = false)
-    val expiredAt: LocalDateTime? = null,
+    var expiredAt: LocalDateTime,
 
     @Column(name = "status", nullable = false)
-    val status: Char, // E(expired or Valid),
+    var status: Char, // E(expired or Valid),
 
     @Column(name = "is_delete", nullable = false)
-    val isDelete: Boolean = false,
+    var isDelete: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = true)
-    val member: Member? = null
+    @JoinColumn(name = "brand_id", nullable = true)
+    val brand: Brand? = null
 
 ) {
 

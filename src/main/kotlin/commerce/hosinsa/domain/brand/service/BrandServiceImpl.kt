@@ -39,6 +39,5 @@ class BrandServiceImpl(
         brand.updateBrand(brandUpdateDto)
     }
 
-
     fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByName(availableBrandDto.name)
 }
