@@ -2,7 +2,7 @@ package commerce.hosinsa.domain.member.entity
 
 import commerce.hosinsa.domain.baseTime.entity.BaseTimeEntity
 import commerce.hosinsa.domain.cart.entity.Cart
-import commerce.hosinsa.domain.coupon.entity.Coupon
+import commerce.hosinsa.domain.coupon.entity.CouponMember
 import commerce.hosinsa.domain.order.entity.Order
 import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
@@ -76,7 +76,7 @@ class Member(
         fetch = FetchType.LAZY,
         mappedBy = "member"
     )
-    val coupon: MutableList<Coupon> = mutableListOf()
+    val couponMemberId: MutableList<CouponMember> = mutableListOf()
 
     @OneToMany(
         fetch = FetchType.LAZY,
