@@ -18,13 +18,15 @@ class CouponServiceImpl(
         saveCouponDto.also {
             it.settingAt()
 
-            if (saveCouponDto.brandName != null)
+            if (saveCouponDto.brandName == null)
+                couponRepository.save(saveCouponDto.toCoupon(null))
+            else
                 couponRepository.save(saveCouponDto.toCoupon(findBrandByName(saveCouponDto.brandName)))
-
-            couponRepository.save(saveCouponDto.toCoupon(null))
         }
     }
 
     private fun findBrandByName(brandName: String) = brandRepository.findByName(brandName)
         ?: throw CustomException(BRAND_NOT_FOUND)
+
+
 }

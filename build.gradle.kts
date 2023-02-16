@@ -40,9 +40,8 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
 	kapt("org.springframework.boot:spring-boot-configuration-processor")
 
-	implementation("org.springframework.boot:spring-boot-starter-batch:2.7.0")
-
-	testImplementation("org.spring.framework.batch:spring-batch-test")
+	implementation("org.springframework.boot:spring-boot-starter-batch")
+	testImplementation("org.springframework.batch:spring-batch-test")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")

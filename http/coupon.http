@@ -3,10 +3,7 @@ POST {{basic-url}}/coupon/save
 Content-Type: application/json
 
 {
-  "name": "name",
+  "name": "생일쿠폰",
   "discount": "10",
-  "assignedAt": "",
-  "expiredAt": "",
-  "status": "V",
-  "brandName": "gowl"
+  "status": "V"
 }

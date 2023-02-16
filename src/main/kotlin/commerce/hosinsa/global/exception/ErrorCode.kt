@@ -2,6 +2,9 @@ package commerce.hosinsa.global.exception
 
 enum class ErrorCode(val status: Int, val msg: String) {
 
+    // Coupon Exception
+    COUPON_NOT_FOUND(404, "Coupon Not Found"),
+
     // Product Exception
     PRODUCT_NOT_FOUND(404, "Product Not Found"),
     PRODUCT_IS_ALREADY_EXISTS(409, "Product Already Exists"),

@@ -3,16 +3,19 @@ package commerce.hosinsa.domain.coupon.entity
 import commerce.hosinsa.domain.member.entity.Member
 import javax.persistence.*
 
-@IdClass(value = CouponMemberId::class)
 @Entity
 class CouponMember(
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = true)
-    val member: Member? = null,
-
-    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "coupon_member_id")
-    val couponMemberId: CouponMemberId
+    val couponMemberId: Int,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    val member: Member,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coupon_id")
+    val coupon: Coupon,
 )
