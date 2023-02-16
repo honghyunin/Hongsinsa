@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.member.dto
 
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 class SignUpDto(
     val email: String,
@@ -14,5 +14,5 @@ class SignUpDto(
     val age: Short,
     val phoneNumber: String,
     val address: String,
-    val birthday: LocalDateTime = LocalDateTime.now()
+    val birthday: LocalDate = LocalDate.now()
 )

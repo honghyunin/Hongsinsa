@@ -7,7 +7,7 @@ import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow
 import io.mockk.mockk
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 
 const val EMAIL = "email1234@gmail.com"
@@ -21,7 +21,7 @@ const val GENDER: Char = 'M'
 const val AGE: Short = 20
 const val ADDRESS = "Address"
 const val PHONE_NUMBER = "01000000000"
-val BIRTHDAY: LocalDateTime = LocalDateTime.of(2000, 1, 1, 0, 0, 0)
+val BIRTHDAY: LocalDate = LocalDate.of(2000, 1, 1)
 
 const val ACCESS_TOKEN = "ACCESS_TOKEN"
 const val REFRESH_TOKEN = "REFRESH_TOKEN"

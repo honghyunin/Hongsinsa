@@ -8,9 +8,9 @@ import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import javax.persistence.*
-import java.time.LocalDateTime
+import java.time.LocalDate
 import java.util.stream.Collectors
+import javax.persistence.*
 
 @DynamicUpdate
 @Entity
@@ -19,7 +19,7 @@ class Member(
     @Column(name = "email", nullable = false, length = 50)
     var email: String,
 
-    @Column(name = "id", nullable = false, length = 20, unique =  true)
+    @Column(name = "id", nullable = false, length = 20, unique = true)
     val id: String,
 
     @Column(name = "pw", nullable = false, length = 100)
@@ -28,8 +28,8 @@ class Member(
     @Column(name = "name", nullable = false, length = 10)
     var name: String, // 실명
 
-    @Column(name = "nickname", nullable = true, length = 24)
-    var nickname: String? = null, // 닉네임
+    @Column(name = "nickname", nullable = false, length = 24)
+    var nickname: String, // 닉네임
 
     @Column(name = "weight", nullable = true)
     var weight: Short? = null,
@@ -40,17 +40,23 @@ class Member(
     @Column(name = "age", nullable = true)
     val age: Short? = null,
 
-    @Column(name = "phone_number", nullable = true, length = 14)
-    var phoneNumber: String? = null,
+    @Column(name = "phone_number", nullable = false, length = 14)
+    var phoneNumber: String,
 
-    @Column(name = "gender", nullable = true, length = 1)
-    val gender: Char? = null,
+    @Column(name = "gender", nullable = false, length = 1)
+    val gender: Char,
 
     @Column(name = "address", nullable = true, length = 100)
     var address: String? = null,
 
-    @Column(name = "birthday", nullable = true)
-    val birthday: LocalDateTime? = null,
+    @Column(name = "birthday", nullable = false)
+    val birthday: LocalDate,
+
+    @Column(name = "month", nullable = false)
+    val month: String,
+
+    @Column(name = "day", nullable = false)
+    val day: String,
 
     @Column(name = "is_delete", nullable = false)
     val isDelete: Boolean = false,
@@ -63,7 +69,8 @@ class Member(
 ) : BaseTimeEntity(), UserDetails {
 
     @Column(name = "member_id")
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val memberId: Int? = null
 
     @OneToMany(
@@ -76,7 +83,7 @@ class Member(
         fetch = FetchType.LAZY,
         mappedBy = "member"
     )
-    val couponMemberId: MutableList<CouponMember> = mutableListOf()
+    val couponMember: MutableList<CouponMember> = mutableListOf()
 
     @OneToMany(
         fetch = FetchType.LAZY,

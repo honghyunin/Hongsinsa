@@ -16,8 +16,6 @@ import commerce.hosinsa.domain.product.dto.UpdateProductDto
 import commerce.hosinsa.domain.product.entity.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.CHANGE_PASSWORD_NOT_MATCH
-import java.time.LocalDateTime
-import java.util.*
 
 fun SignUpDto.toMember() = Member(
     email = this.email,
@@ -32,6 +30,8 @@ fun SignUpDto.toMember() = Member(
     gender = this.gender,
     address = this.address,
     birthday = this.birthday,
+    month = this.birthday.month.toString(),
+    day = this.birthday.dayOfMonth.toString(),
     roles = mutableListOf(Role.MEMBER)
 )
 
@@ -116,8 +116,7 @@ fun Product.toProductResponse() = ProductResponse(
 )
 
 fun SaveCouponDto.settingAt() {
-    assignedAt = LocalDateTime.now()
-    expiredAt = LocalDateTime.now().plusDays(14)
+    expiredAt = assignedAt!!.plusDays(14)
 }
 
 fun SaveCouponDto.toCoupon(brand: Brand?) = Coupon(

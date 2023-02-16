@@ -5,8 +5,9 @@ import java.time.LocalDateTime
 class SaveCouponDto(
     val name: String,
     val discount: Short,
-    var assignedAt: LocalDateTime? = null,
-    var expiredAt: LocalDateTime? = null,
     val status: Char,
     val brandName: String? = null
-)
+) {
+    var assignedAt: LocalDateTime = LocalDateTime.now()
+    var expiredAt: LocalDateTime? = null
+}
