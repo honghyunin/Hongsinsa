@@ -15,10 +15,8 @@ class MemberRepositorySupport(private val queryFactory: JPAQueryFactory) :
         val today = LocalDate.now()
 
         return queryFactory.selectFrom(member)
-            .where(
-                member.month.eq(today.monthValue.toString())
-                    .and(member.day.eq(today.dayOfMonth.toString()))
-            )
+            .where(member.birthday.dayOfMonth().eq(today.dayOfMonth),
+                member.birthday.month().eq(today.month.value))
             .fetch()
             .toMutableList()
     }

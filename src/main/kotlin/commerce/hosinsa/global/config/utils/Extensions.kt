@@ -30,8 +30,6 @@ fun SignUpDto.toMember() = Member(
     gender = this.gender,
     address = this.address,
     birthday = this.birthday,
-    month = this.birthday.month.toString(),
-    day = this.birthday.dayOfMonth.toString(),
     roles = mutableListOf(Role.MEMBER)
 )
 

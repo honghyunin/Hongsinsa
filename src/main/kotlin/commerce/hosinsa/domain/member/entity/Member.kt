@@ -52,12 +52,6 @@ class Member(
     @Column(name = "birthday", nullable = false)
     val birthday: LocalDate,
 
-    @Column(name = "month", nullable = false)
-    val month: String,
-
-    @Column(name = "day", nullable = false)
-    val day: String,
-
     @Column(name = "is_delete", nullable = false)
     val isDelete: Boolean = false,
 
