@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class BirthdayCouponJobConfiguration(
+class BirthdayCouponJobConfig(
     private val jobBuilderFactory: JobBuilderFactory,
     private val stepBuilderFactory: StepBuilderFactory,
     private val couponMemberRepository: CouponMemberRepository,
