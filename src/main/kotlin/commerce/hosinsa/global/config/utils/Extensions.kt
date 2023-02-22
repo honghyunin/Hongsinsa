@@ -120,8 +120,5 @@ fun SaveCouponDto.settingAt() {
 fun SaveCouponDto.toCoupon(brand: Brand?) = Coupon(
     name = name,
     discount = discount,
-    assignedAt = assignedAt,
-    expiredAt = expiredAt,
-    status = status,
     brand = brand
 )
