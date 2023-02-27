@@ -30,7 +30,7 @@ class JobScheduler(
         jobLauncherRun(birthdayCouponJobConfig.birthdayCouponJob(), createJobParameters())
     }
 
-    @Scheduled(cron = "0 0 6 * * * ?") // 매일 오전 6시에
+    @Scheduled(cron = "0 0 6 * * ?") // 매일 오전 6시에
     fun runCouponValidCheckJob() {
         jobLauncherRun(couponValidCheckJobConfig.couponValidCheckJob(), createJobParameters())
     }
