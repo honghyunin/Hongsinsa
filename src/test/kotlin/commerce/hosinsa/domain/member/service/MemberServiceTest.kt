@@ -1,8 +1,6 @@
 package commerce.hosinsa.domain.member.service
 
 import commerce.hosinsa.domain.member.fixtures.*
-import commerce.hosinsa.domain.member.repository.MemberRepository
-import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
@@ -32,7 +30,7 @@ internal class MemberServiceTest : DescribeSpec({
         context("이미 존재하는 회원 정보가 입력되면") {
             every { memberRepository.existsById(signUpDto.id) } returns true
 
-            every { memberService.signUp(signUpDto) } throws CustomException(USER_ALREADY_EXISTS)
+            every { memberService.signUp(signUpDto) } throws CustomException(MEMBER_ALREADY_EXISTS)
 
             it("회원가입에 실패한다") {
                 shouldThrow<CustomException> {
@@ -57,7 +55,7 @@ internal class MemberServiceTest : DescribeSpec({
 
             context("존재하지 않을 경우") {
 
-                every { memberService.signIn(signInDto) } throws CustomException(USER_NOT_FOUND)
+                every { memberService.signIn(signInDto) } throws CustomException(MEMBER_NOT_FOUND)
 
                 it("로그인에 실패한다") {
                     failSignIn()
@@ -89,7 +87,7 @@ internal class MemberServiceTest : DescribeSpec({
         }
 
         context("올바르지 않은 회원 정보가 입력되면") {
-            every { memberService.updateProfile(profileUpdateDto) } throws CustomException(USER_NOT_FOUND)
+            every { memberService.updateProfile(profileUpdateDto) } throws CustomException(MEMBER_NOT_FOUND)
 
             it("회원정보 변경에 실패한다") {
                 shouldThrow<CustomException> {

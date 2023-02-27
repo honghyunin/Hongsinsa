@@ -21,7 +21,7 @@ class MemberServiceImpl(
     override fun signUp(signUpDto: SignUpDto) {
 
         if (memberRepository.existsById(signUpDto.id))
-            throw CustomException(USER_ALREADY_EXISTS)
+            throw CustomException(MEMBER_ALREADY_EXISTS)
 
         signUpDto.apply { password = passwordEncoder.encode(this.password) }
             .let { memberRepository.save(it.toMember()) }
@@ -29,7 +29,7 @@ class MemberServiceImpl(
 
     override fun signIn(signInDto: SignInDto): TokenResponse {
         signInDto.let {
-            val findMember = memberRepository.findById(it.id) ?: throw CustomException(USER_NOT_FOUND)
+            val findMember = memberRepository.findById(it.id) ?: throw CustomException(MEMBER_NOT_FOUND)
 
             if (notMatchesPassword(signInDto.password, findMember.pw))
                 throw CustomException(PASSWORD_NOT_MATCH)
@@ -48,7 +48,7 @@ class MemberServiceImpl(
 
         val member = updateProfileDto.apply { password = passwordEncoder.encode(password) }
             .let { memberRepository.findByEmail(updateProfileDto.email) }
-            ?: throw CustomException(USER_NOT_FOUND)
+            ?: throw CustomException(MEMBER_NOT_FOUND)
 
         member.updateProfile(updateProfileDto)
     }
@@ -56,7 +56,7 @@ class MemberServiceImpl(
     @Transactional
     override fun changePassword(changePasswordDto: ChangePasswordDto): String {
         val currentUser = currentUserUtil.currentUser
-            ?: throw CustomException(USER_NOT_FOUND)
+            ?: throw CustomException(MEMBER_NOT_FOUND)
 
         if (notMatchesPassword(changePasswordDto.currentPassword, currentUser.pw))
             throw CustomException(PASSWORD_NOT_MATCH)

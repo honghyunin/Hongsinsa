@@ -52,7 +52,7 @@ class JwtAuthenticationFilter(private val userDetailsServiceImpl: UserDetailsSer
             usernamePasswordAuthenticationToken.details = WebAuthenticationDetailsSource().buildDetails(req)
             SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken
         } catch (e: NullPointerException) {
-            throw CustomException(USER_NOT_FOUND)
+            throw CustomException(MEMBER_NOT_FOUND)
         }
     }
 }

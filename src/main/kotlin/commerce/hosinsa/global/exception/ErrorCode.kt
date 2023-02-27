@@ -13,9 +13,9 @@ enum class ErrorCode(val status: Int, val msg: String) {
     BRAND_NOT_FOUND(404, "Brand Not Found"),
     BRAND_ALREADY_EXISTS(409, "Brand Already Exists"),
 
-    // User Exception
-    USER_NOT_FOUND(404, "User Not Found"),
-    USER_ALREADY_EXISTS(409, "User Already Exists"),
+    // Member Exception
+    MEMBER_NOT_FOUND(404, "Member Not Found"),
+    MEMBER_ALREADY_EXISTS(409, "Member Already Exists"),
 
     CHANGE_PASSWORD_NOT_MATCH(400, "New Password and RePassword Do Not Match"),
 
