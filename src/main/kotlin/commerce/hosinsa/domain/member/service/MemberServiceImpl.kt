@@ -37,7 +37,8 @@ class MemberServiceImpl(
             return TokenResponse(
                 accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember(findMember.roles)),
                 refreshToken = tokenUtils.createRefreshToken(findMember.id, getRoleMember(findMember.roles)),
-                findMember.id
+                findMember.id,
+                findMember.memberId!!
             )
         }
     }
