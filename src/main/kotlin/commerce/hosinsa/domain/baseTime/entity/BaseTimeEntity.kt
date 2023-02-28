@@ -16,5 +16,5 @@ open class BaseTimeEntity(
     var createdAt: LocalDateTime? = LocalDateTime.now(),
 
     @LastModifiedDate @Column(name = "update_at", nullable = false)
-    var updatedAt: LocalDateTime? = LocalDateTime.now()
+    var updatedAt: LocalDateTime? = null
 )
