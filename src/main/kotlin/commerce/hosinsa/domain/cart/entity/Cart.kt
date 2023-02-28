@@ -8,9 +8,6 @@ import javax.persistence.*
 @Entity
 class Cart(
 
-    @Column(name = "is_delete", nullable = false)
-    val isDelete: Boolean = false,
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     val member: Member,
@@ -24,4 +21,6 @@ class Cart(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val cartId: Int? = null
 
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false
 }
