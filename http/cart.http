@@ -1,0 +1,8 @@
+### 장바구니 상품 추가
+POST {{basic-url}}/cart/add
+Content-Type: application/json
+
+{
+  "memberId": "1",
+  "productId": "1"
+}
