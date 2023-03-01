@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.repository.product
 
-import commerce.hosinsa.dto.product.GetProductFilterDto
-import commerce.hosinsa.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.GetProductFilterDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 

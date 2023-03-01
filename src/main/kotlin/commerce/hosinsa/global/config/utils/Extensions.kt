@@ -1,18 +1,18 @@
 package commerce.hosinsa.global.config.utils
 
-import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
-import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
+import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
+import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
+import commerce.hosinsa.domain.dto.coupon.SaveCouponDto
+import commerce.hosinsa.domain.dto.member.ChangePasswordDto
+import commerce.hosinsa.domain.dto.member.SignUpDto
+import commerce.hosinsa.domain.dto.member.UpdateProfileDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.RegistrationProductDto
+import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.brand.Brand
-import commerce.hosinsa.dto.coupon.SaveCouponDto
 import commerce.hosinsa.entity.coupon.Coupon
-import commerce.hosinsa.dto.member.ChangePasswordDto
-import commerce.hosinsa.dto.member.SignUpDto
-import commerce.hosinsa.dto.member.UpdateProfileDto
 import commerce.hosinsa.entity.member.Member
 import commerce.hosinsa.entity.member.Role
-import commerce.hosinsa.dto.product.ProductResponse
-import commerce.hosinsa.dto.product.RegistrationProductDto
-import commerce.hosinsa.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.CHANGE_PASSWORD_NOT_MATCH
@@ -105,7 +105,7 @@ fun Product.soldOut() {
 }
 
 fun Product.toProductResponse() = ProductResponse(
-    productId = productId!!,
+    productId = idx!!,
     name = name,
     price = price,
     category = category,
@@ -114,7 +114,7 @@ fun Product.toProductResponse() = ProductResponse(
 )
 
 fun SaveCouponDto.settingAt() {
-    expiredAt = assignedAt!!.plusDays(14)
+    expiredAt = assignedAt.plusDays(14)
 }
 
 fun SaveCouponDto.toCoupon(brand: Brand?) = Coupon(

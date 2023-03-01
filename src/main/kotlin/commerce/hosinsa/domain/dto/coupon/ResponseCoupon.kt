@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 class ResponseCoupon @QueryProjection constructor(
     val couponName: String,
-    val discount: Short,
+    val discount: Byte,
     val brandName: String?,
     val assignedAt: LocalDateTime,
     val expiredAt: LocalDateTime,

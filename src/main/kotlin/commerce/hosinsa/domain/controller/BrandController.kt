@@ -1,8 +1,8 @@
 package commerce.hosinsa.domain.controller
 
-import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
-import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
-import commerce.hosinsa.service.brand.BrandService
+import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
+import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
+import commerce.hosinsa.domain.service.brand.BrandService
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping

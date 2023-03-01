@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BrandRepository: JpaRepository<Brand, Int> {
-
     fun findByName(name: String): Brand?
     fun existsByName(name: String): Boolean
 }

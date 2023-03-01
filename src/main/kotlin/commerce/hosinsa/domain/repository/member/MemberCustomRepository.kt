@@ -2,6 +2,6 @@ package commerce.hosinsa.domain.repository.member
 
 import commerce.hosinsa.entity.member.Member
 
-interface MemberQueryRepository {
+interface MemberCustomRepository {
     fun findMembersWithBirthdayToday(): MutableList<Member>
 }

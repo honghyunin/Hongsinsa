@@ -1,6 +1,6 @@
 package commerce.hosinsa.global.batch.job
 
-import commerce.hosinsa.repository.coupon.CouponMemberCustomRepository
+import commerce.hosinsa.domain.repository.coupon.CouponMemberCustomRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job

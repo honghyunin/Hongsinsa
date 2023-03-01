@@ -1,15 +1,15 @@
 package commerce.hosinsa.domain.member.fixtures
 
-import commerce.hosinsa.repository.member.MemberRepository
-import commerce.hosinsa.service.member.MemberServiceImpl
-import commerce.hosinsa.dto.member.*
+import commerce.hosinsa.domain.repository.member.MemberRepository
+import commerce.hosinsa.domain.service.member.MemberServiceImpl
+import commerce.hosinsa.domain.dto.member.*
 import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow
 import io.mockk.mockk
 import java.time.LocalDate
 
-
+const val IDX = 1
 const val EMAIL = "email1234@gmail.com"
 const val NAME = "name"
 const val NICKNAME = "nickname"
@@ -53,7 +53,8 @@ val signInDto = SignInDto(
 val tokenResponse = TokenResponse(
     accessToken = ACCESS_TOKEN,
     refreshToken = REFRESH_TOKEN,
-    id = ID
+    id = ID,
+    idx = IDX
 )
 
 val profileUpdateDto = UpdateProfileDto(

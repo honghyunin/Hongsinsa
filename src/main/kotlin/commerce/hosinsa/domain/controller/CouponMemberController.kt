@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.controller
 
-import commerce.hosinsa.service.coupon.CouponMemberService
+import commerce.hosinsa.domain.service.coupon.CouponMemberService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping

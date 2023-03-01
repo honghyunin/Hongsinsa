@@ -1,12 +1,12 @@
 package commerce.hosinsa.domain.service.product
 
-import commerce.hosinsa.repository.brand.BrandRepository
-import commerce.hosinsa.dto.product.GetProductFilterDto
-import commerce.hosinsa.dto.product.ProductResponse
-import commerce.hosinsa.dto.product.RegistrationProductDto
-import commerce.hosinsa.dto.product.UpdateProductDto
-import commerce.hosinsa.repository.product.ProductCustomRepository
-import commerce.hosinsa.repository.product.ProductRepository
+import commerce.hosinsa.domain.dto.product.GetProductFilterDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.RegistrationProductDto
+import commerce.hosinsa.domain.dto.product.UpdateProductDto
+import commerce.hosinsa.domain.repository.brand.BrandRepository
+import commerce.hosinsa.domain.repository.product.ProductCustomRepository
+import commerce.hosinsa.domain.repository.product.ProductRepository
 import commerce.hosinsa.global.config.utils.soldOut
 import commerce.hosinsa.global.config.utils.toProduct
 import commerce.hosinsa.global.config.utils.toProductResponse
@@ -34,18 +34,18 @@ class ProductServiceImpl(
 
     @Transactional
     override fun updateProduct(updateProductDto: UpdateProductDto) =
-        productRepository.findByProductId(updateProductDto.productId).also { product ->
+        productRepository.findByIdx(updateProductDto.productId).also { product ->
             if (product == null) throw CustomException(PRODUCT_NOT_FOUND)
         }!!.updateProduct(updateProductDto)
 
     @Transactional
-    override fun updateIsSoldOut(productId: Int) =
-        productRepository.findByProductId(productId).also { product ->
+    override fun updateIsSoldOut(idx: Int) =
+        productRepository.findByIdx(idx).also { product ->
             if (product == null) throw CustomException(PRODUCT_NOT_FOUND)
         }!!.soldOut()
 
-    override fun getProduct(productId: Int): ProductResponse =
-        productRepository.findByProductId(productId).also { product ->
+    override fun getProduct(idx: Int): ProductResponse =
+        productRepository.findByIdx(idx).also { product ->
             if (product == null) throw CustomException(PRODUCT_NOT_FOUND)
         }!!.toProductResponse()
 

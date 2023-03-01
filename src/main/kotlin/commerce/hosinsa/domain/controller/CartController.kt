@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.controller
 
 import commerce.hosinsa.domain.dto.cart.AddProductDto
-import commerce.hosinsa.service.cart.CartService
+import commerce.hosinsa.domain.service.cart.CartService
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.*
 class CartController(private val cartService: CartService) {
 
     @PostMapping("/add")
-    fun addProduct(@RequestBody addProductDto: commerce.hosinsa.domain.dto.cart.AddProductDto): Unit =
+    fun addProduct(@RequestBody addProductDto: AddProductDto): Unit =
         cartService.addProduct(addProductDto)
 }

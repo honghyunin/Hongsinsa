@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 class SaveCouponDto(
     val name: String,
-    val discount: Short,
+    val discount: Byte,
     val status: Char,
     val brandName: String? = null
 ) {

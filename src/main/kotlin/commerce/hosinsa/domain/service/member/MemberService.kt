@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.service.member
 
-import commerce.hosinsa.dto.member.*
+import commerce.hosinsa.domain.dto.member.*
 
 interface MemberService {
 

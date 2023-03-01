@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.service.brand
 
-import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
-import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
+import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
+import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
 
 interface BrandService {
 

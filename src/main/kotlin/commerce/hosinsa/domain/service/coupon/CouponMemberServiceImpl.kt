@@ -1,8 +1,8 @@
 package commerce.hosinsa.domain.service.coupon
 
-import commerce.hosinsa.dto.coupon.ResponseCoupon
-import commerce.hosinsa.repository.coupon.CouponMemberCustomRepository
-import commerce.hosinsa.repository.member.MemberRepository
+import commerce.hosinsa.domain.dto.coupon.ResponseCoupon
+import commerce.hosinsa.domain.repository.coupon.CouponMemberCustomRepository
+import commerce.hosinsa.domain.repository.member.MemberRepository
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.MEMBER_NOT_FOUND
 import org.springframework.stereotype.Service
@@ -17,7 +17,7 @@ class CouponMemberServiceImpl(
         if (memberRepository.existsById(memberId))
             throw CustomException(MEMBER_NOT_FOUND)
 
-        return couponMemberCustomRepository.findResponseCouponMembersByMemberId(memberId)
+        return couponMemberCustomRepository.findResponseCouponMembersByIdx(memberId)
     }
 
 }

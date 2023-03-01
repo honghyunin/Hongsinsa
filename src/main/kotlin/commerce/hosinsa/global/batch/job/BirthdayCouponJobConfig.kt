@@ -1,9 +1,9 @@
 package commerce.hosinsa.global.batch.job
 
+import commerce.hosinsa.domain.repository.coupon.CouponMemberRepository
+import commerce.hosinsa.domain.repository.coupon.CouponRepository
+import commerce.hosinsa.domain.repository.member.MemberCustomRepository
 import commerce.hosinsa.entity.coupon.CouponMember
-import commerce.hosinsa.repository.coupon.CouponMemberRepository
-import commerce.hosinsa.repository.coupon.CouponRepository
-import commerce.hosinsa.repository.member.MemberQueryRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job
@@ -18,7 +18,7 @@ class BirthdayCouponJobConfig(
     private val jobBuilderFactory: JobBuilderFactory,
     private val stepBuilderFactory: StepBuilderFactory,
     private val couponMemberRepository: CouponMemberRepository,
-    private val memberQueryRepository: MemberQueryRepository,
+    private val memberCustomRepository: MemberCustomRepository,
     private val couponRepository: CouponRepository
 ) {
 
@@ -37,11 +37,11 @@ class BirthdayCouponJobConfig(
     fun birthdayCouponStep() = stepBuilderFactory["birthdayStep"]
         .tasklet { _, _ ->
             val coupon = couponRepository.findByName(COUPON_NAME)!!
-            val members = memberQueryRepository.findMembersWithBirthdayToday()
+            val members = memberCustomRepository.findMembersWithBirthdayToday()
 
             members.forEach {
 
-                couponMemberRepository.save(CouponMember(id = it.memberId!!, member = it, coupon = coupon))
+                couponMemberRepository.save(CouponMember(id = it.idx!!, member = it, coupon = coupon))
                 log.info("Member : ${it.id}, ${it.name} ")
             }
 

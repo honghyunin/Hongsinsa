@@ -1,11 +1,11 @@
 package commerce.hosinsa.domain.product.fixtures
 
-import commerce.hosinsa.dto.product.GetProductFilterDto
-import commerce.hosinsa.dto.product.ProductResponse
-import commerce.hosinsa.dto.product.RegistrationProductDto
-import commerce.hosinsa.dto.product.UpdateProductDto
+import commerce.hosinsa.domain.dto.product.GetProductFilterDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.RegistrationProductDto
+import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.product.Price
-import commerce.hosinsa.service.product.ProductService
+import commerce.hosinsa.domain.service.product.ProductService
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable

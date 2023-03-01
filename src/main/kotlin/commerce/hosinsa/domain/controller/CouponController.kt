@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.controller
 
-import commerce.hosinsa.dto.coupon.SaveCouponDto
-import commerce.hosinsa.service.coupon.CouponService
+import commerce.hosinsa.domain.dto.coupon.SaveCouponDto
+import commerce.hosinsa.domain.service.coupon.CouponService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

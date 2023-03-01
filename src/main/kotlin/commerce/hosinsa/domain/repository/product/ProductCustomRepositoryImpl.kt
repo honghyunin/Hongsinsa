@@ -2,13 +2,13 @@ package commerce.hosinsa.domain.repository.product
 
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.jpa.impl.JPAQueryFactory
-import commerce.hosinsa.domain.brand.entity.QBrand.brand
-import commerce.hosinsa.dto.product.GetProductFilterDto
-import commerce.hosinsa.dto.product.ProductResponse
-import commerce.hosinsa.domain.product.dto.QProductResponse
-import commerce.hosinsa.domain.product.entity.QProduct.product
+import commerce.hosinsa.domain.dto.product.GetProductFilterDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.QProductResponse
+import commerce.hosinsa.entity.brand.QBrand.brand
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Price.*
+import commerce.hosinsa.entity.product.QProduct.product
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
@@ -19,7 +19,7 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
     override fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<ProductResponse> {
         val products = query.select(
             QProductResponse(
-                product.productId,
+                product.idx,
                 product.name,
                 product.price,
                 product.category,

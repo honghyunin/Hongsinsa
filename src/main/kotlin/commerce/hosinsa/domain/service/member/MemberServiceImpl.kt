@@ -1,8 +1,8 @@
 package commerce.hosinsa.domain.service.member
 
 import commerce.hosinsa.entity.member.Role
-import commerce.hosinsa.repository.member.MemberRepository
-import commerce.hosinsa.dto.member.*
+import commerce.hosinsa.domain.dto.member.*
+import commerce.hosinsa.domain.repository.member.MemberRepository
 import commerce.hosinsa.global.config.utils.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
@@ -38,7 +38,7 @@ class MemberServiceImpl(
                 accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember(findMember.roles)),
                 refreshToken = tokenUtils.createRefreshToken(findMember.id, getRoleMember(findMember.roles)),
                 findMember.id,
-                findMember.memberId!!
+                findMember.idx!!
             )
         }
     }

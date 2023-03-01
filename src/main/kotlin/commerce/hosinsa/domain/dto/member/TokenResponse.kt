@@ -4,5 +4,5 @@ class TokenResponse(
     val accessToken: String,
     val refreshToken: String,
     val id: String,
-    val memberId: Int
+    val idx: Int
 )

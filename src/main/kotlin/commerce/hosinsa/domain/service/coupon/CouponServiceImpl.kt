@@ -1,8 +1,8 @@
 package commerce.hosinsa.domain.service.coupon
 
-import commerce.hosinsa.repository.brand.BrandRepository
-import commerce.hosinsa.dto.coupon.SaveCouponDto
-import commerce.hosinsa.repository.coupon.CouponRepository
+import commerce.hosinsa.domain.dto.coupon.SaveCouponDto
+import commerce.hosinsa.domain.repository.brand.BrandRepository
+import commerce.hosinsa.domain.repository.coupon.CouponRepository
 import commerce.hosinsa.global.config.utils.settingAt
 import commerce.hosinsa.global.config.utils.toCoupon
 import commerce.hosinsa.global.exception.CustomException
@@ -27,6 +27,4 @@ class CouponServiceImpl(
 
     private fun findBrandByName(brandName: String) = brandRepository.findByName(brandName)
         ?: throw CustomException(BRAND_NOT_FOUND)
-
-
 }

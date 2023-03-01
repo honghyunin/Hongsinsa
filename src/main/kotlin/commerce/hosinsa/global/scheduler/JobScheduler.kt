@@ -26,7 +26,6 @@ class JobScheduler(
 
     @Scheduled(cron = "0 0 5 * * ?") // 매일 오전 5시에
     fun runBirthdayCouponJob() {
-
         jobLauncherRun(birthdayCouponJobConfig.birthdayCouponJob(), createJobParameters())
     }
 
