@@ -32,8 +32,8 @@ class Order(
 
 ) : BaseTimeEntity() {
 
-    @Column(name = "order_id")
+    @Column(name = "idx")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val orderId: Int? = null
+    val idx: Int? = null
 
 }

@@ -39,9 +39,9 @@ class Brand(
     val isDelete: Boolean = false,
 ) {
 
-    @Column(name = "brand_id")
+    @Column(name = "idx")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val brandId: Int? = null
+    val idx: Int? = null
 
     @OneToMany(
         fetch = FetchType.LAZY,

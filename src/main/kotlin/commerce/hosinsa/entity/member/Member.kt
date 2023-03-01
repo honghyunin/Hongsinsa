@@ -62,10 +62,10 @@ class Member(
 
 ) : BaseTimeEntity(), UserDetails {
 
-    @Column(name = "member_id")
+    @Column(name = "idx")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val memberId: Int? = null
+    val idx: Int? = null
 
     @OneToMany(
         fetch = FetchType.LAZY,

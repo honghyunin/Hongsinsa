@@ -25,15 +25,15 @@ class Product(
     val isDelete: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand.idx")
     val brand: Brand
 
 ) : BaseTimeEntity() {
 
-    @Column(name = "product_id")
+    @Column(name = "idx")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val productId: Int? = null
+    val idx: Int? = null
 
     @Column(name = "is_soludout")
     var isSoldOut: Boolean = false
