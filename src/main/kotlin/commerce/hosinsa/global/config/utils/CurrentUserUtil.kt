@@ -1,7 +1,7 @@
 package commerce.hosinsa.global.config.utils
 
-import commerce.hosinsa.domain.member.entity.Member
-import commerce.hosinsa.domain.member.repository.MemberRepository
+import commerce.hosinsa.entity.member.Member
+import commerce.hosinsa.repository.member.MemberRepository
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component

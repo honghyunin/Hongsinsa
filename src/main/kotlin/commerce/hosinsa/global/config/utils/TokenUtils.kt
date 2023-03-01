@@ -1,6 +1,6 @@
 package commerce.hosinsa.global.config.utils
 
-import commerce.hosinsa.domain.member.entity.Role
+import commerce.hosinsa.entity.member.Role
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.INPUT_VALUE_NOT_FOUND
 import io.jsonwebtoken.*

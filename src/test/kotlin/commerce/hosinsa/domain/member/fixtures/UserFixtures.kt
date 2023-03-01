@@ -1,8 +1,8 @@
 package commerce.hosinsa.domain.member.fixtures
 
-import commerce.hosinsa.domain.member.dto.*
-import commerce.hosinsa.domain.member.repository.MemberRepository
-import commerce.hosinsa.domain.member.service.MemberServiceImpl
+import commerce.hosinsa.repository.member.MemberRepository
+import commerce.hosinsa.service.member.MemberServiceImpl
+import commerce.hosinsa.dto.member.*
 import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow

@@ -1,9 +1,9 @@
 package commerce.hosinsa.global.batch.job
 
-import commerce.hosinsa.domain.coupon.entity.CouponMember
-import commerce.hosinsa.domain.coupon.repository.CouponMemberRepository
-import commerce.hosinsa.domain.coupon.repository.CouponRepository
-import commerce.hosinsa.domain.member.repository.MemberQueryRepository
+import commerce.hosinsa.entity.coupon.CouponMember
+import commerce.hosinsa.repository.coupon.CouponMemberRepository
+import commerce.hosinsa.repository.coupon.CouponRepository
+import commerce.hosinsa.repository.member.MemberQueryRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job
@@ -41,11 +41,11 @@ class BirthdayCouponJobConfig(
 
             members.forEach {
 
-                couponMemberRepository.save(CouponMember(couponMemberId = it.memberId!!, member = it, coupon = coupon))
+                couponMemberRepository.save(CouponMember(id = it.memberId!!, member = it, coupon = coupon))
                 log.info("Member : ${it.id}, ${it.name} ")
             }
 
-            log.info("Coupon : ${coupon.couponId}, ${coupon.name} ")
+            log.info("Coupon : ${coupon.id}, ${coupon.name} ")
 
             RepeatStatus.FINISHED
         }

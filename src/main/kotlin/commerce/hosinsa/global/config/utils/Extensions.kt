@@ -2,18 +2,18 @@ package commerce.hosinsa.global.config.utils
 
 import commerce.hosinsa.domain.brand.dto.AvailableBrandDto
 import commerce.hosinsa.domain.brand.dto.BrandUpdateDto
-import commerce.hosinsa.domain.brand.entity.Brand
-import commerce.hosinsa.domain.coupon.dto.SaveCouponDto
-import commerce.hosinsa.domain.coupon.entity.Coupon
-import commerce.hosinsa.domain.member.dto.ChangePasswordDto
-import commerce.hosinsa.domain.member.dto.SignUpDto
-import commerce.hosinsa.domain.member.dto.UpdateProfileDto
-import commerce.hosinsa.domain.member.entity.Member
-import commerce.hosinsa.domain.member.entity.Role
-import commerce.hosinsa.domain.product.dto.ProductResponse
-import commerce.hosinsa.domain.product.dto.RegistrationProductDto
-import commerce.hosinsa.domain.product.dto.UpdateProductDto
-import commerce.hosinsa.domain.product.entity.Product
+import commerce.hosinsa.entity.brand.Brand
+import commerce.hosinsa.dto.coupon.SaveCouponDto
+import commerce.hosinsa.entity.coupon.Coupon
+import commerce.hosinsa.dto.member.ChangePasswordDto
+import commerce.hosinsa.dto.member.SignUpDto
+import commerce.hosinsa.dto.member.UpdateProfileDto
+import commerce.hosinsa.entity.member.Member
+import commerce.hosinsa.entity.member.Role
+import commerce.hosinsa.dto.product.ProductResponse
+import commerce.hosinsa.dto.product.RegistrationProductDto
+import commerce.hosinsa.dto.product.UpdateProductDto
+import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.CHANGE_PASSWORD_NOT_MATCH
 

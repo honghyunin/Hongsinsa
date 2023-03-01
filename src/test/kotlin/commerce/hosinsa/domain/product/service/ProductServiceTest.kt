@@ -1,6 +1,5 @@
 package commerce.hosinsa.domain.product.service
 
-import commerce.hosinsa.domain.product.dto.ProductResponse
 import commerce.hosinsa.domain.product.fixtures.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
@@ -11,7 +10,6 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.verify
-import org.springframework.data.domain.Page
 
 internal class ProductServiceTest : DescribeSpec({
 
