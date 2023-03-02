@@ -8,6 +8,7 @@ import commerce.hosinsa.domain.dto.product.QProductResponse
 import commerce.hosinsa.entity.brand.QBrand.brand
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Price.*
+import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.entity.product.QProduct.product
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
@@ -38,6 +39,12 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             .fetchOne()
 
         return PageImpl(products, pageable, count!!)
+    }
+
+    override fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {
+        return query.selectFrom(product)
+            .where(product.idx.`in`(productIdxList))
+            .fetch()
     }
 
     private fun createWhereFilter(getProductFilterDto: GetProductFilterDto): BooleanBuilder =
