@@ -57,7 +57,7 @@ class Member(
     val isDelete: Boolean = false,
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member.id")])
+    @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member_id")])
     @Column(name = "role", nullable = false) @Enumerated(EnumType.STRING)
     var roles: MutableList<Role>
 
@@ -68,7 +68,8 @@ class Member(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idx: Int? = null
 
-    @Column(name = "grade", nullable = false, columnDefinition = "VARCHAR")
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "grade", nullable = false)
     var grade: Grade = Grade.NEWBIE
 
     @Comment(value = "누적 구매 금액")
