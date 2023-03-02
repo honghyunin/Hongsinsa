@@ -4,6 +4,7 @@ import commerce.hosinsa.entity.BaseTimeEntity
 import commerce.hosinsa.entity.cart.Cart
 import commerce.hosinsa.entity.coupon.CouponMember
 import commerce.hosinsa.entity.order.Order
+import org.hibernate.annotations.Comment
 import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -56,7 +57,7 @@ class Member(
     val isDelete: Boolean = false,
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member_id")])
+    @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member.id")])
     @Column(name = "role", nullable = false) @Enumerated(EnumType.STRING)
     var roles: MutableList<Role>
 
@@ -66,6 +67,13 @@ class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idx: Int? = null
+
+    @Column(name = "grade", nullable = false, columnDefinition = "VARCHAR")
+    var grade: Grade = Grade.NEWBIE
+
+    @Comment(value = "누적 구매 금액")
+    @Column(name = "total_cost")
+    var totalCost: Short = 0
 
     @OneToMany(
         fetch = FetchType.LAZY,
