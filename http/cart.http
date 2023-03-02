@@ -6,3 +6,11 @@ Content-Type: application/json
   "memberId": "1",
   "productId": "1"
 }
+
+### 장바구니 조회
+GET {{basic-url}}/cart/1
+Content-Type: application/json
+
+### 장바구니 상품 삭제
+DELETE {{basic-url}}/cart/1
+Content-Type: application/json

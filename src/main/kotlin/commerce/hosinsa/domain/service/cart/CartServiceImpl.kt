@@ -1,6 +1,8 @@
 package commerce.hosinsa.domain.service.cart
 
 import commerce.hosinsa.domain.dto.cart.AddProductDto
+import commerce.hosinsa.domain.dto.cart.CartResponse
+import commerce.hosinsa.domain.repository.cart.CartCustomRepository
 import commerce.hosinsa.domain.repository.cart.CartRepository
 import commerce.hosinsa.domain.repository.member.MemberRepository
 import commerce.hosinsa.domain.repository.product.ProductRepository
@@ -17,6 +19,7 @@ class CartServiceImpl(
     private val cartRepository: CartRepository,
     private val memberRepository: MemberRepository,
     private val productRepository: ProductRepository,
+    private val cartCustomRepository: CartCustomRepository,
 ) : CartService {
     override fun addProduct(addProductDto: AddProductDto) {
         val member: Member = memberRepository.findById(addProductDto.memberId)
@@ -25,5 +28,15 @@ class CartServiceImpl(
             ?: throw CustomException(PRODUCT_NOT_FOUND)
 
         cartRepository.save(Cart(member = member, product = product))
+    }
+
+    override fun getCart(memberIdx: Int): MutableList<CartResponse> =
+        cartCustomRepository.findProductsByMemberIdx(memberIdx)
+
+    override fun deleteCartProduct(productIdx: Int) {
+        val cart: Cart = cartRepository.findByProductIdx(productIdx)
+            ?: throw CustomException(PRODUCT_NOT_FOUND)
+
+        cartRepository.delete(cart)
     }
 }

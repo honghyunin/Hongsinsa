@@ -9,7 +9,7 @@ Content-Type: application/json
   "category": "차가리 반팔티",
   "gender": "W",
   "stock": "200",
-  "brandName": "woowakgood"
+  "brandName": "gowl"
 }
 
 ### UpdateProduct | 상품 업데이트
