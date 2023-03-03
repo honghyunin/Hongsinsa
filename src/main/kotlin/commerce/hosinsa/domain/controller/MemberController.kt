@@ -1,6 +1,6 @@
 package commerce.hosinsa.domain.controller
 
-import commerce.hosinsa.domain.service.member.MemberService
+import commerce.hosinsa.domain.service.MemberService
 import commerce.hosinsa.domain.dto.member.*
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping

@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.repository.cart
+package commerce.hosinsa.domain.repository
 
 import commerce.hosinsa.domain.dto.cart.CartResponse
 

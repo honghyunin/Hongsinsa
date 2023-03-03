@@ -2,7 +2,7 @@ package commerce.hosinsa.domain.controller
 
 import commerce.hosinsa.domain.dto.cart.AddProductDto
 import commerce.hosinsa.domain.dto.cart.CartResponse
-import commerce.hosinsa.domain.service.cart.CartService
+import commerce.hosinsa.domain.service.CartService
 import org.springframework.web.bind.annotation.*
 
 @RestController

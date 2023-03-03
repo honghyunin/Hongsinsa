@@ -1,38 +1,37 @@
-package commerce.hosinsa.domain.service.member
+package commerce.hosinsa.domain.service
 
-import commerce.hosinsa.entity.member.Role
 import commerce.hosinsa.domain.dto.member.*
-import commerce.hosinsa.domain.repository.member.MemberRepository
+import commerce.hosinsa.domain.repository.MemberRepository
+import commerce.hosinsa.entity.member.Role
 import commerce.hosinsa.global.config.utils.*
+import commerce.hosinsa.global.exception.CustomException
+import commerce.hosinsa.global.exception.ErrorCode
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
-import commerce.hosinsa.global.exception.CustomException
-import commerce.hosinsa.global.exception.ErrorCode.*
 import javax.transaction.Transactional
 
 @Service
-class MemberServiceImpl(
+class MemberService(
     private val memberRepository: MemberRepository,
     private val passwordEncoder: BCryptPasswordEncoder,
     private val tokenUtils: TokenUtils,
     private val currentUserUtil: CurrentUserUtil
-) : MemberService {
-
-    override fun signUp(signUpDto: SignUpDto) {
+) {
+    fun signUp(signUpDto: SignUpDto) {
 
         if (memberRepository.existsById(signUpDto.id))
-            throw CustomException(MEMBER_ALREADY_EXISTS)
+            throw CustomException(ErrorCode.MEMBER_ALREADY_EXISTS)
 
         signUpDto.apply { password = passwordEncoder.encode(this.password) }
             .let { memberRepository.save(it.toMember()) }
     }
 
-    override fun signIn(signInDto: SignInDto): TokenResponse {
+    fun signIn(signInDto: SignInDto): TokenResponse {
         signInDto.let {
-            val findMember = memberRepository.findById(it.id) ?: throw CustomException(MEMBER_NOT_FOUND)
+            val findMember = memberRepository.findById(it.id) ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
 
             if (notMatchesPassword(signInDto.password, findMember.pw))
-                throw CustomException(PASSWORD_NOT_MATCH)
+                throw CustomException(ErrorCode.PASSWORD_NOT_MATCH)
 
             return TokenResponse(
                 accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember(findMember.roles)),
@@ -44,22 +43,22 @@ class MemberServiceImpl(
     }
 
     @Transactional
-    override fun updateProfile(updateProfileDto: UpdateProfileDto) {
+    fun updateProfile(updateProfileDto: UpdateProfileDto) {
 
         val member = updateProfileDto.apply { password = passwordEncoder.encode(password) }
             .let { memberRepository.findByEmail(updateProfileDto.email) }
-            ?: throw CustomException(MEMBER_NOT_FOUND)
+            ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
 
         member.updateProfile(updateProfileDto)
     }
 
     @Transactional
-    override fun changePassword(changePasswordDto: ChangePasswordDto): String {
+    fun changePassword(changePasswordDto: ChangePasswordDto): String {
         val currentUser = currentUserUtil.currentUser
-            ?: throw CustomException(MEMBER_NOT_FOUND)
+            ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
 
         if (notMatchesPassword(changePasswordDto.currentPassword, currentUser.pw))
-            throw CustomException(PASSWORD_NOT_MATCH)
+            throw CustomException(ErrorCode.PASSWORD_NOT_MATCH)
 
         return changePasswordDto.matchesPassword()
             .also { currentUser.changePassword(passwordEncoder.encode(it.newPassword)) }.newPassword

@@ -1,6 +1,6 @@
 package commerce.hosinsa.global.config.security.detail
 
-import commerce.hosinsa.domain.repository.member.MemberRepository
+import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.entity.member.Member
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.MEMBER_NOT_FOUND

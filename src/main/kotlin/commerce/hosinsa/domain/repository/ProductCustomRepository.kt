@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.repository.product
+package commerce.hosinsa.domain.repository
 
 import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.ProductResponse

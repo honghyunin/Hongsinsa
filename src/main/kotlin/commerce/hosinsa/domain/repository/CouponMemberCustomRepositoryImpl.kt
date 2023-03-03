@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.repository.coupon
+package commerce.hosinsa.domain.repository
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hosinsa.domain.dto.coupon.QResponseCoupon

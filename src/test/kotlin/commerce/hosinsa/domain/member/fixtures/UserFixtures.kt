@@ -1,7 +1,6 @@
 package commerce.hosinsa.domain.member.fixtures
 
-import commerce.hosinsa.domain.repository.member.MemberRepository
-import commerce.hosinsa.domain.service.member.MemberServiceImpl
+import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.dto.member.*
 import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException

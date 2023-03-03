@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.repository.product
+package commerce.hosinsa.domain.repository
 
 import commerce.hosinsa.entity.product.Product
 import org.springframework.data.jpa.repository.JpaRepository

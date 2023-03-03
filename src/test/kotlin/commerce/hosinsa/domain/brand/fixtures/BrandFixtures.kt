@@ -2,7 +2,7 @@ package commerce.hosinsa.domain.brand.fixtures
 
 import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
-import commerce.hosinsa.domain.service.brand.BrandService
+import commerce.hosinsa.domain.service.BrandService
 import io.mockk.mockk
 
 const val NAME: String = "gowl"

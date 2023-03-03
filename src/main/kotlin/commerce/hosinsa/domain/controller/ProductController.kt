@@ -3,7 +3,7 @@ package commerce.hosinsa.domain.controller
 import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
-import commerce.hosinsa.domain.service.product.ProductService
+import commerce.hosinsa.domain.service.ProductService
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.web.bind.annotation.*

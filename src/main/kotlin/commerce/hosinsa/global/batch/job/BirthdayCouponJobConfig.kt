@@ -1,8 +1,8 @@
 package commerce.hosinsa.global.batch.job
 
-import commerce.hosinsa.domain.repository.coupon.CouponMemberRepository
-import commerce.hosinsa.domain.repository.coupon.CouponRepository
-import commerce.hosinsa.domain.repository.member.MemberCustomRepository
+import commerce.hosinsa.domain.repository.CouponMemberRepository
+import commerce.hosinsa.domain.repository.CouponRepository
+import commerce.hosinsa.domain.repository.MemberCustomRepository
 import commerce.hosinsa.entity.coupon.CouponMember
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

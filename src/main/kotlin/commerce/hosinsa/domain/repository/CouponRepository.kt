@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.repository.coupon
+package commerce.hosinsa.domain.repository
 
 import commerce.hosinsa.entity.coupon.Coupon
 import org.springframework.data.jpa.repository.JpaRepository
