@@ -2,6 +2,9 @@ package commerce.hosinsa.global.exception
 
 enum class ErrorCode(val status: Int, val msg: String) {
 
+    // Order Exception
+    ORDER_NOT_FOUND(404, "Order Not Found"),
+
     // Coupon Exception
     COUPON_NOT_FOUND(404, "Coupon Not Found"),
 
@@ -21,6 +24,7 @@ enum class ErrorCode(val status: Int, val msg: String) {
 
     // Authentication Exception
     PASSWORD_NOT_MATCH(400, "Password Does Not Match"),
+    FORBIDDEN(403, "Unauthorized Access"),
 
     // IO Exception
     INPUT_VALUE_NOT_FOUND(404, "Input Value Not Found")

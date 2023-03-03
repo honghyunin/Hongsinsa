@@ -24,7 +24,7 @@ POST {{basic-url}}/member/signIn
 Content-Type: application/json
 
 {
-  "id": "id12345",
+  "id": "7854",
   "password": "password1234"
 }
 

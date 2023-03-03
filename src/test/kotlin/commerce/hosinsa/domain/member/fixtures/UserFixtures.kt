@@ -2,6 +2,7 @@ package commerce.hosinsa.domain.member.fixtures
 
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.dto.member.*
+import commerce.hosinsa.domain.service.MemberService
 import commerce.hosinsa.global.config.utils.toMember
 import commerce.hosinsa.global.exception.CustomException
 import io.kotest.assertions.throwables.shouldThrow
@@ -89,4 +90,4 @@ const val CHANGED_PW = PASSWORD + "1234"
 val member = signUpDto.toMember()
 
 val memberRepository = mockk<MemberRepository>()
-val memberService = mockk<MemberServiceImpl>()
+val memberService = mockk<MemberService>()
