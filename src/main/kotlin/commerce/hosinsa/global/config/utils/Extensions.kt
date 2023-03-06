@@ -90,7 +90,9 @@ fun RegistrationProductDto.toProduct(brand: Brand) = Product(
     category = this.category,
     gender = this.gender,
     stock = this.stock,
-    brand = brand
+    brand = brand,
+    size = this.size,
+    color = this.color
 )
 
 fun Product.updateProduct(updateProductDto: UpdateProductDto) {
@@ -98,6 +100,8 @@ fun Product.updateProduct(updateProductDto: UpdateProductDto) {
     this.price = updateProductDto.price
     this.category = updateProductDto.category
     this.gender = updateProductDto.gender
+    this.color = updateProductDto.color
+    this.size = updateProductDto.size
 }
 
 fun Product.soldOut() {

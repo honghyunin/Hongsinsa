@@ -39,7 +39,9 @@ class OrderService(
                 OrderProduct(
                     product = product,
                     order = order,
-                    count = quantity
+                    count = quantity,
+                    size = orderRequestDto.size,
+                    color = orderRequestDto.color
                 )
             )
 
@@ -64,7 +66,7 @@ class OrderService(
         return orders
     }
 
-    fun deleteOrder(orderIdx: Int) {
+    fun cancelOrder(orderIdx: Int) {
         val member = currentUserUtil.currentUser
             ?: throw CustomException(MEMBER_NOT_FOUND)
 
@@ -76,9 +78,9 @@ class OrderService(
         val order = orderRepository.findById(orderIdx).orElseThrow { throw CustomException(ORDER_NOT_FOUND) }
 
         orderProductRepository.findAllByOrder(order).forEach { orderProduct ->
-            orderProductRepository.delete(orderProduct)
+            orderProduct.isDelete = true
         }
 
-        orderRepository.delete(order)
+        order.isDelete = true
     }
 }

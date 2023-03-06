@@ -6,6 +6,7 @@ import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.domain.service.ProductService
+import commerce.hosinsa.entity.product.ProductSize
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
@@ -17,6 +18,8 @@ const val CATEGORY = "category"
 const val GENDER: Char = 'M'
 const val STOCK = 10000000
 const val BRAND_NAME = "AVANT-GARDE"
+val COLOR = mutableSetOf("검정", "흰색", "파랑")
+val PRODUCT_SIZE = mutableSetOf(ProductSize.L, ProductSize.S, ProductSize.XS, ProductSize.M)
 
 val registrationProductDto = RegistrationProductDto(
     name = PRODUCT_NAME,
@@ -24,7 +27,9 @@ val registrationProductDto = RegistrationProductDto(
     category = CATEGORY,
     gender = GENDER,
     stock = STOCK,
-    brandName = BRAND_NAME
+    brandName = BRAND_NAME,
+    color = COLOR,
+    size = PRODUCT_SIZE
 )
 
 val updateProductDto = UpdateProductDto(
@@ -33,7 +38,9 @@ val updateProductDto = UpdateProductDto(
     price = PRICE,
     category = CATEGORY,
     gender = GENDER,
-    stock = STOCK
+    stock = STOCK,
+    color = COLOR,
+    size = PRODUCT_SIZE
 )
 
 val productResponse = ProductResponse(

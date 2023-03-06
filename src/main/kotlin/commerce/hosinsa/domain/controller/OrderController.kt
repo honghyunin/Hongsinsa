@@ -14,6 +14,6 @@ class OrderController(private val orderService: OrderService) {
     @GetMapping("/{memberIdx}")
     fun getOrder(@PathVariable memberIdx: Int) = orderService.getOrder(memberIdx)
 
-    @DeleteMapping("/{orderIdx}")
-    fun deleteOrder(@PathVariable orderIdx: Int) = orderService.deleteOrder(orderIdx)
+    @DeleteMapping("/cancel/{orderIdx}")
+    fun cancelOrder(@PathVariable orderIdx: Int) = orderService.cancelOrder(orderIdx)
 }

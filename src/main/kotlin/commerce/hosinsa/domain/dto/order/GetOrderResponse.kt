@@ -1,6 +1,7 @@
 package commerce.hosinsa.domain.dto.order
 
 import com.querydsl.core.annotations.QueryProjection
+import commerce.hosinsa.entity.product.ProductSize
 import java.time.LocalDateTime
 
 class GetOrderResponse @QueryProjection constructor(
@@ -10,5 +11,7 @@ class GetOrderResponse @QueryProjection constructor(
     val productIdx: Int,
     val orderCreatedAt: LocalDateTime,
     val quantity: Byte,
-    val price: Int
+    val price: Int,
+    val size: ProductSize,
+    val color: String
 )

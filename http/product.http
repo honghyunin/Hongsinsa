@@ -9,7 +9,9 @@ Content-Type: application/json
   "category": "차가리 반팔티",
   "gender": "W",
   "stock": "200",
-  "brandName": "gowl"
+  "brandName": "gowl",
+  "color": ["검정", "흰색"],
+  "size": ["M", "L"]
 }
 
 ### UpdateProduct | 상품 업데이트
@@ -24,7 +26,9 @@ Content-Type: application/json
   "price": "20000",
   "category": "반팔티",
   "gender": "M",
-  "stock": "200"
+  "stock": "200",
+  "color": ["검정", "흰색"],
+  "size": ["M", "L"]
 }
 
 ### UpdateIsSoldOut | 상품 품절 업데이트
