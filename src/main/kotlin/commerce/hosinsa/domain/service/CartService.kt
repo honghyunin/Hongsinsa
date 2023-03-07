@@ -11,6 +11,7 @@ import commerce.hosinsa.entity.member.Member
 import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
+import commerce.hosinsa.global.exception.ErrorCode.MEMBER_NOT_FOUND
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,15 +23,20 @@ class CartService(
 ) {
     fun addProduct(addProductDto: AddProductDto) {
         val member: Member = memberRepository.findById(addProductDto.memberId)
-            .orElseThrow { throw CustomException(ErrorCode.MEMBER_NOT_FOUND) }
+            .orElseThrow { throw CustomException(MEMBER_NOT_FOUND) }
         val product: Product = productRepository.findByIdx(addProductDto.productId)
             ?: throw CustomException(ErrorCode.PRODUCT_NOT_FOUND)
 
         cartRepository.save(Cart(member = member, product = product))
     }
 
-    fun getCart(memberIdx: Int): MutableList<CartResponse> =
-        cartCustomRepository.findProductsByMemberIdx(memberIdx)
+    fun getCart(memberIdx: Int): MutableList<CartResponse> {
+
+        if(memberRepository.existsById(memberIdx))
+            throw CustomException(MEMBER_NOT_FOUND)
+
+        return cartCustomRepository.findProductsByMemberIdx(memberIdx)
+    }
 
     fun deleteCartProduct(productIdx: Int) {
         val cart: Cart = cartRepository.findByProductIdx(productIdx)
