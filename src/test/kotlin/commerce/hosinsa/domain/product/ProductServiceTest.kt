@@ -76,23 +76,23 @@ internal class ProductServiceTest : DescribeSpec({
 
         context("올바른 인자값을 받을 경우") {
 
-            every { productService.updateIsSoldOut(PRODUCT_ID) } just Runs
+            every { productService.updateIsSoldOut(PRODUCT_IDX) } just Runs
 
             it("재고 품절 업데이트에 성공한다") {
-                productService.updateIsSoldOut(PRODUCT_ID)
+                productService.updateIsSoldOut(PRODUCT_IDX)
 
-                verify(exactly = 1) { productService.updateIsSoldOut(PRODUCT_ID) }
+                verify(exactly = 1) { productService.updateIsSoldOut(PRODUCT_IDX) }
             }
         }
 
         context("상품이 존재하지 않을 경우") {
 
-            every { productService.updateIsSoldOut(PRODUCT_ID) } throws CustomException(
+            every { productService.updateIsSoldOut(PRODUCT_IDX) } throws CustomException(
                 PRODUCT_NOT_FOUND
             )
 
             it("상품 업데이트에 실패한다") {
-                shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_ID) }
+                shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_IDX) }
             }
         }
     }
@@ -101,11 +101,11 @@ internal class ProductServiceTest : DescribeSpec({
 
         context("올바른 인자값을 받을 경우") {
 
-            every { productService.getProduct(PRODUCT_ID) } returns productResponse
+            every { productService.getProduct(PRODUCT_IDX) } returns productResponse
 
             it("상품 단일 조회에 성공한다") {
 
-                val product = productService.getProduct(PRODUCT_ID)
+                val product = productService.getProduct(PRODUCT_IDX)
 
                 product.name shouldBe PRODUCT_NAME
                 product.price shouldBe PRICE
@@ -115,10 +115,10 @@ internal class ProductServiceTest : DescribeSpec({
 
         context("상품이 존재하지 않을 경우") {
 
-            every { productService.getProduct(PRODUCT_ID) } throws CustomException(PRODUCT_NOT_FOUND)
+            every { productService.getProduct(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
 
             it("상품 단일 조회에 실패한다") {
-                shouldThrow<CustomException> { productService.getProduct(PRODUCT_ID) }
+                shouldThrow<CustomException> { productService.getProduct(PRODUCT_IDX) }
             }
         }
     }

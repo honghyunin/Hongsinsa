@@ -1,7 +1,7 @@
 package commerce.hosinsa.domain.member
 
-import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.dto.member.*
+import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.service.MemberService
 import commerce.hosinsa.entity.member.Member
 import commerce.hosinsa.global.exception.CustomException
@@ -9,8 +9,9 @@ import commerce.hosinsa.global.extension.toMember
 import io.kotest.assertions.throwables.shouldThrow
 import io.mockk.mockk
 import java.time.LocalDate
+import java.util.*
 
-const val IDX = 1
+const val MEMBER_IDX = 1
 const val EMAIL = "email1234@gmail.com"
 const val NAME = "name"
 const val NICKNAME = "nickname"
@@ -46,8 +47,6 @@ val signUpDto = SignUpDto(
     address = ADDRESS
 )
 
-val MEMBER: Member = signUpDto.toMember()
-
 val signInDto = SignInDto(
     id = ID,
     password = PASSWORD
@@ -57,7 +56,7 @@ val tokenResponse = TokenResponse(
     accessToken = ACCESS_TOKEN,
     refreshToken = REFRESH_TOKEN,
     id = ID,
-    idx = IDX
+    idx = MEMBER_IDX
 )
 
 val profileUpdateDto = UpdateProfileDto(
@@ -88,9 +87,10 @@ val notMatchCurrentChangePasswordDto = ChangePasswordDto(
     reNewPassword = PASSWORD + "1234"
 )
 
-const val CHANGED_PW = PASSWORD + "1234"
+val MEMBER: Member = signUpDto.toMember()
+val OPTIONAL_MEMBER = Optional.of(MEMBER)
 
-val member = signUpDto.toMember()
+const val CHANGED_PW = PASSWORD + "1234"
 
 val memberRepository = mockk<MemberRepository>()
 val memberService = mockk<MemberService>()

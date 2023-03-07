@@ -1,17 +1,20 @@
 package commerce.hosinsa.domain.product
 
+import commerce.hosinsa.domain.brand.BRAND
+import commerce.hosinsa.domain.cart.productRepository
 import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.ProductResponse
 import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
-import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.domain.service.ProductService
+import commerce.hosinsa.entity.product.Price
+import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.entity.product.ProductSize
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 
-const val PRODUCT_ID = 1
+const val PRODUCT_IDX = 1
 const val PRODUCT_NAME = "OVAINE-GYERUIK"
 const val PRICE = 20000
 const val CATEGORY = "category"
@@ -33,7 +36,7 @@ val registrationProductDto = RegistrationProductDto(
 )
 
 val updateProductDto = UpdateProductDto(
-    productId = PRODUCT_ID,
+    productId = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,
     category = CATEGORY,
@@ -44,7 +47,7 @@ val updateProductDto = UpdateProductDto(
 )
 
 val productResponse = ProductResponse(
-    productId = PRODUCT_ID,
+    productId = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,
     category = CATEGORY,
@@ -59,6 +62,18 @@ val getProductFilterDto = GetProductFilterDto(
     gender = GENDER,
     brandName = BRAND_NAME
 )
+
+val PRODUCT = Product(
+    PRODUCT_NAME,
+    PRICE,
+    CATEGORY,
+    GENDER,
+    PRODUCT_SIZE,
+    COLOR,
+    STOCK,
+    BRAND
+)
+
 val pageable = Pageable.ofSize(2)
 val products = mutableListOf(productResponse, productResponse)
 val productsPage = PageImpl(products, pageable, 2)

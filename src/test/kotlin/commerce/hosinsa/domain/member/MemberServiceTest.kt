@@ -1,6 +1,5 @@
 package commerce.hosinsa.domain.member
 
-import commerce.hosinsa.domain.member.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
@@ -17,7 +16,7 @@ internal class MemberServiceTest : DescribeSpec({
 
             memberService.signUp(signUpDto)
 
-            every { memberRepository.findById(signUpDto.id) } returns member
+            every { memberRepository.findById(signUpDto.id) } returns MEMBER
 
             val findMember = memberRepository.findById(signUpDto.id)!!
 
