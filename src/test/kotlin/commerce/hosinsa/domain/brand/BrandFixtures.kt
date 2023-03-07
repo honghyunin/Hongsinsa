@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.brand.fixtures
+package commerce.hosinsa.domain.brand
 
 import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hosinsa.domain.dto.brand.BrandUpdateDto

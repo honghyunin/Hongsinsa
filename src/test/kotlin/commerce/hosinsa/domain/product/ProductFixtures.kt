@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.product.fixtures
+package commerce.hosinsa.domain.product
 
 import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.ProductResponse

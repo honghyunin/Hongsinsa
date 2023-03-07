@@ -1,6 +1,6 @@
-package commerce.hosinsa.domain.member.service
+package commerce.hosinsa.domain.member
 
-import commerce.hosinsa.domain.member.fixtures.*
+import commerce.hosinsa.domain.member.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow

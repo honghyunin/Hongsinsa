@@ -1,6 +1,5 @@
-package commerce.hosinsa.domain.product.service
+package commerce.hosinsa.domain.product
 
-import commerce.hosinsa.domain.product.fixtures.*
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow

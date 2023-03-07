@@ -1,4 +1,4 @@
-package commerce.hosinsa.domain.member.fixtures
+package commerce.hosinsa.domain.member
 
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.dto.member.*
