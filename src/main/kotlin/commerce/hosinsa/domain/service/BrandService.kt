@@ -3,11 +3,11 @@ package commerce.hosinsa.domain.service
 import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
 import commerce.hosinsa.domain.repository.BrandRepository
-import commerce.hosinsa.global.config.utils.setIsAudit
-import commerce.hosinsa.global.config.utils.toBrand
-import commerce.hosinsa.global.config.utils.updateBrand
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
+import commerce.hosinsa.global.extension.setIsAudit
+import commerce.hosinsa.global.extension.toBrand
+import commerce.hosinsa.global.extension.updateBrand
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 

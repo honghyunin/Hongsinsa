@@ -7,10 +7,10 @@ import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.domain.repository.BrandRepository
 import commerce.hosinsa.domain.repository.ProductCustomRepository
 import commerce.hosinsa.domain.repository.ProductRepository
-import commerce.hosinsa.global.config.utils.soldOut
-import commerce.hosinsa.global.config.utils.toProduct
-import commerce.hosinsa.global.config.utils.toProductResponse
-import commerce.hosinsa.global.config.utils.updateProduct
+import commerce.hosinsa.global.extension.soldOut
+import commerce.hosinsa.global.extension.toProduct
+import commerce.hosinsa.global.extension.toProductResponse
+import commerce.hosinsa.global.extension.updateProduct
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
 import org.springframework.data.domain.Pageable

@@ -1,4 +1,4 @@
-package commerce.hosinsa.global.extension.order
+package commerce.hosinsa.global.extension
 
 import commerce.hosinsa.domain.dto.order.OrderRequestDto
 import commerce.hosinsa.entity.member.Member

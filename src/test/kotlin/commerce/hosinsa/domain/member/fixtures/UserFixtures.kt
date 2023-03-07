@@ -3,8 +3,9 @@ package commerce.hosinsa.domain.member.fixtures
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.dto.member.*
 import commerce.hosinsa.domain.service.MemberService
-import commerce.hosinsa.global.config.utils.toMember
+import commerce.hosinsa.entity.member.Member
 import commerce.hosinsa.global.exception.CustomException
+import commerce.hosinsa.global.extension.toMember
 import io.kotest.assertions.throwables.shouldThrow
 import io.mockk.mockk
 import java.time.LocalDate
@@ -44,6 +45,8 @@ val signUpDto = SignUpDto(
     phoneNumber = PHONE_NUMBER,
     address = ADDRESS
 )
+
+val MEMBER: Member = signUpDto.toMember()
 
 val signInDto = SignInDto(
     id = ID,

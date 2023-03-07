@@ -8,7 +8,7 @@ import commerce.hosinsa.entity.order.OrderProduct
 import commerce.hosinsa.global.config.utils.CurrentUserUtil
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
-import commerce.hosinsa.global.extension.order.toOrder
+import commerce.hosinsa.global.extension.toOrder
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 

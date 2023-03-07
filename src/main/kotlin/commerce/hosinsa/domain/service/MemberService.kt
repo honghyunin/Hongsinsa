@@ -3,9 +3,14 @@ package commerce.hosinsa.domain.service
 import commerce.hosinsa.domain.dto.member.*
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.entity.member.Role
-import commerce.hosinsa.global.config.utils.*
+import commerce.hosinsa.global.config.utils.CurrentUserUtil
+import commerce.hosinsa.global.config.utils.TokenUtils
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
+import commerce.hosinsa.global.extension.changePassword
+import commerce.hosinsa.global.extension.matchesPassword
+import commerce.hosinsa.global.extension.toMember
+import commerce.hosinsa.global.extension.updateProfile
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
