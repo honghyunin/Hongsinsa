@@ -5,7 +5,7 @@ import commerce.hosinsa.domain.repository.BrandRepository
 import commerce.hosinsa.domain.repository.CouponRepository
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
-import commerce.hosinsa.global.extension.settingAt
+import commerce.hosinsa.global.extension.settingExpiredAt
 import commerce.hosinsa.global.extension.toCoupon
 import org.springframework.stereotype.Service
 
@@ -16,7 +16,7 @@ class CouponService(
 ) {
     fun saveCoupon(saveCouponDto: SaveCouponDto) {
         saveCouponDto.also {
-            it.settingAt()
+            it.settingExpiredAt()
 
             if (saveCouponDto.brandName == null)
                 couponRepository.save(saveCouponDto.toCoupon(null))
