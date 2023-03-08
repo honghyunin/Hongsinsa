@@ -3,6 +3,7 @@ package commerce.hosinsa.domain.brand
 import commerce.hosinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hosinsa.domain.dto.brand.BrandUpdateDto
 import commerce.hosinsa.domain.service.BrandService
+import commerce.hosinsa.global.extension.toBrand
 import io.mockk.mockk
 
 const val NAME: String = "gowl"
@@ -40,5 +41,7 @@ val brandUpdateDto = BrandUpdateDto(
     businessAddress = BUSINESS_ADDRESS,
     phoneNumber = PHONE_NUMBER,
 )
+
+val BRAND = brandAvailableDto.toBrand()
 
 val brandService = mockk<BrandService>()

@@ -1,7 +1,6 @@
 package commerce.hosinsa.domain.product
 
 import commerce.hosinsa.domain.brand.BRAND
-import commerce.hosinsa.domain.cart.productRepository
 import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.ProductResponse
 import commerce.hosinsa.domain.dto.product.RegistrationProductDto
@@ -21,8 +20,10 @@ const val CATEGORY = "category"
 const val GENDER: Char = 'M'
 const val STOCK = 10000000
 const val BRAND_NAME = "AVANT-GARDE"
-val COLOR = mutableSetOf("검정", "흰색", "파랑")
-val PRODUCT_SIZE = mutableSetOf(ProductSize.L, ProductSize.S, ProductSize.XS, ProductSize.M)
+const val COLOR = "검정"
+val COLOR_LIST = mutableSetOf("검정", "흰색", "파랑")
+val PRODUCT_SIZE_LIST = mutableSetOf(ProductSize.L, ProductSize.S, ProductSize.XS, ProductSize.M)
+val PRODUCT_SIZE = ProductSize.L
 
 val registrationProductDto = RegistrationProductDto(
     name = PRODUCT_NAME,
@@ -31,8 +32,8 @@ val registrationProductDto = RegistrationProductDto(
     gender = GENDER,
     stock = STOCK,
     brandName = BRAND_NAME,
-    color = COLOR,
-    size = PRODUCT_SIZE
+    color = COLOR_LIST,
+    size = PRODUCT_SIZE_LIST
 )
 
 val updateProductDto = UpdateProductDto(
@@ -42,8 +43,8 @@ val updateProductDto = UpdateProductDto(
     category = CATEGORY,
     gender = GENDER,
     stock = STOCK,
-    color = COLOR,
-    size = PRODUCT_SIZE
+    color = COLOR_LIST,
+    size = PRODUCT_SIZE_LIST
 )
 
 val productResponse = ProductResponse(
@@ -68,8 +69,8 @@ val PRODUCT = Product(
     PRICE,
     CATEGORY,
     GENDER,
-    PRODUCT_SIZE,
-    COLOR,
+    PRODUCT_SIZE_LIST,
+    COLOR_LIST,
     STOCK,
     BRAND
 )

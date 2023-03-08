@@ -9,7 +9,7 @@ class OrderRequestDto(
     val phoneNumber: String,
     val deliveryInstructions: String?,
     val productIdxList: MutableList<Int>,
-    val productQuantities: Map<Int, Byte>,
+    val productQuantities: MutableMap<Int, Byte>,
     val color: String,
     val size: ProductSize
 )

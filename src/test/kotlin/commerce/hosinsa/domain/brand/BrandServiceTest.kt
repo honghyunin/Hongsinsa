@@ -1,9 +1,5 @@
 package commerce.hosinsa.domain.brand
 
-import commerce.hosinsa.domain.brand.NAME
-import commerce.hosinsa.domain.brand.brandAvailableDto
-import commerce.hosinsa.domain.brand.brandService
-import commerce.hosinsa.domain.brand.brandUpdateDto
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.BRAND_NOT_FOUND
 import io.kotest.assertions.throwables.shouldThrow
