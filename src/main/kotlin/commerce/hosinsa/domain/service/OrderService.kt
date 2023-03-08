@@ -3,7 +3,6 @@ package commerce.hosinsa.domain.service
 import commerce.hosinsa.domain.dto.order.GetOrderResponse
 import commerce.hosinsa.domain.dto.order.OrderRequestDto
 import commerce.hosinsa.domain.repository.*
-import commerce.hosinsa.entity.member.Role
 import commerce.hosinsa.entity.order.OrderProduct
 import commerce.hosinsa.global.config.utils.CurrentUserUtil
 import commerce.hosinsa.global.exception.CustomException
@@ -31,7 +30,7 @@ class OrderService(
             val product = productRepository.findByIdx(productIdx) ?: throw CustomException(PRODUCT_NOT_FOUND)
 
             val quantity: Byte = orderRequestDto.productQuantities[productIdx]
-                ?: throw IllegalArgumentException("Missing quantity for product with index $productIdx")
+                ?: throw CustomException(PRODUCT_QUANTITY_NOT_FOUND)
 
             productQuantities[product.idx!!] = (productQuantities.getOrDefault(product.idx, 0) + quantity).toByte()
 
@@ -44,7 +43,6 @@ class OrderService(
                     color = orderRequestDto.color
                 )
             )
-
         }
 
         productQuantities.forEach { (productId, quantity) ->
@@ -67,13 +65,7 @@ class OrderService(
     }
 
     fun cancelOrder(orderIdx: Int) {
-        val member = currentUserUtil.currentUser
-            ?: throw CustomException(MEMBER_NOT_FOUND)
-
-        member.roles.forEach {
-            if( it == Role.GUEST )
-                throw CustomException(FORBIDDEN)
-        }
+        currentUserUtil.currentUser ?: throw CustomException(FORBIDDEN)
 
         val order = orderRepository.findById(orderIdx).orElseThrow { throw CustomException(ORDER_NOT_FOUND) }
 

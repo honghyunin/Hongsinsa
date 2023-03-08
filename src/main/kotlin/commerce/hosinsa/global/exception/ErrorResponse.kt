@@ -1,10 +1,11 @@
 package commerce.hosinsa.global.exception
 
+import org.springframework.http.HttpStatus
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class ErrorResponse(
-    val status: Int = 0,
+    val status: HttpStatus,
     val msg: String? = null,
 ) {
     val formatNow: String =
