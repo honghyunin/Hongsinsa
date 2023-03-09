@@ -1,5 +1,6 @@
 package commerce.hosinsa.domain.product
 
+import commerce.hosinsa.domain.brand.BRAND
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
@@ -14,68 +15,64 @@ internal class ProductServiceTest : DescribeSpec({
 
     describe("registrationProduct") {
 
-        context("올바른 인자값을 입력받을 경우") {
-
-            every { productService.registrationProduct(registrationProductDto) } just Runs
+        context("존재하는 브랜드 이름이 입력되면") {
+            every { brandRepository.findByName(REGISTRATION_PRODUCT_DTO.brandName) } returns BRAND
+            every { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) } just Runs
 
             it("상품 등록에 성공한다") {
-                productService.registrationProduct(registrationProductDto)
+                productService.registrationProduct(REGISTRATION_PRODUCT_DTO)
 
-                verify(exactly = 1) { productService.registrationProduct(registrationProductDto) }
+                verify(exactly = 1) { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) }
             }
         }
 
         context("상품이 이미 존재할 경우") {
-
-            every { productService.registrationProduct(registrationProductDto) } throws CustomException(
+            every { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) } throws CustomException(
                 PRODUCT_IS_ALREADY_EXISTS
             )
 
-            it("상품 등록에 실패한다") {
-                shouldThrow<CustomException> { productService.registrationProduct(registrationProductDto) }
+            it("Product Already Exists Exception이 발생한다") {
+                shouldThrow<CustomException> { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) }
             }
         }
 
         context("브랜드가 존재하지 않을 경우") {
-
-            every { productService.registrationProduct(registrationProductDto) } throws CustomException(
+            every { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) } throws CustomException(
                 BRAND_NOT_FOUND
             )
 
-            it("상품 등록에 실패한다") {
-                shouldThrow<CustomException> { productService.registrationProduct(registrationProductDto) }
+            it("Brand Not Found Exception이 발생한다") {
+                shouldThrow<CustomException> { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) }
             }
         }
     }
 
     describe("updateProduct") {
 
-        context("올바른 인자값을 받을 경우") {
-            every { productService.updateProduct(updateProductDto) } just Runs
+        context("유효한 인자값 UpdateProductDto가 입력될 경우") {
+            every { productService.updateProduct(UPDATE_PRODUCT_DTO) } just Runs
 
             it("상품 업데이트에 성공한다") {
-                productService.updateProduct(updateProductDto)
+                productService.updateProduct(UPDATE_PRODUCT_DTO)
 
-                verify(exactly = 1) { productService.updateProduct(updateProductDto) }
+                verify(exactly = 1) { productService.updateProduct(UPDATE_PRODUCT_DTO) }
             }
         }
 
         context("상품이 존재하지 않을 경우") {
-
-            every { productService.updateProduct(updateProductDto) } throws CustomException(
+            every { productService.updateProduct(UPDATE_PRODUCT_DTO) } throws CustomException(
                 PRODUCT_NOT_FOUND
             )
 
-            it("상품 업데이트에 실패한다") {
-                shouldThrow<CustomException> { productService.updateProduct(updateProductDto) }
+            it("Product Not Found Exception이 발생한다") {
+                shouldThrow<CustomException> { productService.updateProduct(UPDATE_PRODUCT_DTO) }
             }
         }
     }
 
     describe("updateIsSoldOut") {
 
-        context("올바른 인자값을 받을 경우") {
-
+        context("유효한 ProductIdx가 입력될 경우") {
             every { productService.updateIsSoldOut(PRODUCT_IDX) } just Runs
 
             it("재고 품절 업데이트에 성공한다") {
@@ -86,12 +83,11 @@ internal class ProductServiceTest : DescribeSpec({
         }
 
         context("상품이 존재하지 않을 경우") {
-
             every { productService.updateIsSoldOut(PRODUCT_IDX) } throws CustomException(
                 PRODUCT_NOT_FOUND
             )
 
-            it("상품 업데이트에 실패한다") {
+            it("Product Not Found Exception이 발생한다") {
                 shouldThrow<CustomException> { productService.updateIsSoldOut(PRODUCT_IDX) }
             }
         }
@@ -99,9 +95,8 @@ internal class ProductServiceTest : DescribeSpec({
 
     describe("getProduct") {
 
-        context("올바른 인자값을 받을 경우") {
-
-            every { productService.getProduct(PRODUCT_IDX) } returns productResponse
+        context("유효한 ProductIdx가 입력될 경우") {
+            every { productService.getProduct(PRODUCT_IDX) } returns PRODUCT_RESPONSE
 
             it("상품 단일 조회에 성공한다") {
 
@@ -114,10 +109,9 @@ internal class ProductServiceTest : DescribeSpec({
         }
 
         context("상품이 존재하지 않을 경우") {
-
             every { productService.getProduct(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
 
-            it("상품 단일 조회에 실패한다") {
+            it("Product Not Found Exception이 발생한다") {
                 shouldThrow<CustomException> { productService.getProduct(PRODUCT_IDX) }
             }
         }
@@ -125,13 +119,12 @@ internal class ProductServiceTest : DescribeSpec({
 
     describe("getProducts") {
 
-        context("올바른 인자값을 받을 경우") {
-
-            every { productService.getProducts(getProductFilterDto, pageable) } returns productsPage
+        context("유효한 GetProductFilterDto가 입력될 경우") {
+            every { productService.getProducts(GET_PRODUCT_FILTER_DTO, pageable) } returns productsPage
 
             it("상품 전체 태그조회에 성공한다") {
 
-                val products = productService.getProducts(getProductFilterDto, pageable)
+                val products = productService.getProducts(GET_PRODUCT_FILTER_DTO, pageable)
 
                 products shouldBe productsPage
             }

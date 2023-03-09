@@ -5,6 +5,8 @@ import commerce.hosinsa.domain.dto.product.GetProductFilterDto
 import commerce.hosinsa.domain.dto.product.ProductResponse
 import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
+import commerce.hosinsa.domain.repository.BrandRepository
+import commerce.hosinsa.domain.repository.ProductRepository
 import commerce.hosinsa.domain.service.ProductService
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Product
@@ -25,7 +27,7 @@ val COLOR_LIST = mutableSetOf("검정", "흰색", "파랑")
 val PRODUCT_SIZE_LIST = mutableSetOf(ProductSize.L, ProductSize.S, ProductSize.XS, ProductSize.M)
 val PRODUCT_SIZE = ProductSize.L
 
-val registrationProductDto = RegistrationProductDto(
+val REGISTRATION_PRODUCT_DTO = RegistrationProductDto(
     name = PRODUCT_NAME,
     price = PRICE,
     category = CATEGORY,
@@ -36,7 +38,7 @@ val registrationProductDto = RegistrationProductDto(
     size = PRODUCT_SIZE_LIST
 )
 
-val updateProductDto = UpdateProductDto(
+val UPDATE_PRODUCT_DTO = UpdateProductDto(
     productId = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,
@@ -47,7 +49,7 @@ val updateProductDto = UpdateProductDto(
     size = PRODUCT_SIZE_LIST
 )
 
-val productResponse = ProductResponse(
+val PRODUCT_RESPONSE = ProductResponse(
     productId = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,
@@ -56,7 +58,7 @@ val productResponse = ProductResponse(
     brand = BRAND_NAME
 )
 
-val getProductFilterDto = GetProductFilterDto(
+val GET_PRODUCT_FILTER_DTO = GetProductFilterDto(
     name = PRODUCT_NAME,
     price = Price.PRICE1,
     category = CATEGORY,
@@ -76,7 +78,9 @@ val PRODUCT = Product(
 )
 
 val pageable = Pageable.ofSize(2)
-val products = mutableListOf(productResponse, productResponse)
+val products = mutableListOf(PRODUCT_RESPONSE, PRODUCT_RESPONSE)
 val productsPage = PageImpl(products, pageable, 2)
 
+val brandRepository = mockk<BrandRepository>()
+val productRepository = mockk<ProductRepository>()
 val productService = mockk<ProductService>()

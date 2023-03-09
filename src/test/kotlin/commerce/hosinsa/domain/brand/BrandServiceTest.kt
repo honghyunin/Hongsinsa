@@ -8,7 +8,7 @@ import io.mockk.*
 
 internal class BrandServiceTest : DescribeSpec({
     describe("brandAvailable") {
-        context("존재하지 않는 브랜드가 입력되면") {
+        context("존재하지 않는 브랜드가 입력될 경우") {
 
             every { brandService.brandAvailable(brandAvailableDto) } just Runs
 
@@ -19,10 +19,10 @@ internal class BrandServiceTest : DescribeSpec({
             }
         }
 
-        context("이미 존재하는 브랜드가 입력되면") {
+        context("이미 존재하는 브랜드가 입력될 경우") {
             every { brandService.brandAvailable(brandAvailableDto) } throws CustomException(BRAND_NOT_FOUND)
 
-            it("브랜드 입점 심사 등록에 실패한다") {
+            it("Brand Not Found Exception이 발생한다") {
                 shouldThrow<CustomException> {
                     brandService.brandAvailable(brandAvailableDto)
                 }
@@ -32,7 +32,7 @@ internal class BrandServiceTest : DescribeSpec({
 
     describe("auditAvailable") {
 
-        context("입점 기준에 부합하는 브랜드가 입력되면") {
+        context("입점 기준에 부합하는 브랜드가 입력될 경우") {
 
             every { brandService.auditAvailable(NAME) } just Runs
 
@@ -46,7 +46,7 @@ internal class BrandServiceTest : DescribeSpec({
 
             every { brandService.auditAvailable(NAME) } throws CustomException(BRAND_NOT_FOUND)
 
-            it("입점 심사에 탈락한다") {
+            it("Brand Not Found Exception이 발생한다") {
                 shouldThrow<CustomException> { brandService.auditAvailable(NAME) }
             }
         }
@@ -54,7 +54,7 @@ internal class BrandServiceTest : DescribeSpec({
 
     describe("brandUpdate") {
 
-        context("존재하는 브랜드 정보를 입력받을 경우") {
+        context("존재하는 브랜드 정보를 입력될 경우") {
             every { brandService.brandUpdate(brandUpdateDto) } just Runs
 
             it("브랜드 정보 업데이트에 성공한다") {
@@ -64,10 +64,10 @@ internal class BrandServiceTest : DescribeSpec({
             }
         }
 
-        context("존재하지 않는 브랜드를 입력받을 경우") {
+        context("존재하지 않는 브랜드를 입력될 경우") {
             every { brandService.brandUpdate(brandUpdateDto) } throws CustomException(BRAND_NOT_FOUND)
 
-            it("브랜드 정보 업데이트에 실패한다") {
+            it("Brand Not Found Exceptio이 발생한다") {
                 shouldThrow<CustomException> { brandService.brandUpdate(brandUpdateDto) }
             }
         }

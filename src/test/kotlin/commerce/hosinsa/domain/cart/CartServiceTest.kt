@@ -18,7 +18,7 @@ class CartServiceTest : DescribeSpec({
 
     describe("addProduct") {
 
-        context("올바른 상품 정보가 입력되면") {
+        context("유효한 AddProductDto가 입력될 경우") {
             every { memberRepository.findById(MEMBER_IDX) } returns OPTIONAL_MEMBER
             every { productRepository.findByIdx(PRODUCT_IDX) } returns PRODUCT
             every { cartRepository.save(CART) } returns CART
@@ -30,7 +30,7 @@ class CartServiceTest : DescribeSpec({
             }
         }
 
-        context("존재하지 않는 회원이 요청하면") {
+        context("존재하지 않는 회원이 요청할 경우") {
             every { memberRepository.findById(MEMBER_IDX) } throws CustomException(MEMBER_NOT_FOUND)
 
             it("Member Not Found Exception이 발생한다") {
@@ -49,7 +49,7 @@ class CartServiceTest : DescribeSpec({
 
     describe("getCart") {
 
-        context("존재하지 않는 회원이 입력되면") {
+        context("존재하지 않는 회원이 입력될 경우") {
             every { memberRepository.existsById(MEMBER_IDX) } returns false
             every { cartCustomRepository.findProductsByMemberIdx(MEMBER_IDX) } returns CART_RESPONSE_LIST
             every { cartService.getCart(MEMBER_IDX) } returns CART_RESPONSE_LIST
@@ -60,7 +60,7 @@ class CartServiceTest : DescribeSpec({
             }
         }
 
-        context("존재하는 회원이 입력되면") {
+        context("존재하는 회원이 입력될 경우") {
             every { memberRepository.existsById(MEMBER_IDX) } returns true
 
             it("Member Not Found Exception이 발생한다") {
