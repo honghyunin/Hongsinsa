@@ -53,9 +53,6 @@ class Member(
     @Column(name = "birthday", nullable = false)
     val birthday: LocalDate,
 
-    @Column(name = "is_delete", nullable = false)
-    val isDelete: Boolean = false,
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Role", joinColumns = [JoinColumn(name = "member_id")])
     @Column(name = "role", nullable = false) @Enumerated(EnumType.STRING)
@@ -98,6 +95,9 @@ class Member(
         roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(
             Collectors.toList()
         )
+
+    @Column(name = "is_delete", nullable = false)
+    val isDelete: Boolean = false
 
     override fun getPassword(): String = this.pw
 
