@@ -4,6 +4,7 @@ import commerce.hosinsa.entity.BaseTimeEntity
 import commerce.hosinsa.entity.brand.Brand
 import javax.persistence.*
 
+@Table(name = "product")
 @Entity
 class Product(
     @Column(name = "name", nullable = false)
@@ -17,13 +18,6 @@ class Product(
 
     @Column(name = "gender", nullable = false)
     var gender: Char,
-
-    @ElementCollection(targetClass = ProductSize::class) // Use a set to store available sizes
-    @Enumerated(EnumType.STRING)
-    var size: MutableSet<ProductSize>,
-
-    @ElementCollection // Use a set to store available sizes
-    var color: MutableSet<String>,
 
     @Column(name = "stock", nullable = false)
     var stock: Int,
@@ -39,6 +33,9 @@ class Product(
 
     @Column(name = "is_solud_out")
     var isSoldOut: Boolean = false
+
+    @OneToMany(fetch = FetchType.EAGER)
+    val option: MutableList<ProductOption> = mutableListOf()
 
     @Column(name = "is_delete", nullable = false)
     var isDelete: Boolean = false
