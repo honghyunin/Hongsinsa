@@ -1,12 +1,11 @@
 package commerce.hosinsa.domain.service
 
-import commerce.hosinsa.domain.dto.product.GetProductFilterDto
-import commerce.hosinsa.domain.dto.product.ProductResponse
-import commerce.hosinsa.domain.dto.product.RegistrationProductDto
-import commerce.hosinsa.domain.dto.product.UpdateProductDto
+import commerce.hosinsa.domain.dto.product.*
 import commerce.hosinsa.domain.repository.BrandRepository
 import commerce.hosinsa.domain.repository.ProductCustomRepository
+import commerce.hosinsa.domain.repository.ProductOptionRepository
 import commerce.hosinsa.domain.repository.ProductRepository
+import commerce.hosinsa.entity.product.ProductOption
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode
 import commerce.hosinsa.global.exception.ErrorCode.PRODUCT_NOT_FOUND
@@ -22,10 +21,10 @@ import javax.transaction.Transactional
 class ProductService(
     private val productRepository: ProductRepository,
     private val brandRepository: BrandRepository,
-    private val productCustomRepository: ProductCustomRepository
+    private val productCustomRepository: ProductCustomRepository,
+    private val productOptionRepository: ProductOptionRepository,
 ) {
     fun registrationProduct(registrationProductDto: RegistrationProductDto) {
-
         brandRepository.findByNameAndIsDeleteFalse(registrationProductDto.brandName)?.let { brand ->
             productRepository.save(registrationProductDto.toProduct(brand))
         } ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
@@ -38,14 +37,16 @@ class ProductService(
         } ?: throw CustomException(PRODUCT_NOT_FOUND)
 
     @Transactional
-    fun updateIsSoldOut(idx: Int) =
-        productRepository.findByIdxAndIsDeleteFalse(idx)?.soldOut() ?: throw CustomException(PRODUCT_NOT_FOUND)
+    fun updateIsSoldOut(productIdx: Int) =
+        productRepository.findByIdxAndIsDeleteFalse(productIdx)?.soldOut() ?: throw CustomException(PRODUCT_NOT_FOUND)
 
-    fun getProduct(idx: Int): ProductResponse =
-        productRepository.findByIdxAndIsDeleteFalse(idx)?.toProductResponse() ?: throw CustomException(PRODUCT_NOT_FOUND)
+    fun getProductResponse(productIdx: Int): ProductResponse =
+        productRepository.findByIdxAndIsDeleteFalse(productIdx)
+            ?.toProductResponse(productOptionRepository.findByProductIdx(productIdx))
+            ?: throw CustomException(PRODUCT_NOT_FOUND)
 
     fun getProducts(getProductFilterDto: GetProductFilterDto, pageable: Pageable) =
-        productCustomRepository.findByFilter(getProductFilterDto, pageable).let { productList ->
+        productCustomRepository.findByFilter(getProductFilterDto, pageable).also { productList ->
             if (productList.isEmpty) throw CustomException(PRODUCT_NOT_FOUND)
         }
 
@@ -54,4 +55,24 @@ class ProductService(
         ?.let { product ->
             product.isDelete = true
         } ?: throw CustomException(PRODUCT_NOT_FOUND)
+
+    fun addProductOption(productIdx: Int, newOptions: MutableList<ProductOptionDto>) {
+        val product = getProduct(productIdx)
+        val options = newOptions.map { dto ->
+            ProductOption(
+                product = product,
+                color = dto.color,
+                size = dto.size
+            )
+        }
+        productOptionRepository.saveAll(options)
+    }
+
+    fun updateProductOption(productIdx: Int, newOptions: MutableList<ProductOptionDto>) {
+        productOptionRepository.deleteAllInBatch(productOptionRepository.findByProductIdx(productIdx))
+        addProductOption(productIdx, newOptions)
+    }
+
+    fun getProduct(productIdx: Int) = productRepository.findByIdxAndIsDeleteFalse(productIdx)
+        ?: throw CustomException(PRODUCT_NOT_FOUND)
 }

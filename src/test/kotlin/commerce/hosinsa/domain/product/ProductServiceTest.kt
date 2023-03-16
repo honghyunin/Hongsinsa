@@ -16,7 +16,7 @@ internal class ProductServiceTest : DescribeSpec({
     describe("registrationProduct") {
 
         context("존재하는 브랜드 이름이 입력되면") {
-            every { brandRepository.findByName(REGISTRATION_PRODUCT_DTO.brandName) } returns BRAND
+            every { brandRepository.findByNameAndIsDeleteFalse(REGISTRATION_PRODUCT_DTO.brandName) } returns BRAND
             every { productService.registrationProduct(REGISTRATION_PRODUCT_DTO) } just Runs
 
             it("상품 등록에 성공한다") {
@@ -96,11 +96,11 @@ internal class ProductServiceTest : DescribeSpec({
     describe("getProduct") {
 
         context("유효한 ProductIdx가 입력될 경우") {
-            every { productService.getProduct(PRODUCT_IDX) } returns PRODUCT_RESPONSE
+            every { productService.getProductResponse(PRODUCT_IDX) } returns PRODUCT_RESPONSE
 
             it("상품 단일 조회에 성공한다") {
 
-                val product = productService.getProduct(PRODUCT_IDX)
+                val product = productService.getProductResponse(PRODUCT_IDX)
 
                 product.name shouldBe PRODUCT_NAME
                 product.price shouldBe PRICE
@@ -109,10 +109,10 @@ internal class ProductServiceTest : DescribeSpec({
         }
 
         context("상품이 존재하지 않을 경우") {
-            every { productService.getProduct(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
+            every { productService.getProductResponse(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
 
             it("Product Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { productService.getProduct(PRODUCT_IDX) }
+                shouldThrow<CustomException> { productService.getProductResponse(PRODUCT_IDX) }
             }
         }
     }

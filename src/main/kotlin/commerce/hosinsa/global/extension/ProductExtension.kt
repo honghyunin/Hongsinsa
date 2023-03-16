@@ -5,6 +5,7 @@ import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.brand.Brand
 import commerce.hosinsa.entity.product.Product
+import commerce.hosinsa.entity.product.ProductOption
 
 
 fun RegistrationProductDto.toProduct(brand: Brand) = Product(
@@ -14,8 +15,6 @@ fun RegistrationProductDto.toProduct(brand: Brand) = Product(
     gender = this.gender,
     stock = this.stock,
     brand = brand,
-    size = this.size,
-    color = this.color
 )
 
 fun Product.updateProduct(updateProductDto: UpdateProductDto) {
@@ -23,19 +22,21 @@ fun Product.updateProduct(updateProductDto: UpdateProductDto) {
     this.price = updateProductDto.price
     this.category = updateProductDto.category
     this.gender = updateProductDto.gender
-    this.color = updateProductDto.color
-    this.size = updateProductDto.size
 }
 
 fun Product.soldOut() {
     this.isSoldOut = true
 }
 
-fun Product.toProductResponse() = ProductResponse(
+fun Product.toProductResponse(options: MutableList<ProductOption>): ProductResponse = ProductResponse(
     productId = idx!!,
     name = name,
     price = price,
     category = category,
     gender = gender,
-    brand = brand.name
-)
+    brand = brand.name,
+).let { product ->
+    product.options = options
+    product
+}
+

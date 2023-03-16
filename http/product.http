@@ -1,6 +1,6 @@
 ### RegistrationProduct | 상품 등록
 POST {{basic-url}}/product/registration
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc4OTgzOTYyODQxLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTAwNTU2Mn0.0bwHT6T3av50GMvpd2Ka4rTKzMxonzv5jP4GZt8TsB8
 Content-Type: application/json
 
 {
@@ -9,15 +9,28 @@ Content-Type: application/json
   "category": "차가리 반팔티",
   "gender": "W",
   "stock": "200",
-  "brandName": "gowl",
-  "color": ["검정", "흰색"],
-  "size": ["M", "L"]
+  "brandName": "gowl"
 }
+
+### AddProductOptions | 상품 정보 등록
+POST {{basic-url}}/product/option/add/1
+Content-Type: application/json
+
+[
+  {
+    "size": "M",
+    "color": "Red"
+  },
+  {
+    "size": "L",
+    "color": "Blue"
+  }
+]
 
 ### UpdateProduct | 상품 업데이트
 
 PUT {{basic-url}}/product/update
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc4OTgzOTYyODQxLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTAwNTU2Mn0.0bwHT6T3av50GMvpd2Ka4rTKzMxonzv5jP4GZt8TsB8
 Content-Type: application/json
 
 {
@@ -27,9 +40,30 @@ Content-Type: application/json
   "category": "반팔티",
   "gender": "M",
   "stock": "200",
-  "color": ["검정", "흰색"],
-  "size": ["M", "L"]
 }
+
+### UpdateProductOptions | 상품 정보 업데이트
+PUT {{basic-url}}/product/option/update/1
+Content-Type: application/json
+
+[
+  {
+    "size": "S",
+    "color": "Blue"
+  },
+  {
+    "size": "M",
+    "color": "Red"
+  },
+  {
+    "size": "L",
+    "color": "Blue"
+  },
+  {
+    "size": "XL",
+    "color": "Blue"
+  }
+]
 
 ### UpdateIsSoldOut | 상품 품절 업데이트
 PUT {{basic-url}}/product/soldOut/OVANG GYRACEK 반팔

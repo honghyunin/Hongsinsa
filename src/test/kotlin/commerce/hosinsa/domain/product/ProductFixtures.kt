@@ -10,6 +10,7 @@ import commerce.hosinsa.domain.repository.ProductRepository
 import commerce.hosinsa.domain.service.ProductService
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Product
+import commerce.hosinsa.entity.product.ProductOption
 import commerce.hosinsa.entity.product.ProductSize
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
@@ -26,6 +27,15 @@ const val COLOR = "검정"
 val COLOR_LIST = mutableSetOf("검정", "흰색", "파랑")
 val PRODUCT_SIZE_LIST = mutableSetOf(ProductSize.L, ProductSize.S, ProductSize.XS, ProductSize.M)
 val PRODUCT_SIZE = ProductSize.L
+val PRODUCT = Product(
+    PRODUCT_NAME,
+    PRICE,
+    CATEGORY,
+    GENDER,
+    STOCK,
+    BRAND
+)
+val OPTIONS = mutableListOf(ProductOption(product = PRODUCT, color = COLOR, PRODUCT_SIZE))
 
 val REGISTRATION_PRODUCT_DTO = RegistrationProductDto(
     name = PRODUCT_NAME,
@@ -34,8 +44,6 @@ val REGISTRATION_PRODUCT_DTO = RegistrationProductDto(
     gender = GENDER,
     stock = STOCK,
     brandName = BRAND_NAME,
-    color = COLOR_LIST,
-    size = PRODUCT_SIZE_LIST
 )
 
 val UPDATE_PRODUCT_DTO = UpdateProductDto(
@@ -44,9 +52,7 @@ val UPDATE_PRODUCT_DTO = UpdateProductDto(
     price = PRICE,
     category = CATEGORY,
     gender = GENDER,
-    stock = STOCK,
-    color = COLOR_LIST,
-    size = PRODUCT_SIZE_LIST
+    stock = STOCK
 )
 
 val PRODUCT_RESPONSE = ProductResponse(
@@ -55,7 +61,7 @@ val PRODUCT_RESPONSE = ProductResponse(
     price = PRICE,
     category = CATEGORY,
     gender = GENDER,
-    brand = BRAND_NAME
+    brand = BRAND_NAME,
 )
 
 val GET_PRODUCT_FILTER_DTO = GetProductFilterDto(
@@ -66,16 +72,6 @@ val GET_PRODUCT_FILTER_DTO = GetProductFilterDto(
     brandName = BRAND_NAME
 )
 
-val PRODUCT = Product(
-    PRODUCT_NAME,
-    PRICE,
-    CATEGORY,
-    GENDER,
-    PRODUCT_SIZE_LIST,
-    COLOR_LIST,
-    STOCK,
-    BRAND
-)
 
 val pageable = Pageable.ofSize(2)
 val products = mutableListOf(PRODUCT_RESPONSE, PRODUCT_RESPONSE)
