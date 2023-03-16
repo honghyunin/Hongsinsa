@@ -5,9 +5,9 @@ import javax.persistence.*
 @Table(name = "product_option")
 @Entity
 class ProductOption(
-    @Id
-    @Column(name = "product_idx", nullable = false)
-    val productIdx: Int,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product.idx")
+    val product: Product,
 
     @Column(name = "color", nullable = false)
     val color: String,
@@ -15,4 +15,9 @@ class ProductOption(
     @Enumerated(EnumType.STRING)
     @Column(name = "product_size", nullable = false)
     val size: ProductSize
-)
+) {
+    @Id
+    @Column(name = "idx", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val idx: Int? = null
+}

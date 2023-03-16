@@ -34,8 +34,11 @@ class Product(
     @Column(name = "is_solud_out")
     var isSoldOut: Boolean = false
 
-    @OneToMany(fetch = FetchType.EAGER)
-    val option: MutableList<ProductOption> = mutableListOf()
+    @OneToMany(
+        fetch = FetchType.LAZY,
+        mappedBy = "product"
+    )
+    val options: MutableList<ProductOption> = mutableListOf()
 
     @Column(name = "is_delete", nullable = false)
     var isDelete: Boolean = false
