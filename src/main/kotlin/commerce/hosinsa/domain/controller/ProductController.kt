@@ -19,15 +19,18 @@ class ProductController(private val productService: ProductService) {
     @PutMapping("/update")
     fun updateProduct(@RequestBody updateProduct: UpdateProductDto) = productService.updateProduct(updateProduct)
 
-    @PutMapping("/soldOut/{productId}")
-    fun updateIsSoldOut(@PathVariable productId: Int) = productService.updateIsSoldOut(productId)
+    @PutMapping("/soldOut/{productIdx}")
+    fun updateIsSoldOut(@PathVariable productIdx: Int) = productService.updateIsSoldOut(productIdx)
 
-    @GetMapping("/{productId}")
-    fun getProduct(@PathVariable productId: Int) = productService.getProduct(productId)
+    @GetMapping("/{productIdx}")
+    fun getProduct(@PathVariable productIdx: Int) = productService.getProduct(productIdx)
 
     @GetMapping("/")
     fun getProducts(
         getProductFilterDto: GetProductFilterDto,
         @PageableDefault(size = 20) pageable: Pageable
     ) = productService.getProducts(getProductFilterDto, pageable)
+
+    @DeleteMapping("/{productIdx}")
+    fun deleteProduct(@PathVariable productIdx: Int) = productService.deleteProduct(productIdx)
 }

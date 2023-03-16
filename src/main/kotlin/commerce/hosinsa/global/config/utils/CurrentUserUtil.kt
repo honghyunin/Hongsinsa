@@ -20,6 +20,6 @@ class CurrentUserUtil(private val memberRepository: MemberRepository) {
                 principal.toString()
             }
             println("=================$id=================한")
-            return memberRepository.findById(id)
+            return memberRepository.findByIdAndIsDeleteFalse(id)
         }
 }

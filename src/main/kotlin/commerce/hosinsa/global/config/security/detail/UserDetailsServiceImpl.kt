@@ -12,5 +12,5 @@ import org.springframework.stereotype.Service
 class UserDetailsServiceImpl(private val memberRepository: MemberRepository) : UserDetailsService {
 
     override fun loadUserByUsername(id: String): Member =
-        memberRepository.findById(id) ?: throw CustomException(MEMBER_NOT_FOUND)
+        memberRepository.findByIdAndIsDeleteFalse(id) ?: throw CustomException(MEMBER_NOT_FOUND)
 }

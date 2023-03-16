@@ -39,3 +39,6 @@ GET {{basic-url}}/product/1
 
 ### GetProducts | 상품 전체 태그 조회
 GET {{basic-url}}/product/?page=0&size=10&name=CHAGARI&gender=W
+
+### DeleteProduct | 상품 삭제
+DELETE {{basic-url}}/product/2

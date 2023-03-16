@@ -24,7 +24,7 @@ class CartService(
     fun addProduct(addProductDto: AddProductDto) {
         val member: Member = memberRepository.findById(addProductDto.memberId)
             .orElseThrow { throw CustomException(MEMBER_NOT_FOUND) }
-        val product: Product = productRepository.findByIdx(addProductDto.productId)
+        val product: Product = productRepository.findByIdxAndIsDeleteFalse(addProductDto.productId)
             ?: throw CustomException(ErrorCode.PRODUCT_NOT_FOUND)
 
         cartRepository.save(Cart(member = member, product = product))
@@ -32,7 +32,7 @@ class CartService(
 
     fun getCart(memberIdx: Int): MutableList<CartResponse> {
 
-        if(memberRepository.existsById(memberIdx))
+        if(!memberRepository.existsByIdxAndIsDeleteFalse(memberIdx))
             throw CustomException(MEMBER_NOT_FOUND)
 
         return cartCustomRepository.findProductsByMemberIdx(memberIdx)

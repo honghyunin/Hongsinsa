@@ -25,7 +25,7 @@ class CouponService(
         }
     }
 
-    private fun findBrandByName(brandName: String) = brandRepository.findByName(brandName)
+    private fun findBrandByName(brandName: String) = brandRepository.findByNameAndIsDeleteFalse(brandName)
         ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
 }
 

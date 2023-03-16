@@ -11,14 +11,14 @@ internal class MemberServiceTest : DescribeSpec({
 
     describe("signUp") {
         context("올바른 회원 정보가 입력되면") {
-            every { memberRepository.existsById(signUpDto.id) } returns false
+            every { memberRepository.existsByIdAndIsDeleteFalse(signUpDto.id) } returns false
             every { memberService.signUp(signUpDto) } just Runs
 
             memberService.signUp(signUpDto)
 
-            every { memberRepository.findById(signUpDto.id) } returns MEMBER
+            every { memberRepository.findByIdAndIsDeleteFalse(signUpDto.id) } returns MEMBER
 
-            val findMember = memberRepository.findById(signUpDto.id)!!
+            val findMember = memberRepository.findByIdAndIsDeleteFalse(signUpDto.id)!!
 
             it("회원가입이 성공한다") {
                 signUpDto.id shouldBe findMember.id
@@ -27,7 +27,7 @@ internal class MemberServiceTest : DescribeSpec({
         }
 
         context("이미 존재하는 회원 정보가 입력되면") {
-            every { memberRepository.existsById(signUpDto.id) } returns true
+            every { memberRepository.existsByIdAndIsDeleteFalse(signUpDto.id) } returns true
 
             every { memberService.signUp(signUpDto) } throws CustomException(MEMBER_ALREADY_EXISTS)
 

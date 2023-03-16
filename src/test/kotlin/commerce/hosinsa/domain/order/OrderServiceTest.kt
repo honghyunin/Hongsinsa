@@ -21,7 +21,7 @@ class OrderServiceTest : DescribeSpec({
 
         context("올바른 정보가 입력되면") {
             every { orderRepository.save(ORDER_REQUEST_DTO.toOrder(currentUserUtil.currentUser!!)) } returns ORDER
-            every { productRepository.findByIdx(PRODUCT_IDX) } returns PRODUCT
+            every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns PRODUCT
             every { orderService.orderRequest(ORDER_REQUEST_DTO) } just Runs
 
             orderService.orderRequest(ORDER_REQUEST_DTO)
@@ -42,7 +42,7 @@ class OrderServiceTest : DescribeSpec({
 
         context("상품이 존재하지 않을 경우") {
             every { orderRepository.save(any()) } returns ORDER
-            every { productRepository.findByIdx(PRODUCT_IDX) } returns null
+            every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns null
             every { orderService.orderRequest((ORDER_REQUEST_DTO)) } throws CustomException(PRODUCT_NOT_FOUND)
 
             it("Product Not Found Exception이 발생한다") {

@@ -27,7 +27,7 @@ class OrderService(
         val productQuantities = mutableMapOf<Int, Byte>()
 
         orderRequestDto.productIdxList.forEach { productIdx ->
-            val product = productRepository.findByIdx(productIdx) ?: throw CustomException(PRODUCT_NOT_FOUND)
+            val product = productRepository.findByIdxAndIsDeleteFalse(productIdx) ?: throw CustomException(PRODUCT_NOT_FOUND)
 
             val quantity: Byte = orderRequestDto.productQuantities[productIdx]
                 ?: throw CustomException(PRODUCT_QUANTITY_NOT_FOUND)
@@ -69,7 +69,7 @@ class OrderService(
 
         val order = orderRepository.findById(orderIdx).orElseThrow { throw CustomException(ORDER_NOT_FOUND) }
 
-        orderProductRepository.findAllByOrder(order).forEach { orderProduct ->
+        orderProductRepository.findAllByOrderAndIsDeleteFalse(order).forEach { orderProduct ->
             orderProduct.isDelete = true
         }
 

@@ -23,17 +23,17 @@ class BrandService(
     }
 
     fun auditAvailable(brandName: String) {
-        val brand = brandRepository.findByName(brandName) ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
+        val brand = brandRepository.findByNameAndIsDeleteFalse(brandName) ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
 
         brand.setIsAudit()
     }
 
     @Transactional
     fun brandUpdate(brandUpdateDto: BrandUpdateDto) {
-        val brand = brandRepository.findByName(brandUpdateDto.name) ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
+        val brand = brandRepository.findByNameAndIsDeleteFalse(brandUpdateDto.name) ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
 
         brand.updateBrand(brandUpdateDto)
     }
 
-    fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByName(availableBrandDto.name)
+    fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByNameAndIsDeleteFalse(availableBrandDto.name)
 }

@@ -24,7 +24,7 @@ class MemberService(
 ) {
     fun signUp(signUpDto: SignUpDto) {
 
-        if (memberRepository.existsById(signUpDto.id))
+        if (memberRepository.existsByIdAndIsDeleteFalse(signUpDto.id))
             throw CustomException(ErrorCode.MEMBER_ALREADY_EXISTS)
 
         signUpDto.apply { password = passwordEncoder.encode(this.password) }
@@ -33,7 +33,7 @@ class MemberService(
 
     fun signIn(signInDto: SignInDto): TokenResponse {
         signInDto.let {
-            val findMember = memberRepository.findById(it.id) ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
+            val findMember = memberRepository.findByIdAndIsDeleteFalse(it.id) ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
 
             if (notMatchesPassword(signInDto.password, findMember.pw))
                 throw CustomException(ErrorCode.PASSWORD_NOT_MATCH)
@@ -51,7 +51,7 @@ class MemberService(
     fun updateProfile(updateProfileDto: UpdateProfileDto) {
 
         val member = updateProfileDto.apply { password = passwordEncoder.encode(password) }
-            .let { memberRepository.findByEmail(updateProfileDto.email) }
+            .let { memberRepository.findByEmailAndIsDeleteFalse(updateProfileDto.email) }
             ?: throw CustomException(ErrorCode.MEMBER_NOT_FOUND)
 
         member.updateProfile(updateProfileDto)

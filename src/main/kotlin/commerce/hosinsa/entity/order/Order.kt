@@ -2,7 +2,6 @@ package commerce.hosinsa.entity.order
 
 import commerce.hosinsa.entity.BaseTimeEntity
 import commerce.hosinsa.entity.member.Member
-import commerce.hosinsa.entity.product.Product
 import org.hibernate.annotations.Comment
 import javax.persistence.*
 
@@ -20,7 +19,7 @@ class Order(
     val phoneNumber: String,
 
     @Comment(value = "요청사항")
-    @Column(name = "order_request", nullable = true)
+    @Column(name = "request", nullable = true)
     val requestedMessage: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,6 +22,7 @@ class CartCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : Cart
             .from(cart)
             .innerJoin(cart.product, product)
             .innerJoin(cart.member, member)
-            .where(member.idx.eq(memberIdx))
+            .where(member.idx.eq(memberIdx)
+                .and(cart.isDelete.eq(false)))
             .fetch()
 }

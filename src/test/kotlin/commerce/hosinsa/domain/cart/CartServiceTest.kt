@@ -20,7 +20,7 @@ class CartServiceTest : DescribeSpec({
 
         context("유효한 AddProductDto가 입력될 경우") {
             every { memberRepository.findById(MEMBER_IDX) } returns OPTIONAL_MEMBER
-            every { productRepository.findByIdx(PRODUCT_IDX) } returns PRODUCT
+            every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns PRODUCT
             every { cartRepository.save(CART) } returns CART
             every { cartService.addProduct(ADD_PRODUCT_DTO) } just Runs
 
@@ -39,10 +39,10 @@ class CartServiceTest : DescribeSpec({
         }
 
         context("상품이 없을 경우") {
-            every { productRepository.findByIdx(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
+            every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
 
             it("Product Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { productRepository.findByIdx(PRODUCT_IDX) }
+                shouldThrow<CustomException> { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) }
             }
         }
     }
