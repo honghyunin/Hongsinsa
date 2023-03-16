@@ -32,7 +32,4 @@ class Order(
     @Column(name = "idx")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idx: Int? = null
-
-    @Column(name = "is_delete", nullable = false)
-    var isDelete: Boolean = false
 }
