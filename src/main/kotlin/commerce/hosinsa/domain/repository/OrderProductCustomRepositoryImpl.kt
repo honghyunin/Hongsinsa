@@ -22,7 +22,8 @@ class OrderProductCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
             orderProduct.count,
             product.price,
             orderProduct.size,
-            orderProduct.color
+            orderProduct.color,
+            order.status
         )
     )
         .from(orderProduct)

@@ -4,6 +4,7 @@ import commerce.hosinsa.domain.dto.order.GetOrderResponse
 import commerce.hosinsa.domain.dto.order.OrderRequestDto
 import commerce.hosinsa.domain.repository.*
 import commerce.hosinsa.entity.order.OrderProduct
+import commerce.hosinsa.entity.order.OrderStatus
 import commerce.hosinsa.global.config.utils.CurrentUserUtil
 import commerce.hosinsa.global.exception.CustomException
 import commerce.hosinsa.global.exception.ErrorCode.*
@@ -58,7 +59,7 @@ class OrderService(
 
         val orders = orderProductCustomRepository.findGetOrderResponsesByMemberIdx(memberIdx)
 
-        if (orders.count() == 0)
+        if (orders.isEmpty())
             throw CustomException(ORDER_NOT_FOUND)
 
         return orders
@@ -73,6 +74,6 @@ class OrderService(
             orderProduct.isDelete = true
         }
 
-        order.isDelete = true
+        order.status = OrderStatus.ORDER_CANCEL
     }
 }

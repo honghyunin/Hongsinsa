@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OrderRepository: JpaRepository<Order, Int> {
-    fun findAllByMemberAndIsDeleteFalse(memberIdx: Int): MutableList<Order>
+    fun findAllByMember(memberIdx: Int): MutableList<Order>
 }

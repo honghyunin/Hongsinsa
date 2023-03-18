@@ -1,6 +1,7 @@
 package commerce.hosinsa.domain.dto.order
 
 import com.querydsl.core.annotations.QueryProjection
+import commerce.hosinsa.entity.order.OrderStatus
 import commerce.hosinsa.entity.product.ProductSize
 import java.time.LocalDateTime
 
@@ -13,5 +14,6 @@ class GetOrderResponse @QueryProjection constructor(
     val quantity: Byte,
     val price: Int,
     val size: ProductSize,
-    val color: String
+    val color: String,
+    var status: OrderStatus
 )

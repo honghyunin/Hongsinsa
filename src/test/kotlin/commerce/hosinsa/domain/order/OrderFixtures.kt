@@ -7,6 +7,7 @@ import commerce.hosinsa.domain.product.*
 import commerce.hosinsa.domain.repository.*
 import commerce.hosinsa.domain.service.OrderService
 import commerce.hosinsa.entity.order.OrderProduct
+import commerce.hosinsa.entity.order.OrderStatus
 import commerce.hosinsa.entity.product.ProductSize
 import commerce.hosinsa.global.config.utils.CurrentUserUtil
 import commerce.hosinsa.global.extension.toOrder
@@ -22,6 +23,7 @@ const val DELIVERY_INSTRUCTIONS = ""
 const val COUNT = (3).toByte()
 val PRODUCT_IDX_LIST = mutableListOf(1, 2, 3, 4)
 val PRODUCT_QUANTITIES = mutableMapOf(1 to (2).toByte(), 2 to (3).toByte())
+val ORDER_STATUS = OrderStatus.ORDER_RECEIVED
 
 val ORDER_REQUEST_DTO = OrderRequestDto(
     quantity = QUANTITY,
@@ -67,6 +69,7 @@ val GET_ORDER_RESPONSE = GetOrderResponse(
     price = PRICE,
     size = PRODUCT_SIZE,
     color = COLOR,
+    status = ORDER_STATUS
 )
 
 val GET_ORDER_RESPONSE_LIST = mutableListOf(GET_ORDER_RESPONSE, GET_ORDER_RESPONSE)
