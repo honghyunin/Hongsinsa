@@ -10,11 +10,11 @@ import javax.persistence.*
 @Table(name = "order_product")
 class OrderProduct(
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product.idx", nullable = false)
+    @JoinColumn(name = "product_idx", nullable = false)
     val product: Product,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order.idx", nullable = false)
+    @JoinColumn(name = "order_idx", nullable = false)
     val order: Order,
 
     @Comment(value = "상품 수량")
