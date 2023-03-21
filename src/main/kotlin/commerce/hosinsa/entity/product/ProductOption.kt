@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity
 class ProductOption(
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product.idx")
+    @JoinColumn(name = "product_idx")
     val product: Product,
 
     @Column(name = "color", nullable = false)
