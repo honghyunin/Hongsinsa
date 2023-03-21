@@ -1,21 +1,21 @@
-# Hosinsa
+# 💎 Hongsinsa
 
 ## 🙋‍♂️ 프로젝트 간단 소개
-[2023년 1월 ~ ing] 무신사 서비스의 MVP 기능을 담은 hosinsa server를 개발한 레포지토리입니다
+> [2023년 1월 ~ ing] 무신사 서비스의 MVP 기능을 담은 Hongsinsa server를 개발한 레포지토리입니다 😊
 
 ## 🛠 사용된 기술
-언어 : Kotlin  
-컴파일러 : Gradle  
-IDE : Intellij IDEA  
-프레임워크 : Spring Boot  
-데이터베이스 : H2  
-사용된 기술 : Spring Data JPA, Security, Querydsl, Logger, Batch, Scheduler  
-테스트 기술 : Kotest, Mockk
+- 언어 : Kotlin(1.7.22)  
+- 컴파일러 : Gradle(7.6)  
+- 프레임워크 : Spring Boot(2.7.8)  
+- 사용된 기술 : Spring Data JPA, Spring Security, Querydsl, Spring Batch, Spring Scheduler, Slf4j  
+- 테스트 기술 : Kotest, Mockk
+- 데이터베이스 : H2  
+- IDE : Intellij IDEA  
 
 ## 🗺 ERD
 ![img.png](src/main/resources/img.png)
 
-## 프로젝트 기능
+## 📜 프로젝트 기능
 > 회원
 - 회원가입
 - 로그인
@@ -53,7 +53,7 @@ IDE : Intellij IDEA
 - 장바구니 조회
 - 장바구니 상품 삭제
 
-## Commit Convention
+## 📝 Commit Convention
 모든 커밋은 간결하게 작성하며 불필요한 커밋은 최소화합니다.
 
 ```
