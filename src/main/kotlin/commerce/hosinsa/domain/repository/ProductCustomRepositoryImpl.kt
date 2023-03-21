@@ -2,14 +2,13 @@ package commerce.hosinsa.domain.repository
 
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.jpa.impl.JPAQueryFactory
-import commerce.hosinsa.domain.dto.product.GetProductFilterDto
-import commerce.hosinsa.domain.dto.product.ProductResponse
-import commerce.hosinsa.domain.dto.product.QProductResponse
+import commerce.hosinsa.domain.dto.product.*
 import commerce.hosinsa.entity.brand.QBrand.brand
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Price.*
 import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.entity.product.QProduct.product
+import commerce.hosinsa.entity.product.QProductOption.productOption
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository
 class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductCustomRepository {
     override fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<ProductResponse> {
         val products = query.select(
-            QProductResponse(
+            QProductInfoDto(
                 product.idx,
                 product.name,
                 product.price,
@@ -39,7 +38,29 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             .from(product)
             .fetchOne()
 
-        return PageImpl(products, pageable, count!!)
+        val productOptions = query.select(
+            QProductOptionResponse(
+                productOption.idx,
+                productOption.color,
+                productOption.size
+            )
+        ).from(productOption)
+            .where(productOption.product.idx.`in`(products.map { it.productIdx }))
+            .fetch().toMutableList()
+
+        val productResponseList: MutableList<ProductResponse> = products.map { product ->
+            ProductResponse(
+                product.productIdx,
+                product.name,
+                product.price,
+                product.category,
+                product.gender,
+                product.brand,
+                productOptions.filter { it.productIdx == product.productIdx }.toMutableList()
+            )
+        }.toMutableList()
+
+        return PageImpl(productResponseList, pageable, count!!)
     }
 
     override fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {
@@ -47,6 +68,19 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             .where(product.idx.`in`(productIdxList))
             .fetch()
     }
+
+    override fun findProductOptionResponseByProductIdx(productIdx: Int): MutableList<ProductOptionResponse> =
+        query.select(
+            QProductOptionResponse(
+                productOption.idx,
+                productOption.color,
+                productOption.size
+            )
+        )
+            .from(productOption)
+            .innerJoin(productOption.product, product)
+            .where(product.idx.eq(productIdx))
+            .fetch()
 
     private fun createWhereFilter(getProductFilterDto: GetProductFilterDto): BooleanBuilder =
         getProductFilterDto.let { filterDto ->

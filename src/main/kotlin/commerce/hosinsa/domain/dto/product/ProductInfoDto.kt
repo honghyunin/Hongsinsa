@@ -1,11 +1,12 @@
 package commerce.hosinsa.domain.dto.product
 
-class ProductResponse(
-    val productId: Int,
+import com.querydsl.core.annotations.QueryProjection
+
+class ProductInfoDto @QueryProjection constructor(
+    val productIdx: Int,
     val name: String,
     val price: Int,
     val category: String,
     val gender: Char,
     val brand: String,
-    var options: MutableList<ProductOptionResponse>
 )

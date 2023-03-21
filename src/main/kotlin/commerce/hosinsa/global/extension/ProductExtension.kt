@@ -1,11 +1,11 @@
 package commerce.hosinsa.global.extension
 
+import commerce.hosinsa.domain.dto.product.ProductOptionResponse
 import commerce.hosinsa.domain.dto.product.ProductResponse
 import commerce.hosinsa.domain.dto.product.RegistrationProductDto
 import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.entity.brand.Brand
 import commerce.hosinsa.entity.product.Product
-import commerce.hosinsa.entity.product.ProductOption
 
 
 fun RegistrationProductDto.toProduct(brand: Brand) = Product(
@@ -28,13 +28,14 @@ fun Product.soldOut() {
     this.isSoldOut = true
 }
 
-fun Product.toProductResponse(options: MutableList<ProductOption>): ProductResponse = ProductResponse(
+fun Product.toProductResponse(options: MutableList<ProductOptionResponse>): ProductResponse = ProductResponse(
     productId = idx!!,
     name = name,
     price = price,
     category = category,
     gender = gender,
     brand = brand.name,
+    options = options
 ).let { product ->
     product.options = options
     product

@@ -42,7 +42,7 @@ class ProductService(
 
     fun getProductResponse(productIdx: Int): ProductResponse =
         productRepository.findByIdxAndIsDeleteFalse(productIdx)
-            ?.toProductResponse(productOptionRepository.findByProductIdx(productIdx))
+            ?.toProductResponse(productCustomRepository.findProductOptionResponseByProductIdx(productIdx))
             ?: throw CustomException(PRODUCT_NOT_FOUND)
 
     fun getProducts(getProductFilterDto: GetProductFilterDto, pageable: Pageable) =
