@@ -1,6 +1,6 @@
 ### 상품 주문하기
 POST {{basic-url}}/order
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5MTM0OTc4MDYyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTE1NjU3OH0.7vY1tK3EH1IXXQExSbXVLehORF3-NKSzs1Y87i6R-yM
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI4NTM2NjY2LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ1MDEzNn0.ypXwiz1AIJ2jCbAbdiV3H5ChA9Ic_WYjg0ghlJu8Spw
 Content-Type: application/json
 
 {
@@ -10,10 +10,10 @@ Content-Type: application/json
   "phoneNumber": "010-1234-5678",
   "deliveryInstructions": "부재 시 경비실에 맡겨주세요",
   "productIdxList": [
-    1
+    2
   ],
   "productQuantities": {
-    "1": 2
+    "2": 2
   },
   "color": "검정",
   "size": "M"
@@ -24,6 +24,6 @@ GET {{basic-url}}/order/1
 Content-Type: application/json
 
 ### 주문 취소하기
-DELETE {{basic-url}}/order/cancel/3
+DELETE {{basic-url}}/order/cancel/2
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc3ODM5NDE2NzU2LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3Nzg2MTAxNn0.Tfpkzjujy2I8xL7K2G2aZwA1SUG_f0FWrHIU9_S9Z8A
 Content-Type: application/json

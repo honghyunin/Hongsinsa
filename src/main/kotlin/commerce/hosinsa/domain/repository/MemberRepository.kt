@@ -9,5 +9,6 @@ interface MemberRepository : JpaRepository<Member, Int> {
     fun findByIdAndIsDeleteFalse(id: String): Member?
     fun findByEmailAndIsDeleteFalse(email: String): Member?
     fun existsByIdAndIsDeleteFalse(id: String): Boolean
-    fun existsByIdxAndIsDeleteFalse(idx: Int): Boolean
+    fun existsByIdxAndIsDeleteFalse(memberIdx: Int): Boolean
+    fun findByIdxAndIsDeleteFalse(memberIdx: Int): Member?
 }

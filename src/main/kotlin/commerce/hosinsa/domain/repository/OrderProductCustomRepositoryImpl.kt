@@ -7,6 +7,7 @@ import commerce.hosinsa.entity.brand.QBrand.brand
 import commerce.hosinsa.entity.member.QMember.member
 import commerce.hosinsa.entity.order.QOrder.order
 import commerce.hosinsa.entity.order.QOrderProduct.orderProduct
+import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.entity.product.QProduct.product
 import org.springframework.stereotype.Service
 
@@ -33,4 +34,10 @@ class OrderProductCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
         .innerJoin(order.member, member)
         .where(order.member.idx.eq(memberIdx))
         .fetch()
+
+    override fun findProductByProductIdxAndIsDeleteFalse(productIdx: Int): Product? = queryFactory
+        .selectFrom(product)
+        .where(product.idx.eq(productIdx)
+            .and(product.isDelete.eq(false)))
+        .fetchOne()
 }

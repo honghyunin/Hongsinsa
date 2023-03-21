@@ -34,8 +34,8 @@ val CART_RESPONSE = CartResponse(
 val CART_RESPONSE_LIST = mutableListOf(CART_RESPONSE, CART_RESPONSE)
 
 val ADD_PRODUCT_DTO = AddProductDto(
-    memberId = MEMBER_IDX,
-    productId= PRODUCT_IDX
+    memberIdx = MEMBER_IDX,
+    productIdx= PRODUCT_IDX
 )
 
 val cartRepository = mockk<CartRepository>()

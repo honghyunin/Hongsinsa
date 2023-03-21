@@ -5,7 +5,10 @@ import commerce.hosinsa.global.exception.ErrorCode.*
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.verify
 
 internal class MemberServiceTest : DescribeSpec({
 
@@ -99,32 +102,36 @@ internal class MemberServiceTest : DescribeSpec({
     describe("pwChange") {
 
         context("올바른 패스워드가 입력되면") {
-            every { memberService.changePassword(changePasswordDto) } returns CHANGED_PW
+            every { memberService.changePassword(MEMBER, changePasswordDto) } returns CHANGED_PW
 
             it("패스워드가 변경된다") {
-                val password = memberService.changePassword(changePasswordDto)
+                val password = memberService.changePassword(MEMBER, changePasswordDto)
 
                 CHANGED_PW shouldBe password
             }
         }
 
         context("신규 패스워드와 재입력 비밀번호가 같지 않을 때") {
-            every { memberService.changePassword(notMatchChangePasswordDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+            every { memberService.changePassword(MEMBER, notMatchChangePasswordDto) } throws CustomException(
+                CHANGE_PASSWORD_NOT_MATCH
+            )
 
             it("패스워드가 변경에 실패한다") {
                 shouldThrow<CustomException> {
-                    memberService.changePassword(notMatchChangePasswordDto)
+                    memberService.changePassword(MEMBER, notMatchChangePasswordDto)
                 }
             }
         }
 
         context("기존 패스워드가 일치하지 않을 때") {
 
-            every { memberService.changePassword(notMatchCurrentChangePasswordDto) } throws CustomException(CHANGE_PASSWORD_NOT_MATCH)
+            every { memberService.changePassword(MEMBER, notMatchCurrentChangePasswordDto) } throws CustomException(
+                CHANGE_PASSWORD_NOT_MATCH
+            )
 
             it("패스워드가 변경에 실패한다") {
                 shouldThrow<CustomException> {
-                    memberService.changePassword(notMatchCurrentChangePasswordDto)
+                    memberService.changePassword(MEMBER, notMatchCurrentChangePasswordDto)
                 }
             }
         }

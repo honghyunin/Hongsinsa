@@ -11,22 +11,22 @@ class CouponServiceTest : DescribeSpec({
     describe("saveCoupon") {
 
         context("브랜드 이름이 존재할 경우") {
-            every { couponService.saveCoupon(SAVE_COUPON_DTO) } just Runs
+            every { couponService.saveCoupon(COUPON) } just Runs
 
-            if(SAVE_COUPON_DTO.brandName != null)
-                couponService.saveCoupon(SAVE_COUPON_DTO)
+            if(COUPON.brand != null)
+                couponService.saveCoupon(COUPON)
             it("브랜드 전용 쿠폰이 발급된다") {
-                verify(exactly = 1) { couponService.saveCoupon(SAVE_COUPON_DTO) }
+                verify(exactly = 1) { couponService.saveCoupon(COUPON) }
             }
         }
 
         context("브랜드 이름이 존재하지 않을 경우") {
-            every { couponService.saveCoupon(NOT_BRAND_SAVE_COUPON_DTO) } just Runs
+            every { couponService.saveCoupon(BRAND_NULL_COUPON) } just Runs
 
-            if(NOT_BRAND_SAVE_COUPON_DTO.brandName == null)
-                couponService.saveCoupon(NOT_BRAND_SAVE_COUPON_DTO)
+            if(BRAND_NULL_COUPON.brand == null)
+                couponService.saveCoupon(BRAND_NULL_COUPON)
             it("브랜드가 없는 쿠폰이 발급된다") {
-                verify(exactly = 1) { couponService.saveCoupon(NOT_BRAND_SAVE_COUPON_DTO) }
+                verify(exactly = 1) { couponService.saveCoupon(BRAND_NULL_COUPON) }
             }
         }
     }

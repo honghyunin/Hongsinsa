@@ -36,4 +36,8 @@ class BrandService(
     }
 
     fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByNameAndIsDeleteFalse(availableBrandDto.name)
+
+    fun findBrandByName(brandName: String) = brandRepository.findByNameAndIsDeleteFalse(brandName)
+        ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
+
 }

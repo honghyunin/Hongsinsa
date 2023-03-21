@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CartRepository : JpaRepository<Cart, Int> {
-    fun findByProductIdx(productIdx: Int): Cart?
+    fun findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx: Int, memberIdx: Int): Cart?
 }

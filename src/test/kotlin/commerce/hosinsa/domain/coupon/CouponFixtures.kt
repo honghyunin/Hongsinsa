@@ -1,5 +1,6 @@
 package commerce.hosinsa.domain.coupon
 
+import commerce.hosinsa.domain.brand.BRAND
 import commerce.hosinsa.domain.dto.coupon.ResponseCoupon
 import commerce.hosinsa.domain.dto.coupon.SaveCouponDto
 import commerce.hosinsa.domain.product.BRAND_NAME
@@ -9,6 +10,7 @@ import commerce.hosinsa.domain.repository.CouponRepository
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.domain.service.CouponMemberService
 import commerce.hosinsa.domain.service.CouponService
+import commerce.hosinsa.entity.coupon.Coupon
 import io.mockk.mockk
 import java.time.LocalDateTime
 
@@ -36,6 +38,17 @@ val RESPONSE_COUPON = ResponseCoupon(
     brandName = BRAND_NAME,
     assignedAt = LocalDateTime.now(),
     expiredAt = LocalDateTime.now()
+)
+val COUPON = Coupon(
+    name = NAME,
+    discount = DISCOUNT,
+    brand = BRAND
+)
+
+val BRAND_NULL_COUPON = Coupon(
+    name = NAME,
+    discount = DISCOUNT,
+    brand = null
 )
 
 val RESPONSE_COUPON_LIST = mutableListOf(RESPONSE_COUPON, RESPONSE_COUPON, RESPONSE_COUPON)

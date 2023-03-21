@@ -1,16 +1,17 @@
 package commerce.hosinsa.domain.service
 
-import commerce.hosinsa.domain.dto.product.*
-import commerce.hosinsa.domain.repository.BrandRepository
+import commerce.hosinsa.domain.dto.product.GetProductFilterDto
+import commerce.hosinsa.domain.dto.product.ProductOptionDto
+import commerce.hosinsa.domain.dto.product.ProductResponse
+import commerce.hosinsa.domain.dto.product.UpdateProductDto
 import commerce.hosinsa.domain.repository.ProductCustomRepository
 import commerce.hosinsa.domain.repository.ProductOptionRepository
 import commerce.hosinsa.domain.repository.ProductRepository
+import commerce.hosinsa.entity.product.Product
 import commerce.hosinsa.entity.product.ProductOption
 import commerce.hosinsa.global.exception.CustomException
-import commerce.hosinsa.global.exception.ErrorCode
 import commerce.hosinsa.global.exception.ErrorCode.PRODUCT_NOT_FOUND
 import commerce.hosinsa.global.extension.soldOut
-import commerce.hosinsa.global.extension.toProduct
 import commerce.hosinsa.global.extension.toProductResponse
 import commerce.hosinsa.global.extension.updateProduct
 import org.springframework.data.domain.Pageable
@@ -20,21 +21,17 @@ import javax.transaction.Transactional
 @Service
 class ProductService(
     private val productRepository: ProductRepository,
-    private val brandRepository: BrandRepository,
     private val productCustomRepository: ProductCustomRepository,
     private val productOptionRepository: ProductOptionRepository,
 ) {
-    fun registrationProduct(registrationProductDto: RegistrationProductDto) {
-        brandRepository.findByNameAndIsDeleteFalse(registrationProductDto.brandName)?.let { brand ->
-            productRepository.save(registrationProductDto.toProduct(brand))
-        } ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
+    fun registrationProduct(product: Product) {
+        productRepository.save(product)
     }
 
     @Transactional
-    fun updateProduct(updateProductDto: UpdateProductDto) =
-        productRepository.findByIdxAndIsDeleteFalse(updateProductDto.productId)?.let { product ->
-            product.updateProduct(updateProductDto)
-        } ?: throw CustomException(PRODUCT_NOT_FOUND)
+    fun updateProduct(updateProductDto: UpdateProductDto): Unit =
+        productRepository.findByIdxAndIsDeleteFalse(updateProductDto.productIdx)?.updateProduct(updateProductDto)
+            ?: throw CustomException(PRODUCT_NOT_FOUND)
 
     @Transactional
     fun updateIsSoldOut(productIdx: Int) =

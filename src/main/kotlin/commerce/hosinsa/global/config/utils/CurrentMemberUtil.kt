@@ -2,15 +2,20 @@ package commerce.hosinsa.global.config.utils
 
 import commerce.hosinsa.domain.repository.MemberRepository
 import commerce.hosinsa.entity.member.Member
+import commerce.hosinsa.global.exception.CustomException
+import commerce.hosinsa.global.exception.ErrorCode.FORBIDDEN
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 
 
 @Component
-class CurrentUserUtil(private val memberRepository: MemberRepository) {
+class CurrentMemberUtil(private val memberRepository: MemberRepository) {
+    val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
-    val currentUser: Member?
+    val currentMember: Member?
         get() {
             var id: String
             val principal = SecurityContextHolder.getContext().authentication.principal
@@ -19,7 +24,11 @@ class CurrentUserUtil(private val memberRepository: MemberRepository) {
             } else {
                 principal.toString()
             }
-            println("=================$id=================한")
             return memberRepository.findByIdAndIsDeleteFalse(id)
         }
+
+    fun getCurrentMemberIfAuthenticated(): Member {
+        log.error("================ Unauthorized Access ================")
+        return currentMember ?: throw CustomException(FORBIDDEN)
+    }
 }

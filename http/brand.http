@@ -1,6 +1,6 @@
 ### BrandAvailable | 브랜드 입점
 POST {{basic-url}}/brand/available
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ PUT {{basic-url}}/brand/audit/available/gowl
 
 ### BrandUpdate | 브랜드 업데이트
 PUT {{basic-url}}/brand/update
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NDI4OTE2OTUyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTQ1MDUxNn0.0hzMaXmeLo-o39340c3bZVWku39r8wWA42NEhw76DRA
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
 Content-Type: application/json
 
 {

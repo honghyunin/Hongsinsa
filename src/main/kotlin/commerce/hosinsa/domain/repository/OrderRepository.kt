@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface OrderRepository: JpaRepository<Order, Int> {
+    fun findByIdx(orderIdx: Int): Order?
     fun findAllByMember(memberIdx: Int): MutableList<Order>
 }

@@ -8,6 +8,11 @@ class SaveCouponDto(
     val status: Char,
     val brandName: String? = null
 ) {
-    var assignedAt: LocalDateTime = LocalDateTime.now()
+    var assignedAt: LocalDateTime? = null
     var expiredAt: LocalDateTime? = null
+
+    init {
+        assignedAt = LocalDateTime.now()
+        expiredAt = assignedAt!!.plusDays(14)
+    }
 }

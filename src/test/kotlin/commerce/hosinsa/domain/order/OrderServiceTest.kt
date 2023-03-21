@@ -20,14 +20,14 @@ class OrderServiceTest : DescribeSpec({
     describe("orderRequest") {
 
         context("올바른 정보가 입력되면") {
-            every { orderRepository.save(ORDER_REQUEST_DTO.toOrder(currentUserUtil.currentUser!!)) } returns ORDER
+            every { orderRepository.save(ORDER_REQUEST_DTO.toOrder(currentMemberUtil.currentMember!!)) } returns ORDER
             every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns PRODUCT
-            every { orderService.orderRequest(ORDER_REQUEST_DTO) } just Runs
+            every { orderService.processOrderRequest(ORDER, ORDER_REQUEST_DTO) } just Runs
 
-            orderService.orderRequest(ORDER_REQUEST_DTO)
+            orderService.processOrderRequest(ORDER, ORDER_REQUEST_DTO)
 
             it("새로운 주문이 생성된다") {
-                verify(exactly = 1) { orderService.orderRequest(ORDER_REQUEST_DTO) }
+                verify(exactly = 1) { orderService.processOrderRequest(ORDER, ORDER_REQUEST_DTO) }
             }
 
             every { orderProductRepository.save(ORDER_PRODUCT) } returns ORDER_PRODUCT
@@ -43,21 +43,33 @@ class OrderServiceTest : DescribeSpec({
         context("상품이 존재하지 않을 경우") {
             every { orderRepository.save(any()) } returns ORDER
             every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns null
-            every { orderService.orderRequest((ORDER_REQUEST_DTO)) } throws CustomException(PRODUCT_NOT_FOUND)
+            every { orderService.processOrderRequest(ORDER, ORDER_REQUEST_DTO) } throws CustomException(
+                PRODUCT_NOT_FOUND
+            )
 
             it("Product Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.orderRequest((ORDER_REQUEST_DTO)) }
+                shouldThrow<CustomException> { orderService.processOrderRequest(ORDER, ORDER_REQUEST_DTO) }
             }
         }
 
         context("상품의 개수가 null일 경우") {
             if (EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO.productQuantities[PRODUCT_IDX] == null)
-                every { orderService.orderRequest(EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO) } throws CustomException(
+                every {
+                    orderService.processOrderRequest(
+                        ORDER,
+                        EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO
+                    )
+                } throws CustomException(
                     PRODUCT_QUANTITY_NOT_FOUND
                 )
 
             it("Product Quantity Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.orderRequest(EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO) }
+                shouldThrow<CustomException> {
+                    orderService.processOrderRequest(
+                        ORDER,
+                        EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO
+                    )
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 package commerce.hosinsa.domain.cart
 
+import commerce.hosinsa.domain.member.MEMBER
 import commerce.hosinsa.domain.member.MEMBER_IDX
 import commerce.hosinsa.domain.member.OPTIONAL_MEMBER
 import commerce.hosinsa.domain.product.PRODUCT
@@ -22,11 +23,11 @@ class CartServiceTest : DescribeSpec({
             every { memberRepository.findById(MEMBER_IDX) } returns OPTIONAL_MEMBER
             every { productRepository.findByIdxAndIsDeleteFalse(PRODUCT_IDX) } returns PRODUCT
             every { cartRepository.save(CART) } returns CART
-            every { cartService.addProduct(ADD_PRODUCT_DTO) } just Runs
+            every { cartService.addProduct(MEMBER, PRODUCT) } just Runs
 
-            cartService.addProduct(ADD_PRODUCT_DTO)
+            cartService.addProduct(MEMBER, PRODUCT)
             it("장바구니에 담기가 성공한다") {
-                verify(exactly = 1) { cartService.addProduct(ADD_PRODUCT_DTO) }
+                verify(exactly = 1) { cartService.addProduct(MEMBER, PRODUCT) }
             }
         }
 
@@ -72,21 +73,31 @@ class CartServiceTest : DescribeSpec({
     describe("deleteCartProduct") {
 
         context("존재하는 상품일 경우") {
-            every { cartRepository.findByProductIdx(PRODUCT_IDX) } returns CART
+            every { cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(PRODUCT_IDX, MEMBER_IDX) } returns CART
             every { cartRepository.delete(CART) } just Runs
-            every { cartService.deleteCartProduct(PRODUCT_IDX) } just Runs
+            every { cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX) } just Runs
 
-            cartService.deleteCartProduct(PRODUCT_IDX)
+            cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX)
             it("장바구니에 담긴 상품이 삭제된다") {
-                verify(exactly = 1) { cartService.deleteCartProduct(PRODUCT_IDX) }
+                verify(exactly = 1) { cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX) }
             }
         }
 
         context("존재하지 않는 상품일 경우") {
-            every { cartRepository.findByProductIdx(PRODUCT_IDX) } throws CustomException(PRODUCT_NOT_FOUND)
+            every {
+                cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(
+                    PRODUCT_IDX,
+                    MEMBER_IDX
+                )
+            } throws CustomException(PRODUCT_NOT_FOUND)
 
             it("Product Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { cartRepository.findByProductIdx(PRODUCT_IDX) }
+                shouldThrow<CustomException> {
+                    cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(
+                        PRODUCT_IDX,
+                        MEMBER_IDX
+                    )
+                }
             }
         }
     }

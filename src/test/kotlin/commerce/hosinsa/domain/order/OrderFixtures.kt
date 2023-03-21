@@ -9,7 +9,7 @@ import commerce.hosinsa.domain.service.OrderService
 import commerce.hosinsa.entity.order.OrderProduct
 import commerce.hosinsa.entity.order.OrderStatus
 import commerce.hosinsa.entity.product.ProductSize
-import commerce.hosinsa.global.config.utils.CurrentUserUtil
+import commerce.hosinsa.global.config.utils.CurrentMemberUtil
 import commerce.hosinsa.global.extension.toOrder
 import io.mockk.mockk
 import java.time.LocalDateTime
@@ -78,6 +78,6 @@ val orderRepository = mockk<OrderRepository>()
 val orderProductRepository = mockk<OrderProductRepository>()
 val orderProductCustomRepository = mockk<OrderProductCustomRepository>()
 val productRepository = mockk<ProductRepository>()
-val currentUserUtil = mockk<CurrentUserUtil>(relaxed = true)
+val currentMemberUtil = mockk<CurrentMemberUtil>(relaxed = true)
 val memberRepository = mockk<MemberRepository>()
 val orderService = mockk<OrderService>()

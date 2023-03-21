@@ -31,7 +31,7 @@ Content-Type: application/json
 ### ProfileUpdate | 프로필 업데이트
 
 PUT {{basic-url}}/member/update
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1NjkxODU5OTQzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNDUiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3NTcxMzQ1OX0.Yga8N8eeyxJ8BHxbVO6gEwlj5JWBB7PSpNaDLpy8Aa4
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 ### PasswordChange | 패스워드 변경
 
 PUT {{basic-url}}/member/pw/change
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc1MzM4MDE3NjM0LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6ImlkMTIzNCIsInRva2VuVHlwZSI6IkFjY2Vzc1Rva2VuIiwiZXhwIjoxNjc1MzU5NjE3fQ.rsbtYaKY9WKAJRDR3mVU3efIR6LpR_RL3enJ6j7L4tE
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
 Content-Type: application/json
 
 {

@@ -1,16 +1,12 @@
 package commerce.hosinsa.domain.product
 
 import commerce.hosinsa.domain.brand.BRAND
-import commerce.hosinsa.domain.dto.product.GetProductFilterDto
-import commerce.hosinsa.domain.dto.product.ProductResponse
-import commerce.hosinsa.domain.dto.product.RegistrationProductDto
-import commerce.hosinsa.domain.dto.product.UpdateProductDto
+import commerce.hosinsa.domain.dto.product.*
 import commerce.hosinsa.domain.repository.BrandRepository
 import commerce.hosinsa.domain.repository.ProductRepository
 import commerce.hosinsa.domain.service.ProductService
 import commerce.hosinsa.entity.product.Price
 import commerce.hosinsa.entity.product.Product
-import commerce.hosinsa.entity.product.ProductOption
 import commerce.hosinsa.entity.product.ProductSize
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
@@ -35,7 +31,7 @@ val PRODUCT = Product(
     STOCK,
     BRAND
 )
-val OPTIONS = mutableListOf(ProductOption(product = PRODUCT, color = COLOR, PRODUCT_SIZE))
+val OPTIONS = mutableListOf(ProductOptionResponse(productIdx = PRODUCT_IDX, color = COLOR, size = PRODUCT_SIZE))
 
 val REGISTRATION_PRODUCT_DTO = RegistrationProductDto(
     name = PRODUCT_NAME,
@@ -47,7 +43,7 @@ val REGISTRATION_PRODUCT_DTO = RegistrationProductDto(
 )
 
 val UPDATE_PRODUCT_DTO = UpdateProductDto(
-    productId = PRODUCT_IDX,
+    productIdx = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,
     category = CATEGORY,
@@ -62,6 +58,7 @@ val PRODUCT_RESPONSE = ProductResponse(
     category = CATEGORY,
     gender = GENDER,
     brand = BRAND_NAME,
+    options = OPTIONS
 )
 
 val GET_PRODUCT_FILTER_DTO = GetProductFilterDto(
