@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.product
 
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.jpa.impl.JPAQueryFactory

@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.coupon
 
 import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
 import commerce.hongsinsa.entity.coupon.CouponMember

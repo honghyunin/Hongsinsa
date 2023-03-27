@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.coupon
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hongsinsa.domain.dto.coupon.QResponseCoupon

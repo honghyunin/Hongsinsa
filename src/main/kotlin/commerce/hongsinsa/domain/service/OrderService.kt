@@ -2,9 +2,9 @@ package commerce.hongsinsa.domain.service
 
 import commerce.hongsinsa.domain.dto.order.GetOrderResponse
 import commerce.hongsinsa.domain.dto.order.OrderRequestDto
-import commerce.hongsinsa.domain.repository.OrderProductCustomRepository
-import commerce.hongsinsa.domain.repository.OrderProductRepository
-import commerce.hongsinsa.domain.repository.OrderRepository
+import commerce.hongsinsa.domain.repository.order.OrderProductCustomRepository
+import commerce.hongsinsa.domain.repository.order.OrderProductRepository
+import commerce.hongsinsa.domain.repository.order.OrderRepository
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.entity.order.Order
 import commerce.hongsinsa.entity.order.OrderProduct

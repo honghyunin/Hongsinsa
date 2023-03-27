@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.controller
+package commerce.hongsinsa.domain.controller.member
 
 import commerce.hongsinsa.domain.dto.member.*
 import commerce.hongsinsa.domain.service.MemberService

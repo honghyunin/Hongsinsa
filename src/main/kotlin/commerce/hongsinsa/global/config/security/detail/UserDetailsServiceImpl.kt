@@ -1,6 +1,6 @@
 package commerce.hongsinsa.global.config.security.detail
 
-import commerce.hongsinsa.domain.repository.MemberRepository
+import commerce.hongsinsa.domain.repository.member.MemberRepository
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.global.exception.CustomException
 import commerce.hongsinsa.global.exception.ErrorCode.MEMBER_NOT_FOUND

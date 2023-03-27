@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.controller
+package commerce.hongsinsa.domain.controller.product
 
 import commerce.hongsinsa.domain.dto.product.GetProductFilterDto
 import commerce.hongsinsa.domain.dto.product.ProductOptionDto

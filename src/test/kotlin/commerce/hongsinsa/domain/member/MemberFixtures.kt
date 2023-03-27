@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.member
 
 import commerce.hongsinsa.domain.dto.member.*
-import commerce.hongsinsa.domain.repository.MemberRepository
+import commerce.hongsinsa.domain.repository.member.MemberRepository
 import commerce.hongsinsa.domain.service.MemberService
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.global.exception.CustomException

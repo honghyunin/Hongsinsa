@@ -1,8 +1,7 @@
 package commerce.hongsinsa.domain.service
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
-import commerce.hongsinsa.domain.dto.brand.BrandUpdateDto
-import commerce.hongsinsa.domain.repository.BrandRepository
+import commerce.hongsinsa.domain.repository.brand.BrandRepository
 import commerce.hongsinsa.global.exception.CustomException
 import commerce.hongsinsa.global.exception.ErrorCode
 import commerce.hongsinsa.global.extension.setIsAudit

@@ -4,12 +4,12 @@ import commerce.hongsinsa.domain.brand.BRAND
 import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
 import commerce.hongsinsa.domain.dto.coupon.SaveCouponDto
 import commerce.hongsinsa.domain.product.BRAND_NAME
-import commerce.hongsinsa.domain.repository.BrandRepository
-import commerce.hongsinsa.domain.repository.CouponMemberCustomRepository
-import commerce.hongsinsa.domain.repository.CouponRepository
-import commerce.hongsinsa.domain.repository.MemberRepository
-import commerce.hongsinsa.domain.service.CouponMemberService
+import commerce.hongsinsa.domain.repository.brand.BrandRepository
+import commerce.hongsinsa.domain.repository.coupon.CouponMemberCustomRepository
+import commerce.hongsinsa.domain.repository.coupon.CouponRepository
+import commerce.hongsinsa.domain.repository.member.MemberRepository
 import commerce.hongsinsa.domain.service.CouponService
+import commerce.hongsinsa.domain.service.MemberCouponService
 import commerce.hongsinsa.entity.coupon.Coupon
 import io.mockk.mockk
 import java.time.LocalDateTime

@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.controller
+package commerce.hongsinsa.domain.controller.order
 
 import commerce.hongsinsa.domain.dto.order.OrderRequestDto
 import commerce.hongsinsa.domain.service.OrderService

@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.service
 
 import commerce.hongsinsa.domain.dto.member.*
-import commerce.hongsinsa.domain.repository.MemberRepository
+import commerce.hongsinsa.domain.repository.member.MemberRepository
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.entity.member.Role
 import commerce.hongsinsa.global.config.utils.TokenUtils

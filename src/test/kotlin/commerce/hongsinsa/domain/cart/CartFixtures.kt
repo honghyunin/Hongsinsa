@@ -8,10 +8,10 @@ import commerce.hongsinsa.domain.product.PRICE
 import commerce.hongsinsa.domain.product.PRODUCT
 import commerce.hongsinsa.domain.product.PRODUCT_IDX
 import commerce.hongsinsa.domain.product.PRODUCT_NAME
-import commerce.hongsinsa.domain.repository.CartCustomRepository
-import commerce.hongsinsa.domain.repository.CartRepository
-import commerce.hongsinsa.domain.repository.MemberRepository
-import commerce.hongsinsa.domain.repository.ProductRepository
+import commerce.hongsinsa.domain.repository.cart.CartCustomRepository
+import commerce.hongsinsa.domain.repository.cart.CartRepository
+import commerce.hongsinsa.domain.repository.member.MemberRepository
+import commerce.hongsinsa.domain.repository.product.ProductRepository
 import commerce.hongsinsa.domain.service.CartService
 import commerce.hongsinsa.entity.cart.Cart
 import io.mockk.mockk

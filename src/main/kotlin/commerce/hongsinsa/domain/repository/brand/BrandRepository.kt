@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.brand
 
 import commerce.hongsinsa.entity.brand.Brand
 import org.springframework.data.jpa.repository.JpaRepository

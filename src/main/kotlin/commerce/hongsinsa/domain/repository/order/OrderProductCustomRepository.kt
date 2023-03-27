@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.order
 
 import commerce.hongsinsa.domain.dto.order.GetOrderResponse
 import commerce.hongsinsa.entity.product.Product

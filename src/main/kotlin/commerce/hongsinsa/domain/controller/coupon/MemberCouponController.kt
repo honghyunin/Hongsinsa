@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.controller
+package commerce.hongsinsa.domain.controller.coupon
 
 import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
 import commerce.hongsinsa.domain.service.CouponMemberService

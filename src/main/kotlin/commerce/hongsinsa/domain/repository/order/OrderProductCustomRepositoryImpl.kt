@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.order
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hongsinsa.domain.dto.order.GetOrderResponse

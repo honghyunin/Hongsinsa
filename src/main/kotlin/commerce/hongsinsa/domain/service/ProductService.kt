@@ -4,9 +4,9 @@ import commerce.hongsinsa.domain.dto.product.GetProductFilterDto
 import commerce.hongsinsa.domain.dto.product.ProductOptionDto
 import commerce.hongsinsa.domain.dto.product.ProductResponse
 import commerce.hongsinsa.domain.dto.product.UpdateProductDto
-import commerce.hongsinsa.domain.repository.ProductCustomRepository
-import commerce.hongsinsa.domain.repository.ProductOptionRepository
-import commerce.hongsinsa.domain.repository.ProductRepository
+import commerce.hongsinsa.domain.repository.product.ProductCustomRepository
+import commerce.hongsinsa.domain.repository.product.ProductOptionRepository
+import commerce.hongsinsa.domain.repository.product.ProductRepository
 import commerce.hongsinsa.entity.product.Product
 import commerce.hongsinsa.entity.product.ProductOption
 import commerce.hongsinsa.global.exception.CustomException

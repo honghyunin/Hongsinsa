@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.order
 
 import commerce.hongsinsa.entity.order.Order
 import org.springframework.data.jpa.repository.JpaRepository

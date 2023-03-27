@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.controller
+package commerce.hongsinsa.domain.controller.brand
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hongsinsa.domain.dto.brand.BrandUpdateDto

@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.member
 
 import commerce.hongsinsa.entity.member.Member
 import org.springframework.data.jpa.repository.JpaRepository

@@ -1,4 +1,4 @@
-package commerce.hongsinsa.domain.repository
+package commerce.hongsinsa.domain.repository.member
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hongsinsa.entity.member.Member

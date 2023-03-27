@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.service
 
 import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
-import commerce.hongsinsa.domain.repository.CouponMemberCustomRepository
+import commerce.hongsinsa.domain.repository.coupon.CouponMemberCustomRepository
 import org.springframework.stereotype.Service
 
 @Service
