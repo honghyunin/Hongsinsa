@@ -15,8 +15,8 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 
 @Repository
-class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductCustomRepository {
-    override fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<GetProductDto> {
+class ProductQueryRepository(private val query: JPAQueryFactory) {
+    fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<GetProductDto> {
         val products = query.select(
             QProductInfoDto(
                 product.idx,
@@ -28,8 +28,10 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             )
         ).from(product)
             .innerJoin(product.brand, brand)
-            .where(product.isDelete.eq(false)
-                .and(createWhereFilter(getProductFilterDto)))
+            .where(
+                product.isDelete.eq(false)
+                    .and(createWhereFilter(getProductFilterDto))
+            )
             .offset(pageable.offset)
             .limit(pageable.pageSize.toLong())
             .fetch()
@@ -63,13 +65,13 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
         return PageImpl(getProductDtoLists, pageable, count!!)
     }
 
-    override fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {
+    fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {
         return query.selectFrom(product)
             .where(product.idx.`in`(productIdxList))
             .fetch()
     }
 
-    override fun findProductOptionResponseByProductIdx(productIdx: Int): MutableList<ProductOptionResponse> =
+    fun findProductOptionResponseByProductIdx(productIdx: Int): MutableList<ProductOptionResponse> =
         query.select(
             QProductOptionResponse(
                 productOption.idx,

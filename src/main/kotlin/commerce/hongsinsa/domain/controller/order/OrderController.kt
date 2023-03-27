@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.controller.order
 
 import commerce.hongsinsa.domain.dto.order.OrderRequestDto
-import commerce.hongsinsa.domain.service.OrderService
+import commerce.hongsinsa.domain.service.order.OrderService
 import commerce.hongsinsa.global.config.utils.CurrentMemberUtil
 import org.springframework.web.bind.annotation.*
 import javax.transaction.Transactional
@@ -15,6 +15,7 @@ class OrderController(private val orderService: OrderService, private val curren
     fun requestOrder(@RequestBody orderRequestDto: OrderRequestDto) {
         val order = orderService.saveOrder(orderRequestDto, currentMemberUtil.getCurrentMemberIfAuthenticated())
         orderService.processOrderRequest(order, orderRequestDto)
+        orderService.decreaseStock(orderRequestDto.productQuantities)
     }
 
     @GetMapping("/{memberIdx}")

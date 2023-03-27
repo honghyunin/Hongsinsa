@@ -2,9 +2,9 @@ package commerce.hongsinsa.domain.controller.cart
 
 import commerce.hongsinsa.domain.dto.cart.AddProductDto
 import commerce.hongsinsa.domain.dto.cart.GetCartDto
-import commerce.hongsinsa.domain.service.CartService
-import commerce.hongsinsa.domain.service.MemberService
-import commerce.hongsinsa.domain.service.ProductService
+import commerce.hongsinsa.domain.service.cart.CartService
+import commerce.hongsinsa.domain.service.member.MemberService
+import commerce.hongsinsa.domain.service.product.ProductService
 import commerce.hongsinsa.global.config.utils.CurrentMemberUtil
 import org.springframework.web.bind.annotation.*
 

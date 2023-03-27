@@ -44,12 +44,12 @@ internal class MemberServiceTest : DescribeSpec({
 
     describe("signIn") {
         context("올바른 회원 정보가 입력되면") {
-            every { memberService.signIn(signInDto) } returns tokenDto
+            every { memberService.signIn(signInDto) } returns MEMBER
 
             it("로그인이 성공한다") {
-                val token = memberService.signIn(signInDto)
+                val member = memberService.signIn(signInDto)
 
-                token shouldBe tokenDto
+                member shouldBe MEMBER
             }
         }
 

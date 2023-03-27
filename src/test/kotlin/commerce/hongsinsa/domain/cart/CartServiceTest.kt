@@ -52,7 +52,7 @@ class CartServiceTest : DescribeSpec({
 
         context("존재하지 않는 회원이 입력될 경우") {
             every { memberRepository.existsById(MEMBER_IDX) } returns false
-            every { cartCustomRepository.findProductsByMemberIdx(MEMBER_IDX) } returns CART_RESPONSE_LIST
+            every { cartQueryRepository.findProductsByMemberIdx(MEMBER_IDX) } returns CART_RESPONSE_LIST
             every { cartService.getCart(MEMBER_IDX) } returns CART_RESPONSE_LIST
 
             cartService.getCart(MEMBER_IDX)

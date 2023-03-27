@@ -5,11 +5,11 @@ import commerce.hongsinsa.domain.dto.coupon.CouponDto
 import commerce.hongsinsa.domain.dto.coupon.SaveCouponDto
 import commerce.hongsinsa.domain.product.BRAND_NAME
 import commerce.hongsinsa.domain.repository.brand.BrandRepository
-import commerce.hongsinsa.domain.repository.coupon.CouponMemberCustomRepository
+import commerce.hongsinsa.domain.repository.coupon.CouponMemberQueryRepository
 import commerce.hongsinsa.domain.repository.coupon.CouponRepository
 import commerce.hongsinsa.domain.repository.member.MemberRepository
-import commerce.hongsinsa.domain.service.CouponService
-import commerce.hongsinsa.domain.service.MemberCouponService
+import commerce.hongsinsa.domain.service.coupon.CouponService
+import commerce.hongsinsa.domain.service.member.MemberCouponService
 import commerce.hongsinsa.entity.coupon.Coupon
 import io.mockk.mockk
 import java.time.LocalDateTime
@@ -54,7 +54,7 @@ val BRAND_NULL_COUPON = Coupon(
 val RESPONSE_COUPON_LIST = mutableListOf(RESPONSE_COUPON, RESPONSE_COUPON, RESPONSE_COUPON)
 
 val memberCouponService = mockk<MemberCouponService>()
-val couponMemberCustomRepository = mockk<CouponMemberCustomRepository>()
+val couponMemberQueryRepository = mockk<CouponMemberQueryRepository>()
 val memberRepository = mockk<MemberRepository>()
 val brandRepository = mockk<BrandRepository>()
 val couponRepository = mockk<CouponRepository>()

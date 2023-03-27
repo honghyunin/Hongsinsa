@@ -2,7 +2,7 @@ package commerce.hongsinsa.domain.brand
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
 import commerce.hongsinsa.domain.dto.brand.UpdateBrandDto
-import commerce.hongsinsa.domain.service.BrandService
+import commerce.hongsinsa.domain.service.brand.BrandService
 import commerce.hongsinsa.global.extension.toBrand
 import io.mockk.mockk
 

@@ -1,8 +1,8 @@
 package commerce.hongsinsa.domain.controller.coupon
 
 import commerce.hongsinsa.domain.dto.coupon.CouponDto
-import commerce.hongsinsa.domain.service.MemberCouponService
-import commerce.hongsinsa.domain.service.MemberService
+import commerce.hongsinsa.domain.service.member.MemberCouponService
+import commerce.hongsinsa.domain.service.member.MemberService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping

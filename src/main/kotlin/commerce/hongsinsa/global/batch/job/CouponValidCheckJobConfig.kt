@@ -1,6 +1,6 @@
 package commerce.hongsinsa.global.batch.job
 
-import commerce.hongsinsa.domain.repository.coupon.CouponMemberCustomRepository
+import commerce.hongsinsa.domain.repository.coupon.CouponMemberQueryRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job
@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 class CouponValidCheckJobConfig(
     private val jobBuilderFactory: JobBuilderFactory,
     private val stepBuilderFactory: StepBuilderFactory,
-    private val couponMemberCustomRepository: CouponMemberCustomRepository
+    private val couponMemberQueryRepository: CouponMemberQueryRepository
 ) {
 
     val log: Logger = LoggerFactory.getLogger(this.javaClass)
@@ -30,7 +30,7 @@ class CouponValidCheckJobConfig(
     fun couponValidCheckStep() = stepBuilderFactory["couponValidCheckStep"]
         .tasklet { _, _ ->
 
-            val coupons = couponMemberCustomRepository.findByExpiredCoupon()
+            val coupons = couponMemberQueryRepository.findByExpiredCoupon()
 
             coupons.forEach { coupon ->
                 coupon.status = 'E'

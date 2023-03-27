@@ -2,19 +2,18 @@ package commerce.hongsinsa.domain.repository.order
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hongsinsa.domain.dto.order.GetOrderDto
-import commerce.hongsinsa.domain.dto.order.QGetOrderResponse
+import commerce.hongsinsa.domain.dto.order.QGetOrderDto
 import commerce.hongsinsa.entity.brand.QBrand.brand
 import commerce.hongsinsa.entity.member.QMember.member
 import commerce.hongsinsa.entity.order.QOrder.order
 import commerce.hongsinsa.entity.order.QOrderProduct.orderProduct
-import commerce.hongsinsa.entity.product.Product
 import commerce.hongsinsa.entity.product.QProduct.product
 import org.springframework.stereotype.Service
 
 @Service
-class OrderProductCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : OrderProductCustomRepository {
-    override fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderDto> = queryFactory.select(
-        QGetOrderResponse(
+class OrderProductQueryRepository(private val queryFactory: JPAQueryFactory) {
+    fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderDto> = queryFactory.select(
+        QGetOrderDto(
             order.idx,
             product.name,
             product.brand.name,
@@ -34,10 +33,4 @@ class OrderProductCustomRepositoryImpl(private val queryFactory: JPAQueryFactory
         .innerJoin(order.member, member)
         .where(order.member.idx.eq(memberIdx))
         .fetch()
-
-    override fun findProductByProductIdxAndIsDeleteFalse(productIdx: Int): Product? = queryFactory
-        .selectFrom(product)
-        .where(product.idx.eq(productIdx)
-            .and(product.isDelete.eq(false)))
-        .fetchOne()
 }

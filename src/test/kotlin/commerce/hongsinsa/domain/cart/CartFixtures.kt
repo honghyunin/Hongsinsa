@@ -8,11 +8,11 @@ import commerce.hongsinsa.domain.product.PRICE
 import commerce.hongsinsa.domain.product.PRODUCT
 import commerce.hongsinsa.domain.product.PRODUCT_IDX
 import commerce.hongsinsa.domain.product.PRODUCT_NAME
-import commerce.hongsinsa.domain.repository.cart.CartCustomRepository
+import commerce.hongsinsa.domain.repository.cart.CartQueryRepository
 import commerce.hongsinsa.domain.repository.cart.CartRepository
 import commerce.hongsinsa.domain.repository.member.MemberRepository
 import commerce.hongsinsa.domain.repository.product.ProductRepository
-import commerce.hongsinsa.domain.service.CartService
+import commerce.hongsinsa.domain.service.cart.CartService
 import commerce.hongsinsa.entity.cart.Cart
 import io.mockk.mockk
 
@@ -41,5 +41,5 @@ val ADD_PRODUCT_DTO = AddProductDto(
 val cartRepository = mockk<CartRepository>()
 val memberRepository = mockk<MemberRepository>()
 val productRepository = mockk<ProductRepository>()
-val cartCustomRepository = mockk<CartCustomRepository>()
+val cartQueryRepository = mockk<CartQueryRepository>()
 val cartService = mockk<CartService>()

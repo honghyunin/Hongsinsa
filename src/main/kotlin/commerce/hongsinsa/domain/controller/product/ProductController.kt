@@ -4,8 +4,8 @@ import commerce.hongsinsa.domain.dto.product.GetProductFilterDto
 import commerce.hongsinsa.domain.dto.product.ProductOptionDto
 import commerce.hongsinsa.domain.dto.product.RegistrationProductDto
 import commerce.hongsinsa.domain.dto.product.UpdateProductDto
-import commerce.hongsinsa.domain.service.BrandService
-import commerce.hongsinsa.domain.service.ProductService
+import commerce.hongsinsa.domain.service.brand.BrandService
+import commerce.hongsinsa.domain.service.product.ProductService
 import commerce.hongsinsa.global.extension.toProduct
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault

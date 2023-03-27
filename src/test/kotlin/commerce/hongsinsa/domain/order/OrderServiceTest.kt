@@ -78,7 +78,7 @@ class OrderServiceTest : DescribeSpec({
 
         context("올바른 정보가 입력되면") {
             every { memberRepository.existsById(MEMBER_IDX) } returns true
-            every { orderProductCustomRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
+            every { orderProductQueryRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
             every { orderService.getOrder(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
 
             val orders = orderService.getOrder(MEMBER_IDX)
@@ -98,7 +98,7 @@ class OrderServiceTest : DescribeSpec({
         }
 
         context("조회된 주문이 없을 경우") {
-            every { orderProductCustomRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns mutableListOf()
+            every { orderProductQueryRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns mutableListOf()
             every { orderService.getOrder(MEMBER_IDX) } throws CustomException(ORDER_NOT_FOUND)
 
             it("Order Not Found Exception이 발생한다") {

@@ -4,7 +4,7 @@ import commerce.hongsinsa.domain.brand.BRAND
 import commerce.hongsinsa.domain.dto.product.*
 import commerce.hongsinsa.domain.repository.brand.BrandRepository
 import commerce.hongsinsa.domain.repository.product.ProductRepository
-import commerce.hongsinsa.domain.service.ProductService
+import commerce.hongsinsa.domain.service.product.ProductService
 import commerce.hongsinsa.entity.product.Price
 import commerce.hongsinsa.entity.product.Product
 import commerce.hongsinsa.entity.product.ProductSize

@@ -2,7 +2,7 @@ package commerce.hongsinsa.global.batch.job
 
 import commerce.hongsinsa.domain.repository.coupon.CouponMemberRepository
 import commerce.hongsinsa.domain.repository.coupon.CouponRepository
-import commerce.hongsinsa.domain.repository.member.MemberCustomRepository
+import commerce.hongsinsa.domain.repository.member.MemberQueryRepository
 import commerce.hongsinsa.entity.coupon.MemberCoupon
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -18,7 +18,7 @@ class BirthdayCouponJobConfig(
     private val jobBuilderFactory: JobBuilderFactory,
     private val stepBuilderFactory: StepBuilderFactory,
     private val couponMemberRepository: CouponMemberRepository,
-    private val memberCustomRepository: MemberCustomRepository,
+    private val memberCustomRepository: MemberQueryRepository,
     private val couponRepository: CouponRepository
 ) {
 

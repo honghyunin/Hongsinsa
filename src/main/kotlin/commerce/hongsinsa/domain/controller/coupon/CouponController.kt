@@ -1,8 +1,8 @@
 package commerce.hongsinsa.domain.controller.coupon
 
 import commerce.hongsinsa.domain.dto.coupon.SaveCouponDto
-import commerce.hongsinsa.domain.service.BrandService
-import commerce.hongsinsa.domain.service.CouponService
+import commerce.hongsinsa.domain.service.brand.BrandService
+import commerce.hongsinsa.domain.service.coupon.CouponService
 import commerce.hongsinsa.global.extension.toCoupon
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

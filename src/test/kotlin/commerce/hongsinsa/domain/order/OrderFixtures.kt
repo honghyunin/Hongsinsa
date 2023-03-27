@@ -5,11 +5,11 @@ import commerce.hongsinsa.domain.dto.order.OrderRequestDto
 import commerce.hongsinsa.domain.member.MEMBER
 import commerce.hongsinsa.domain.product.*
 import commerce.hongsinsa.domain.repository.member.MemberRepository
-import commerce.hongsinsa.domain.repository.order.OrderProductCustomRepository
+import commerce.hongsinsa.domain.repository.order.OrderProductQueryRepository
 import commerce.hongsinsa.domain.repository.order.OrderProductRepository
 import commerce.hongsinsa.domain.repository.order.OrderRepository
 import commerce.hongsinsa.domain.repository.product.ProductRepository
-import commerce.hongsinsa.domain.service.OrderService
+import commerce.hongsinsa.domain.service.order.OrderService
 import commerce.hongsinsa.entity.order.OrderProduct
 import commerce.hongsinsa.entity.order.OrderStatus
 import commerce.hongsinsa.entity.product.ProductSize
@@ -80,7 +80,7 @@ val GET_ORDER_RESPONSE_LIST = mutableListOf(GET_ORDER_RESPONSE, GET_ORDER_RESPON
 
 val orderRepository = mockk<OrderRepository>()
 val orderProductRepository = mockk<OrderProductRepository>()
-val orderProductCustomRepository = mockk<OrderProductCustomRepository>()
+val orderProductQueryRepository = mockk<OrderProductQueryRepository>()
 val productRepository = mockk<ProductRepository>()
 val currentMemberUtil = mockk<CurrentMemberUtil>(relaxed = true)
 val memberRepository = mockk<MemberRepository>()

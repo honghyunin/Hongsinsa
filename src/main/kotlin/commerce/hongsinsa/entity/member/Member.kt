@@ -92,9 +92,7 @@ class Member(
     val order: MutableList<Order> = mutableListOf()
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
-        roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(
-            Collectors.toList()
-        )
+        roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(Collectors.toList())
 
     @Column(name = "is_delete", nullable = false)
     val isDelete: Boolean = false

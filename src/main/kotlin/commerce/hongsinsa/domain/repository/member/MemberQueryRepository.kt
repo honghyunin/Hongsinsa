@@ -7,10 +7,9 @@ import org.springframework.stereotype.Repository
 import java.time.LocalDate
 
 @Repository
-class MemberCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) :
-    MemberCustomRepository {
+class MemberQueryRepository(private val queryFactory: JPAQueryFactory) {
 
-    override fun findMembersWithBirthdayToday(): MutableList<Member> {
+    fun findMembersWithBirthdayToday(): MutableList<Member> {
         val today = LocalDate.now()
 
         return queryFactory.selectFrom(member)
