@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.cart
 
 import commerce.hongsinsa.domain.dto.cart.AddProductDto
-import commerce.hongsinsa.domain.dto.cart.CartResponse
+import commerce.hongsinsa.domain.dto.cart.GetCartDto
 import commerce.hongsinsa.domain.member.MEMBER
 import commerce.hongsinsa.domain.member.MEMBER_IDX
 import commerce.hongsinsa.domain.product.PRICE
@@ -24,7 +24,7 @@ val CART = Cart(
     PRODUCT
 )
 
-val CART_RESPONSE = CartResponse(
+val CART_RESPONSE = GetCartDto(
     PRODUCT_NAME,
     PRICE,
     QUANTITY,

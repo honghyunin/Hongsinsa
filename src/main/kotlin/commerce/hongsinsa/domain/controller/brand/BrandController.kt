@@ -1,14 +1,9 @@
 package commerce.hongsinsa.domain.controller.brand
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
-import commerce.hongsinsa.domain.dto.brand.BrandUpdateDto
+import commerce.hongsinsa.domain.dto.brand.UpdateBrandDto
 import commerce.hongsinsa.domain.service.BrandService
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/brand")
@@ -21,5 +16,5 @@ class BrandController(private val brandService: BrandService) {
     fun auditAvailable(@PathVariable brandName: String): Unit = brandService.auditAvailable(brandName)
 
     @PutMapping("/update")
-    fun brandUpdate(@RequestBody brandUpdateDto: BrandUpdateDto): Unit = brandService.brandUpdate(brandUpdateDto)
+    fun brandUpdate(@RequestBody updateBrandDto: UpdateBrandDto): Unit = brandService.brandUpdate(updateBrandDto)
 }

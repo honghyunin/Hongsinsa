@@ -1,6 +1,7 @@
 package commerce.hongsinsa.domain.service
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
+import commerce.hongsinsa.domain.dto.brand.UpdateBrandDto
 import commerce.hongsinsa.domain.repository.brand.BrandRepository
 import commerce.hongsinsa.global.exception.CustomException
 import commerce.hongsinsa.global.exception.ErrorCode
@@ -8,7 +9,8 @@ import commerce.hongsinsa.global.extension.setIsAudit
 import commerce.hongsinsa.global.extension.toBrand
 import commerce.hongsinsa.global.extension.updateBrand
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
+
 
 @Service
 class BrandService(
@@ -27,11 +29,11 @@ class BrandService(
         brand.setIsAudit()
     }
 
-    @Transactional
-    fun brandUpdate(brandUpdateDto: BrandUpdateDto) {
-        val brand = brandRepository.findByNameAndIsDeleteFalse(brandUpdateDto.name) ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
+    fun brandUpdate(updateBrandDto: UpdateBrandDto) {
+        val brand = brandRepository.findByNameAndIsDeleteFalse(updateBrandDto.name)
+            ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
 
-        brand.updateBrand(brandUpdateDto)
+        brand.updateBrand(updateBrandDto)
     }
 
     fun existsByName(availableBrandDto: AvailableBrandDto) = brandRepository.existsByNameAndIsDeleteFalse(availableBrandDto.name)

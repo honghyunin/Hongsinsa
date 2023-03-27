@@ -30,14 +30,14 @@ class MemberService(
             .let { memberRepository.save(it.toMember()) }
     }
 
-    fun signIn(signInDto: SignInDto): TokenResponse {
+    fun signIn(signInDto: SignInDto): TokenDto {
         signInDto.let {
             val findMember = findByIdAndIsDeleteFalse(it.id)
 
             if (notMatchesPassword(signInDto.password, findMember.pw))
                 throw CustomException(ErrorCode.PASSWORD_NOT_MATCH)
 
-            return TokenResponse(
+            return TokenDto(
                 accessToken = tokenUtils.createAccessToken(findMember.id, getRoleMember(findMember.roles)),
                 refreshToken = tokenUtils.createRefreshToken(findMember.id, getRoleMember(findMember.roles)),
                 findMember.id,

@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.controller.coupon
 
-import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
+import commerce.hongsinsa.domain.dto.coupon.CouponDto
 import commerce.hongsinsa.domain.service.MemberCouponService
 import commerce.hongsinsa.domain.service.MemberService
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,7 +16,7 @@ class MemberCouponController(
 ) {
 
     @GetMapping("/{memberIdx}")
-    fun getCoupons(@PathVariable memberIdx: Int): MutableList<ResponseCoupon> {
+    fun getCoupons(@PathVariable memberIdx: Int): MutableList<CouponDto> {
         memberService.existsByIdx(memberIdx)
 
         return memberCouponService.getCoupons(memberIdx)

@@ -1,7 +1,7 @@
 package commerce.hongsinsa.global.extension
 
 import commerce.hongsinsa.domain.dto.product.ProductOptionResponse
-import commerce.hongsinsa.domain.dto.product.ProductResponse
+import commerce.hongsinsa.domain.dto.product.GetProductDto
 import commerce.hongsinsa.domain.dto.product.RegistrationProductDto
 import commerce.hongsinsa.domain.dto.product.UpdateProductDto
 import commerce.hongsinsa.entity.brand.Brand
@@ -28,7 +28,7 @@ fun Product.soldOut() {
     this.isSoldOut = true
 }
 
-fun Product.toProductResponse(options: MutableList<ProductOptionResponse>): ProductResponse = ProductResponse(
+fun Product.toProductResponse(options: MutableList<ProductOptionResponse>): GetProductDto = GetProductDto(
     productId = idx!!,
     name = name,
     price = price,

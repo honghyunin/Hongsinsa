@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.brand
 
 import commerce.hongsinsa.domain.dto.brand.AvailableBrandDto
-import commerce.hongsinsa.domain.dto.brand.BrandUpdateDto
+import commerce.hongsinsa.domain.dto.brand.UpdateBrandDto
 import commerce.hongsinsa.domain.service.BrandService
 import commerce.hongsinsa.global.extension.toBrand
 import io.mockk.mockk
@@ -30,7 +30,7 @@ val brandAvailableDto = AvailableBrandDto(
     isAudit = IS_AUDIT
 )
 
-val brandUpdateDto = BrandUpdateDto(
+val updateBrandDto = UpdateBrandDto(
     name = NAME,
     email = EMAIL,
     homepageUrl = HOMEPAGE_URL,

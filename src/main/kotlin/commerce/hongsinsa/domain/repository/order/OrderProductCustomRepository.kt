@@ -1,9 +1,7 @@
 package commerce.hongsinsa.domain.repository.order
 
-import commerce.hongsinsa.domain.dto.order.GetOrderResponse
-import commerce.hongsinsa.entity.product.Product
+import commerce.hongsinsa.domain.dto.order.GetOrderDto
 
 interface OrderProductCustomRepository {
-    fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderResponse>
-    fun findProductByProductIdxAndIsDeleteFalse(productIdx: Int): Product?
+    fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderDto>
 }

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductCustomRepository {
-    override fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<ProductResponse> {
+    override fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<GetProductDto> {
         val products = query.select(
             QProductInfoDto(
                 product.idx,
@@ -48,8 +48,8 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             .where(productOption.product.idx.`in`(products.map { it.productIdx }))
             .fetch().toMutableList()
 
-        val productResponseList: MutableList<ProductResponse> = products.map { product ->
-            ProductResponse(
+        val getProductDtoLists: MutableList<GetProductDto> = products.map { product ->
+            GetProductDto(
                 product.productIdx,
                 product.name,
                 product.price,
@@ -60,7 +60,7 @@ class ProductCustomRepositoryImpl(private val query: JPAQueryFactory) : ProductC
             )
         }.toMutableList()
 
-        return PageImpl(productResponseList, pageable, count!!)
+        return PageImpl(getProductDtoLists, pageable, count!!)
     }
 
     override fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {

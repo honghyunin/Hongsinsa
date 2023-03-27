@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.controller.cart
 
 import commerce.hongsinsa.domain.dto.cart.AddProductDto
-import commerce.hongsinsa.domain.dto.cart.CartResponse
+import commerce.hongsinsa.domain.dto.cart.GetCartDto
 import commerce.hongsinsa.domain.service.CartService
 import commerce.hongsinsa.domain.service.MemberService
 import commerce.hongsinsa.domain.service.ProductService
@@ -26,7 +26,7 @@ class CartController(
     }
 
     @GetMapping("/{memberIdx}")
-    fun getCart(@PathVariable memberIdx: Int): MutableList<CartResponse> {
+    fun getCart(@PathVariable memberIdx: Int): MutableList<GetCartDto> {
         memberService.existsByIdx(memberIdx)
         return cartService.getCart(memberIdx)
     }

@@ -51,7 +51,7 @@ val UPDATE_PRODUCT_DTO = UpdateProductDto(
     stock = STOCK
 )
 
-val PRODUCT_RESPONSE = ProductResponse(
+val PRODUCT_RESPONSE = GetProductDto(
     productId = PRODUCT_IDX,
     name = PRODUCT_NAME,
     price = PRICE,

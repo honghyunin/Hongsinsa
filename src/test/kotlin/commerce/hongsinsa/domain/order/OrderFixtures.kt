@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.order
 
-import commerce.hongsinsa.domain.dto.order.GetOrderResponse
+import commerce.hongsinsa.domain.dto.order.GetOrderDto
 import commerce.hongsinsa.domain.dto.order.OrderRequestDto
 import commerce.hongsinsa.domain.member.MEMBER
 import commerce.hongsinsa.domain.product.*
@@ -63,7 +63,7 @@ val ORDER_PRODUCT = OrderProduct(
     color = COLOR
 )
 
-val GET_ORDER_RESPONSE = GetOrderResponse(
+val GET_ORDER_RESPONSE = GetOrderDto(
     orderIdx = ORDER_IDX,
     productName = PRODUCT_NAME,
     brandName = BRAND_NAME,

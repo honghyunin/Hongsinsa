@@ -1,8 +1,8 @@
 package commerce.hongsinsa.domain.service
 
+import commerce.hongsinsa.domain.dto.product.GetProductDto
 import commerce.hongsinsa.domain.dto.product.GetProductFilterDto
 import commerce.hongsinsa.domain.dto.product.ProductOptionDto
-import commerce.hongsinsa.domain.dto.product.ProductResponse
 import commerce.hongsinsa.domain.dto.product.UpdateProductDto
 import commerce.hongsinsa.domain.repository.product.ProductCustomRepository
 import commerce.hongsinsa.domain.repository.product.ProductOptionRepository
@@ -37,7 +37,7 @@ class ProductService(
     fun updateIsSoldOut(productIdx: Int) =
         productRepository.findByIdxAndIsDeleteFalse(productIdx)?.soldOut() ?: throw CustomException(PRODUCT_NOT_FOUND)
 
-    fun getProductResponse(productIdx: Int): ProductResponse =
+    fun getProductResponse(productIdx: Int): GetProductDto =
         productRepository.findByIdxAndIsDeleteFalse(productIdx)
             ?.toProductResponse(productCustomRepository.findProductOptionResponseByProductIdx(productIdx))
             ?: throw CustomException(PRODUCT_NOT_FOUND)

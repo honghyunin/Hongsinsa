@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.repository.cart
 
 import com.querydsl.jpa.impl.JPAQueryFactory
-import commerce.hongsinsa.domain.dto.cart.CartResponse
+import commerce.hongsinsa.domain.dto.cart.GetCartDto
 import commerce.hongsinsa.domain.dto.cart.QCartResponse
 import commerce.hongsinsa.entity.cart.QCart.cart
 import commerce.hongsinsa.entity.member.QMember.member
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class CartCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : CartCustomRepository {
-    override fun findProductsByMemberIdx(memberIdx: Int): MutableList<CartResponse> =
+    override fun findProductsByMemberIdx(memberIdx: Int): MutableList<GetCartDto> =
         queryFactory.select(
             QCartResponse(
                 product.name,

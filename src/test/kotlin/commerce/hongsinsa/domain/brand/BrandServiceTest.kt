@@ -4,7 +4,10 @@ import commerce.hongsinsa.global.exception.CustomException
 import commerce.hongsinsa.global.exception.ErrorCode.BRAND_NOT_FOUND
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.verify
 
 internal class BrandServiceTest : DescribeSpec({
     describe("brandAvailable") {
@@ -55,20 +58,20 @@ internal class BrandServiceTest : DescribeSpec({
     describe("brandUpdate") {
 
         context("존재하는 브랜드 정보를 입력될 경우") {
-            every { brandService.brandUpdate(brandUpdateDto) } just Runs
+            every { brandService.brandUpdate(updateBrandDto) } just Runs
 
             it("브랜드 정보 업데이트에 성공한다") {
-                brandService.brandUpdate(brandUpdateDto)
+                brandService.brandUpdate(updateBrandDto)
 
-                verify(exactly = 1) { brandService.brandUpdate(brandUpdateDto) }
+                verify(exactly = 1) { brandService.brandUpdate(updateBrandDto) }
             }
         }
 
         context("존재하지 않는 브랜드를 입력될 경우") {
-            every { brandService.brandUpdate(brandUpdateDto) } throws CustomException(BRAND_NOT_FOUND)
+            every { brandService.brandUpdate(updateBrandDto) } throws CustomException(BRAND_NOT_FOUND)
 
             it("Brand Not Found Exceptio이 발생한다") {
-                shouldThrow<CustomException> { brandService.brandUpdate(brandUpdateDto) }
+                shouldThrow<CustomException> { brandService.brandUpdate(updateBrandDto) }
             }
         }
     }

@@ -3,6 +3,7 @@ package commerce.hongsinsa.global.batch.job
 import commerce.hongsinsa.domain.repository.coupon.CouponMemberRepository
 import commerce.hongsinsa.domain.repository.coupon.CouponRepository
 import commerce.hongsinsa.domain.repository.member.MemberCustomRepository
+import commerce.hongsinsa.entity.coupon.MemberCoupon
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job

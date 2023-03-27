@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.service
 
-import commerce.hongsinsa.domain.dto.order.GetOrderResponse
+import commerce.hongsinsa.domain.dto.order.GetOrderDto
 import commerce.hongsinsa.domain.dto.order.OrderRequestDto
 import commerce.hongsinsa.domain.repository.order.OrderProductCustomRepository
 import commerce.hongsinsa.domain.repository.order.OrderProductRepository
@@ -56,7 +56,7 @@ class OrderService(
         }
     }
 
-    fun getOrder(memberIdx: Int): MutableList<GetOrderResponse> {
+    fun getOrder(memberIdx: Int): MutableList<GetOrderDto> {
         val orders = orderProductCustomRepository.findGetOrderResponsesByMemberIdx(memberIdx)
 
         if (orders.isEmpty())

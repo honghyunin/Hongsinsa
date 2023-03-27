@@ -19,9 +19,7 @@ class CartService(
         cartRepository.save(Cart(member = member, product = product))
     }
 
-    fun getCart(memberIdx: Int): MutableList<CartResponse> {
-        return cartCustomRepository.findProductsByMemberIdx(memberIdx)
-    }
+    fun getCart(memberIdx: Int): MutableList<GetCartDto> = cartCustomRepository.findProductsByMemberIdx(memberIdx)
 
     fun deleteCartProduct(productIdx: Int, memberIdx: Int) {
         val cart: Cart = cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx, memberIdx)

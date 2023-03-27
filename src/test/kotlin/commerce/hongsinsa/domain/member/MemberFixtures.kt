@@ -52,7 +52,7 @@ val signInDto = SignInDto(
     password = PASSWORD
 )
 
-val tokenResponse = TokenResponse(
+val tokenDto = TokenDto(
     accessToken = ACCESS_TOKEN,
     refreshToken = REFRESH_TOKEN,
     id = ID,

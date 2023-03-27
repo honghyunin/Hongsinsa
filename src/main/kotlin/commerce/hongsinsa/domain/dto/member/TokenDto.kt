@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.dto.member
 
-class TokenResponse(
+class TokenDto(
     val accessToken: String,
     val refreshToken: String,
     val id: String,

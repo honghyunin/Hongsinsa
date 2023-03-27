@@ -5,7 +5,7 @@ import commerce.hongsinsa.entity.order.OrderStatus
 import commerce.hongsinsa.entity.product.ProductSize
 import java.time.LocalDateTime
 
-class GetOrderResponse @QueryProjection constructor(
+class GetOrderDto @QueryProjection constructor(
     val orderIdx: Int,
     val productName: String,
     val brandName: String,

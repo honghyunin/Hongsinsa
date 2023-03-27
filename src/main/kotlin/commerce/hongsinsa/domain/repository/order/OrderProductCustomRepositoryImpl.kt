@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.repository.order
 
 import com.querydsl.jpa.impl.JPAQueryFactory
-import commerce.hongsinsa.domain.dto.order.GetOrderResponse
+import commerce.hongsinsa.domain.dto.order.GetOrderDto
 import commerce.hongsinsa.domain.dto.order.QGetOrderResponse
 import commerce.hongsinsa.entity.brand.QBrand.brand
 import commerce.hongsinsa.entity.member.QMember.member
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class OrderProductCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : OrderProductCustomRepository {
-    override fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderResponse> = queryFactory.select(
+    override fun findGetOrderResponsesByMemberIdx(memberIdx: Int): MutableList<GetOrderDto> = queryFactory.select(
         QGetOrderResponse(
             order.idx,
             product.name,

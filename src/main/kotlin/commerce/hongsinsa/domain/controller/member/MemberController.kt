@@ -13,7 +13,7 @@ class MemberController(private val memberService: MemberService, private val cur
     fun signUp(@RequestBody signUpDto: SignUpDto): Unit = memberService.signUp(signUpDto)
 
     @PostMapping("/signIn")
-    fun signIn(@RequestBody signInDto: SignInDto): TokenResponse = memberService.signIn(signInDto)
+    fun signIn(@RequestBody signInDto: SignInDto): TokenDto = memberService.signIn(signInDto)
 
     @PutMapping("/update")
     fun updateProfile(@RequestBody updateProfileDto: UpdateProfileDto): Unit =

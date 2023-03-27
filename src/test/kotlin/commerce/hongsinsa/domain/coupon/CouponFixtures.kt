@@ -1,7 +1,7 @@
 package commerce.hongsinsa.domain.coupon
 
 import commerce.hongsinsa.domain.brand.BRAND
-import commerce.hongsinsa.domain.dto.coupon.ResponseCoupon
+import commerce.hongsinsa.domain.dto.coupon.CouponDto
 import commerce.hongsinsa.domain.dto.coupon.SaveCouponDto
 import commerce.hongsinsa.domain.product.BRAND_NAME
 import commerce.hongsinsa.domain.repository.brand.BrandRepository
@@ -32,7 +32,7 @@ val SAVE_COUPON_DTO = SaveCouponDto(
     brandName = BRAND_NAME
 )
 
-val RESPONSE_COUPON = ResponseCoupon(
+val RESPONSE_COUPON = CouponDto(
     couponName = NAME,
     discount = DISCOUNT,
     brandName = BRAND_NAME,
