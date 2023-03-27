@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.dto.brand
 
-class BrandUpdateDto(
+class UpdateBrandDto(
     val name: String,
     val email: String,
     val homepageUrl: String,

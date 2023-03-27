@@ -1,6 +1,6 @@
 package commerce.hongsinsa.domain.dto.coupon
 
-class CouponMemberDto (
+class MemberCouponDto (
     val memberId: Int,
     val couponId: Int
 )

@@ -53,7 +53,7 @@ val BRAND_NULL_COUPON = Coupon(
 
 val RESPONSE_COUPON_LIST = mutableListOf(RESPONSE_COUPON, RESPONSE_COUPON, RESPONSE_COUPON)
 
-val couponMemberService = mockk<CouponMemberService>()
+val memberCouponService = mockk<MemberCouponService>()
 val couponMemberCustomRepository = mockk<CouponMemberCustomRepository>()
 val memberRepository = mockk<MemberRepository>()
 val brandRepository = mockk<BrandRepository>()

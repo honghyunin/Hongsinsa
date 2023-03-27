@@ -2,7 +2,7 @@ package commerce.hongsinsa.entity.member
 
 import commerce.hongsinsa.entity.BaseTimeEntity
 import commerce.hongsinsa.entity.cart.Cart
-import commerce.hongsinsa.entity.coupon.CouponMember
+import commerce.hongsinsa.entity.coupon.MemberCoupon
 import commerce.hongsinsa.entity.order.Order
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.DynamicUpdate
@@ -83,7 +83,7 @@ class Member(
         fetch = FetchType.LAZY,
         mappedBy = "member"
     )
-    val couponMember: MutableList<CouponMember> = mutableListOf()
+    val memberCoupon: MutableList<MemberCoupon> = mutableListOf()
 
     @OneToMany(
         fetch = FetchType.LAZY,

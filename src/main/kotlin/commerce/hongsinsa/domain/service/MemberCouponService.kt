@@ -5,7 +5,7 @@ import commerce.hongsinsa.domain.repository.coupon.CouponMemberCustomRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CouponMemberService(
+class MemberCouponService(
     private val couponMemberCustomRepository: CouponMemberCustomRepository,
 ) {
     fun getCoupons(memberIdx: Int): MutableList<ResponseCoupon> {

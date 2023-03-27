@@ -40,7 +40,7 @@ class BirthdayCouponJobConfig(
 
             members.forEach {
 
-                couponMemberRepository.save(CouponMember(id = it.idx!!, member = it, coupon = coupon))
+                couponMemberRepository.save(MemberCoupon(id = it.idx!!, member = it, coupon = coupon))
                 log.info("Member : ${it.id}, ${it.name} ")
             }
 

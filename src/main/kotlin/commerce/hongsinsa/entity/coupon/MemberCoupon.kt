@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-class CouponMember(
+class MemberCoupon(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
