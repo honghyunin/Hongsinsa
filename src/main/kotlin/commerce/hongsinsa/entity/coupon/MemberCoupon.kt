@@ -22,10 +22,10 @@ class MemberCoupon(
 ) {
 
     @Column(name = "assigned_at", nullable = false)
-    var assignedAt: LocalDateTime
+    lateinit var assignedAt: LocalDateTime
 
     @Column(name = "expired_at", nullable = false)
-    var expiredAt: LocalDateTime
+    lateinit var expiredAt: LocalDateTime
 
     @Column(name = "status", nullable = false)
     var status: Char = 'V' // E(expired or Valid),
