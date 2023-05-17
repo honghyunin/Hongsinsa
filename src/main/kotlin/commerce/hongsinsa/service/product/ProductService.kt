@@ -1,5 +1,4 @@
-package commerce
-    .hongsinsa.service.product
+package commerce.hongsinsa.service.product
 
 import commerce.hongsinsa.dto.product.GetProductDto
 import commerce.hongsinsa.dto.product.GetProductFilterDto
@@ -79,4 +78,9 @@ class ProductService(
     @Transactional(readOnly = true)
     fun getProduct(productIdx: Int) = productRepository.findByIdxAndIsDeleteFalse(productIdx)
         ?: throw CustomException(PRODUCT_NOT_FOUND)
+
+    @Transactional(readOnly = true)
+    fun getProductOption(productIdx: Int): MutableList<ProductOption>
+        = productOptionRepository.findByProductIdx(productIdx)
+
 }

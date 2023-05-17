@@ -1,5 +1,6 @@
 package commerce.hongsinsa.entity.product
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import commerce.hongsinsa.entity.BaseTimeEntity
 import commerce.hongsinsa.entity.brand.Brand
 import javax.persistence.*
@@ -23,8 +24,8 @@ class Product(
     var stock: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand.idx")
-    val brand: Brand
+    @JoinColumn(name = "brand_idx")
+    val brand: Brand?
 ) : BaseTimeEntity() {
     @Column(name = "idx")
     @Id
@@ -33,12 +34,6 @@ class Product(
 
     @Column(name = "is_solud_out")
     var isSoldOut: Boolean = false
-
-    @OneToMany(
-        fetch = FetchType.LAZY,
-        mappedBy = "product"
-    )
-    val options: MutableList<ProductOption> = mutableListOf()
 
     @Column(name = "is_delete", nullable = false)
     var isDelete: Boolean = false

@@ -6,5 +6,5 @@ class RegistrationProductDto(
     val category: String,
     val gender: Char,
     val stock: Int,
-    val brandName: String,
+    val brandName: String?,
 )

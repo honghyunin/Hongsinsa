@@ -1,5 +1,5 @@
 ### RegistrationProduct | 상품 등록
-POST {{basic-url}}/product/registration
+POST {{basic-url}}/product
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
 Content-Type: application/json
 
@@ -9,11 +9,24 @@ Content-Type: application/json
   "category": "차가리 반팔티",
   "gender": "W",
   "stock": "200",
-  "brandName": "gowl"
+  "brandName": "gwol"
+}
+
+### RegistrationProduct | 상품 등록 (브랜드 없는
+POST {{basic-url}}/product/
+Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+Content-Type: application/json
+
+{
+  "name": "CHAGARI",
+  "price": "50000",
+  "category": "차가리 반팔티",
+  "gender": "W",
+  "stock": "200"
 }
 
 ### AddProductOptions | 상품 정보 등록
-POST {{basic-url}}/product/option/add/2
+POST {{basic-url}}/product/option/2
 Content-Type: application/json
 
 [
@@ -29,12 +42,12 @@ Content-Type: application/json
 
 ### UpdateProduct | 상품 업데이트
 
-PUT {{basic-url}}/product/update
+PUT {{basic-url}}/product/
 Content-Type: application/json
 
 {
   "productIdx": 1,
-  "name": "OVANG GYRACEK 반팔",
+  "name": "차가리 반팔티",
   "price": "20000",
   "category": "반팔티",
   "gender": "M",
@@ -42,7 +55,7 @@ Content-Type: application/json
 }
 
 ### UpdateProductOptions | 상품 정보 업데이트
-PUT {{basic-url}}/product/option/update/1
+PUT {{basic-url}}/product/option/1
 Content-Type: application/json
 
 [
@@ -65,13 +78,16 @@ Content-Type: application/json
 ]
 
 ### UpdateIsSoldOut | 상품 품절 업데이트
-PUT {{basic-url}}/product/soldOut/1
+PUT {{basic-url}}/product/sold-out/1
 
 ### GetProduct | 상품 단일 조회
 GET {{basic-url}}/product/1
 
+### GetProductOption | 상품 옵션 조회
+GET {{basic-url}}/product/option/1
+
 ### GetProducts | 상품 전체 태그 조회
-GET {{basic-url}}/product/?page=0&size=10&name=OVANG GYRACEK 반팔&gender=M
+GET {{basic-url}}/product/?page=0&size=10
 
 ### DeleteProduct | 상품 삭제
 DELETE {{basic-url}}/product/1

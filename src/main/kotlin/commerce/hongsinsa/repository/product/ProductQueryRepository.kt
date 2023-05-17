@@ -1,6 +1,8 @@
 package commerce.hongsinsa.repository.product
 
 import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.types.ExpressionUtils
+import com.querydsl.jpa.JPAExpressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 import commerce.hongsinsa.dto.product.*
 import commerce.hongsinsa.entity.brand.QBrand.brand
@@ -16,20 +18,14 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ProductQueryRepository(private val query: JPAQueryFactory) {
-    fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): Page<GetProductDto> {
-        val products = query.select(
-            QProductInfoDto(
-                product.idx,
-                product.name,
-                product.price,
-                product.category,
-                product.gender,
-                product.brand.name
-            )
-        ).from(product)
-            .innerJoin(product.brand, brand)
+
+    val FALSE = false
+
+    fun findByFilter(getProductFilterDto: GetProductFilterDto, pageable: Pageable): PageImpl<Product> {
+        val products = query.selectFrom(product)
+            .leftJoin(product.brand, brand)
             .where(
-                product.isDelete.eq(false)
+                product.isDelete.eq(FALSE)
                     .and(createWhereFilter(getProductFilterDto))
             )
             .offset(pageable.offset)
@@ -40,30 +36,12 @@ class ProductQueryRepository(private val query: JPAQueryFactory) {
             .from(product)
             .fetchOne()
 
-        val productOptions = query.select(
-            QProductOptionResponse(
-                productOption.idx,
-                productOption.color,
-                productOption.size
-            )
-        ).from(productOption)
-            .where(productOption.product.idx.`in`(products.map { it.productIdx }))
-            .fetch().toMutableList()
-
-        val getProductDtoLists: MutableList<GetProductDto> = products.map { product ->
-            GetProductDto(
-                product.productIdx,
-                product.name,
-                product.price,
-                product.category,
-                product.gender,
-                product.brand,
-                productOptions.filter { it.productIdx == product.productIdx }.toMutableList()
-            )
-        }.toMutableList()
-
-        return PageImpl(getProductDtoLists, pageable, count!!)
+        return PageImpl(products, pageable, count!!)
     }
+
+    private fun getProductOptions() =
+        JPAExpressions.selectFrom(productOption)
+            .where(productOption.product.idx.eq(product.idx))
 
     fun findByIdxList(productIdxList: MutableList<Int>): MutableList<Product> {
         return query.selectFrom(product)
