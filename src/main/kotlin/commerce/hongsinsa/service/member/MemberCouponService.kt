@@ -10,7 +10,6 @@ class MemberCouponService(
     private val couponMemberQueryRepository: CouponMemberQueryRepository,
 ) {
     @Transactional(readOnly = true)
-    fun getCoupons(memberIdx: Int): MutableList<CouponDto> {
-        return couponMemberQueryRepository.findResponseMemberCouponsByIdx(memberIdx)
-    }
+    fun getCoupons(memberIdx: Int): MutableList<CouponDto> =
+        couponMemberQueryRepository.findResponseMemberCouponsByIdx(memberIdx)
 }

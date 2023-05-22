@@ -59,7 +59,7 @@ val tokenDto = TokenDto(
     idx = MEMBER_IDX
 )
 
-val profileUpdateDto = UpdateProfileDto(
+val profileUpdateDto = PatchProfileDto(
     password = PASSWORD,
     name = NAME,
     nickname = NICKNAME,

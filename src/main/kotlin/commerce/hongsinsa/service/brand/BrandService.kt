@@ -2,6 +2,8 @@ package commerce.hongsinsa.service.brand
 
 import commerce.hongsinsa.dto.brand.AvailableBrandDto
 import commerce.hongsinsa.dto.brand.UpdateBrandDto
+import commerce.hongsinsa.entity.brand.Brand
+import commerce.hongsinsa.entity.brand.QBrand.brand
 import commerce.hongsinsa.repository.brand.BrandRepository
 import commerce.hongsinsa.exception.CustomException
 import commerce.hongsinsa.exception.ErrorCode
@@ -18,31 +20,24 @@ class BrandService(
 ) {
     @Transactional(rollbackFor = [Exception::class])
     fun brandAvailable(availableBrandDto: AvailableBrandDto) {
-
-        if (existsByName(availableBrandDto)) throw CustomException(ErrorCode.BRAND_ALREADY_EXISTS)
-
         brandRepository.save(availableBrandDto.toBrand())
     }
 
     @Transactional(rollbackFor = [Exception::class])
-    fun auditAvailable(brandName: String) {
-        val brand = brandRepository.findByNameAndIsDeleteFalse(brandName)
-            ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
-
+    fun auditAvailable(brand: Brand) {
         brand.setIsAudit()
+        brandRepository.save(brand)
     }
 
     @Transactional(rollbackFor = [Exception::class])
-    fun brandUpdate(updateBrandDto: UpdateBrandDto) {
-        val brand = brandRepository.findByNameAndIsDeleteFalse(updateBrandDto.name)
-            ?: throw CustomException(ErrorCode.BRAND_NOT_FOUND)
-
+    fun brandUpdate(brand: Brand, updateBrandDto: UpdateBrandDto) {
         brand.updateBrand(updateBrandDto)
+        brandRepository.save(brand)
     }
 
-    @Transactional(rollbackFor = [Exception::class])
-    fun existsByName(availableBrandDto: AvailableBrandDto) =
-        brandRepository.existsByNameAndIsDeleteFalse(availableBrandDto.name)
+    @Transactional(readOnly = true)
+    fun existsByName(name: String) =
+        brandRepository.existsByNameAndIsDeleteFalse(name)
 
     @Transactional(readOnly = true)
     fun findBrandByName(brandName: String) = brandRepository.findByNameAndIsDeleteFalse(brandName)

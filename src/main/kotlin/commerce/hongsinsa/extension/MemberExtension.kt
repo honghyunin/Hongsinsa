@@ -3,7 +3,7 @@ package commerce.hongsinsa.extension
 
 import commerce.hongsinsa.dto.member.ChangePasswordDto
 import commerce.hongsinsa.dto.member.SignUpDto
-import commerce.hongsinsa.dto.member.UpdateProfileDto
+import commerce.hongsinsa.dto.member.PatchProfileDto
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.entity.member.Role
 import commerce.hongsinsa.exception.CustomException
@@ -25,14 +25,14 @@ fun SignUpDto.toMember() = Member(
     roles = mutableListOf(Role.MEMBER)
 )
 
-fun Member.updateProfile(updateProfileDto: UpdateProfileDto): Member {
-    this.pw = updateProfileDto.password
-    this.name = updateProfileDto.name
-    this.nickname = updateProfileDto.nickname
-    this.email = updateProfileDto.email
-    this.weight = updateProfileDto.weight
-    this.height = updateProfileDto.height
-    this.phoneNumber = updateProfileDto.phoneNumber
+fun Member.patchProfile(patchProfileDto: PatchProfileDto): Member {
+    this.pw = patchProfileDto.password
+    this.name = patchProfileDto.name
+    this.nickname = patchProfileDto.nickname
+    this.email = patchProfileDto.email
+    this.weight = patchProfileDto.weight
+    this.height = patchProfileDto.height
+    this.phoneNumber = patchProfileDto.phoneNumber
 
     return this
 }
@@ -43,6 +43,6 @@ fun Member.changePassword(changePassword: String): Member {
     return this
 }
 
-fun ChangePasswordDto.matchesPassword(): ChangePasswordDto =
+fun ChangePasswordDto.throwIfIsNotMatchesNewPasswordAndReNewPassword(): ChangePasswordDto =
     if (this.newPassword != this.reNewPassword) throw CustomException(ErrorCode.CHANGE_PASSWORD_NOT_MATCH)
     else this

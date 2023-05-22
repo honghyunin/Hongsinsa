@@ -1,6 +1,6 @@
 package commerce.hongsinsa.dto.member
 
-class UpdateProfileDto(
+class PatchProfileDto(
     var password: String,
     val name: String,
     val nickname: String,
