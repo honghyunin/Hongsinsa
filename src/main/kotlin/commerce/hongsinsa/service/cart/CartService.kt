@@ -26,9 +26,10 @@ class CartService(
     fun getCart(memberIdx: Int): MutableList<GetCartDto> = cartQueryRepository.findProductsByMemberIdx(memberIdx)
 
     @Transactional(rollbackFor = [Exception::class])
-    fun deleteCartProduct(productIdx: Int, memberIdx: Int) {
-        cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx, memberIdx)
-            ?.let { cart -> cartRepository.delete(cart) }
-            ?: throw CustomException(ErrorCode.PRODUCT_NOT_FOUND)
+    fun deleteCartProduct(cart: Cart) {
+        cartRepository.delete(cart)
     }
+
+    fun findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx: Int, memberIdx: Int) =
+        cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx, memberIdx)
 }

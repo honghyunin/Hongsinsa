@@ -10,9 +10,8 @@ import commerce.hongsinsa.repository.product.ProductRepository
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.entity.order.Order
 import commerce.hongsinsa.entity.order.OrderProduct
-import commerce.hongsinsa.entity.order.OrderStatus
 import commerce.hongsinsa.exception.CustomException
-import commerce.hongsinsa.exception.ErrorCode.*
+import commerce.hongsinsa.exception.ErrorCode
 import commerce.hongsinsa.extension.toOrder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,15 +25,17 @@ class OrderService(
     private val productRepository: ProductRepository
 ) {
 
+    @Transactional(rollbackFor = [Exception::class])
     fun saveOrder(orderRequestDto: OrderRequestDto, member: Member) =
         orderRepository.save(orderRequestDto.toOrder(member))
 
+    @Transactional(rollbackFor = [Exception::class])
     fun processOrderRequest(order: Order, orderRequestDto: OrderRequestDto) {
         orderRequestDto.productIdxList.forEach { productIdx ->
             val product = getProductIdx(productIdx)
 
             val quantity: Byte = orderRequestDto.productQuantities[productIdx]
-                ?: throw CustomException(PRODUCT_QUANTITY_NOT_FOUND)
+                ?: throw CustomException(ErrorCode.PRODUCT_QUANTITY_NOT_FOUND)
 
             orderProductRepository.save(
                 OrderProduct(
@@ -48,6 +49,7 @@ class OrderService(
         }
     }
 
+    @Transactional(rollbackFor = [Exception::class])
     fun decreaseStock(productQuantities: MutableMap<Int, Byte>) {
         productQuantities.forEach { (productIdx, quantity) ->
             val product = getProductIdx(productIdx)
@@ -56,28 +58,24 @@ class OrderService(
     }
 
     @Transactional(readOnly = true)
-    fun getOrder(memberIdx: Int): MutableList<GetOrderDto> {
+    fun getOrders(memberIdx: Int): MutableList<GetOrderDto> {
         val orders = orderProductQueryRepository.findGetOrderResponsesByMemberIdx(memberIdx)
 
         if (orders.isEmpty())
-            throw CustomException(ORDER_NOT_FOUND)
+            throw CustomException(ErrorCode.ORDER_NOT_FOUND)
 
         return orders
     }
 
-    @Transactional(rollbackFor = [Exception::class])
-    fun cancelOrder(orderIdx: Int) {
-        val order = orderQueryRepository.findByIdxAndStatusOrderReceived(orderIdx)?.also { order ->
-            order.status = OrderStatus.ORDER_CANCEL
-        } ?: throw CustomException(ORDER_NOT_FOUND)
+    fun findByIdxAndStatusOrderReceived(orderIdx: Int) =
+        orderQueryRepository.findByIdxAndStatusOrderReceived(orderIdx)
+            ?: throw CustomException(ErrorCode.ORDER_NOT_FOUND)
 
-        orderProductRepository.findAllByOrderAndIsDeleteFalse(order).forEach { orderProduct ->
-            orderProduct.isDelete = true
-        }
-    }
+    fun findAllByOrderAndIsDeleteFalse(order: Order) =
+        orderProductRepository.findAllByOrderAndIsDeleteFalse(order)
 
     @Transactional(readOnly = true)
     fun getProductIdx(productIdx: Int) =
         productRepository.findByIdxAndIsDeleteFalse(productIdx)
-            ?: throw CustomException(PRODUCT_NOT_FOUND)
+            ?: throw CustomException(ErrorCode.PRODUCT_NOT_FOUND)
 }
