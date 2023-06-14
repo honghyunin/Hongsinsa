@@ -75,11 +75,11 @@ class CartServiceTest : DescribeSpec({
         context("존재하는 상품일 경우") {
             every { cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(PRODUCT_IDX, MEMBER_IDX) } returns CART
             every { cartRepository.delete(CART) } just Runs
-            every { cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX) } just Runs
+            every { cartService.deleteCartProduct(CART) } just Runs
 
-            cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX)
+            cartService.deleteCartProduct(CART)
             it("장바구니에 담긴 상품이 삭제된다") {
-                verify(exactly = 1) { cartService.deleteCartProduct(PRODUCT_IDX, MEMBER_IDX) }
+                verify(exactly = 1) { cartService.deleteCartProduct(CART) }
             }
         }
 

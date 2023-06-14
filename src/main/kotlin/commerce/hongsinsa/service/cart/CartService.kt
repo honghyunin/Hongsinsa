@@ -6,8 +6,6 @@ import commerce.hongsinsa.repository.cart.CartRepository
 import commerce.hongsinsa.entity.cart.Cart
 import commerce.hongsinsa.entity.member.Member
 import commerce.hongsinsa.entity.product.Product
-import commerce.hongsinsa.exception.CustomException
-import commerce.hongsinsa.exception.ErrorCode
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -30,6 +28,7 @@ class CartService(
         cartRepository.delete(cart)
     }
 
+    @Transactional(readOnly = true)
     fun findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx: Int, memberIdx: Int) =
         cartRepository.findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx, memberIdx)
 }

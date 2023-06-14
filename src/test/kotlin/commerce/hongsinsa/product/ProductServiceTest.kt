@@ -16,7 +16,7 @@ internal class ProductServiceTest : DescribeSpec({
     describe("registrationProduct") {
 
         context("존재하는 브랜드 이름이 입력되면") {
-            every { brandRepository.findByNameAndIsDeleteFalse(REGISTRATION_PRODUCT_DTO.brandName) } returns BRAND
+            every { brandRepository.findByNameAndIsDeleteFalse(REGISTRATION_PRODUCT_DTO.brandName!!) } returns BRAND
             every { productService.registrationProduct(PRODUCT) } just Runs
 
             it("상품 등록에 성공한다") {
@@ -120,13 +120,13 @@ internal class ProductServiceTest : DescribeSpec({
     describe("getProducts") {
 
         context("유효한 GetProductFilterDto가 입력될 경우") {
-            every { productService.getProducts(GET_PRODUCT_FILTER_DTO, pageable) } returns productsPage
+            every { productService.getProducts(GET_PRODUCT_FILTER_DTO, pageable) } returns productPage
 
             it("상품 전체 태그조회에 성공한다") {
 
                 val products = productService.getProducts(GET_PRODUCT_FILTER_DTO, pageable)
 
-                products shouldBe productsPage
+                products shouldBe productPage
             }
         }
     }

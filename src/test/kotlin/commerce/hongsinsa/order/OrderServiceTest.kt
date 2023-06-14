@@ -79,9 +79,9 @@ class OrderServiceTest : DescribeSpec({
         context("올바른 정보가 입력되면") {
             every { memberRepository.existsById(MEMBER_IDX) } returns true
             every { orderProductQueryRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
-            every { orderService.getOrder(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
+            every { orderService.getOrders(MEMBER_IDX) } returns GET_ORDER_RESPONSE_LIST
 
-            val orders = orderService.getOrder(MEMBER_IDX)
+            val orders = orderService.getOrders(MEMBER_IDX)
 
             it("주문 조회에 성공한다") {
                 GET_ORDER_RESPONSE_LIST shouldBe orders
@@ -90,19 +90,19 @@ class OrderServiceTest : DescribeSpec({
 
         context("존재하지 않는 회원이 입력되면") {
             every { memberRepository.existsById(MEMBER_IDX) } returns false
-            every { orderService.getOrder(MEMBER_IDX) } throws CustomException(MEMBER_NOT_FOUND)
+            every { orderService.getOrders(MEMBER_IDX) } throws CustomException(MEMBER_NOT_FOUND)
 
             it("Member Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.getOrder(MEMBER_IDX) }
+                shouldThrow<CustomException> { orderService.getOrders(MEMBER_IDX) }
             }
         }
 
         context("조회된 주문이 없을 경우") {
             every { orderProductQueryRepository.findGetOrderResponsesByMemberIdx(MEMBER_IDX) } returns mutableListOf()
-            every { orderService.getOrder(MEMBER_IDX) } throws CustomException(ORDER_NOT_FOUND)
+            every { orderService.getOrders(MEMBER_IDX) } throws CustomException(ORDER_NOT_FOUND)
 
             it("Order Not Found Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.getOrder(MEMBER_IDX) }
+                shouldThrow<CustomException> { orderService.getOrders(MEMBER_IDX) }
             }
         }
     }
@@ -111,28 +111,25 @@ class OrderServiceTest : DescribeSpec({
 
         context("올바른 정보가 입력되면") {
             every { orderRepository.findById(ORDER_IDX) } returns Optional.of(ORDER)
-            every { orderService.cancelOrder(ORDER_IDX) } just Runs
+            every { orderService.findAllByOrderAndIsDeleteFalse(ORDER) } returns ORDER_PRODUCT_LIST
 
-            orderService.cancelOrder(ORDER_IDX)
+            val orderProductList = orderService.findAllByOrderAndIsDeleteFalse(ORDER)
+                .map { orderProduct ->
+                    orderProduct.isDelete = true
+                    orderProduct
+                }
+
             it("주문이 취소된다") {
-                verify(exactly = 1) { orderService.cancelOrder(ORDER_IDX) }
-            }
-        }
-
-        context("로그인 되어있지 않을 경우") {
-            every { orderService.cancelOrder(ORDER_IDX) } throws CustomException(FORBIDDEN)
-
-            it("Unauthorized Access Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.cancelOrder(ORDER_IDX) }
+                orderProductList[0].isDelete shouldBe true
             }
         }
 
         context("주문이 없을 경우") {
             every { orderRepository.findById(ORDER_IDX) } returns Optional.empty()
-            every { orderService.cancelOrder(ORDER_IDX) } throws CustomException(ORDER_NOT_FOUND)
+            every { orderService.findAllByOrderAndIsDeleteFalse(ORDER) } throws CustomException(ORDER_NOT_FOUND)
 
             it("Not Found Order Exception이 발생한다") {
-                shouldThrow<CustomException> { orderService.cancelOrder(ORDER_IDX) }
+                shouldThrow<CustomException> { orderService.findAllByOrderAndIsDeleteFalse(ORDER) }
             }
         }
     }

@@ -76,7 +76,15 @@ val GET_ORDER_RESPONSE = GetOrderDto(
     status = ORDER_STATUS
 )
 
+val ORDER_PRODUCT_LIST = mutableListOf(ORDER_PRODUCT, ORDER_PRODUCT)
+
 val GET_ORDER_RESPONSE_LIST = mutableListOf(GET_ORDER_RESPONSE, GET_ORDER_RESPONSE)
+
+fun deleteOrder(): MutableList<OrderProduct> = orderService.findAllByOrderAndIsDeleteFalse(ORDER)
+    .map { orderProduct ->
+        orderProduct.isDelete = true
+        orderProduct
+    }.toMutableList()
 
 val orderRepository = mockk<OrderRepository>()
 val orderProductRepository = mockk<OrderProductRepository>()

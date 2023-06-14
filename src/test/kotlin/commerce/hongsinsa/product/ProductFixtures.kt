@@ -8,6 +8,7 @@ import commerce.hongsinsa.service.product.ProductService
 import commerce.hongsinsa.entity.product.Price
 import commerce.hongsinsa.entity.product.Product
 import commerce.hongsinsa.entity.product.ProductSize
+import commerce.hongsinsa.entity.product.QProduct.product
 import io.mockk.mockk
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
@@ -72,7 +73,8 @@ val GET_PRODUCT_FILTER_DTO = GetProductFilterDto(
 
 val pageable = Pageable.ofSize(2)
 val products = mutableListOf(PRODUCT_RESPONSE, PRODUCT_RESPONSE)
-val productsPage = PageImpl(products, pageable, 2)
+val productDtoPage = PageImpl(products, pageable, 2)
+val productPage = PageImpl(mutableListOf(PRODUCT), pageable, 2)
 
 val brandRepository = mockk<BrandRepository>()
 val productRepository = mockk<ProductRepository>()
