@@ -41,7 +41,6 @@ class SecurityConfig(
         http.authorizeRequests {
             it.antMatchers("/api/v1/member/signUp").permitAll()
                 .antMatchers("/api/v1/member/signIn").permitAll()
-                .antMatchers("/api/v1/**").permitAll() //개발 편의용 옵션
 
                 .antMatchers("/api/v1/audit/available/**").hasRole("ADMIN")
                 .antMatchers("/api/v1/brand/update").hasRole("SELLER")

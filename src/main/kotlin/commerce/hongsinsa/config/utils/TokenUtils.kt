@@ -26,11 +26,14 @@ class TokenUtils {
 
     val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
-    @Value("\${secret-key}")
-    private var SECRET_KEY: String = ""
+    @Value("\${jwt.secret}")
+    private var SECRET_KEY: String? = null
 
-    fun generateJwtToken(id: String, roles: MutableList<Role>, tokenType: String): String = Jwts
-        .builder()
+    protected fun init() {
+        SECRET_KEY = Base64.getEncoder().encodeToString(SECRET_KEY!!.toByteArray())
+    }
+
+    fun generateJwtToken(id: String, roles: MutableList<Role>, tokenType: String): String = Jwts.builder()
         .setSubject(id)
         .setHeader(createHeader())
         .setClaims(createClaims(id, roles, tokenType))
@@ -78,7 +81,7 @@ class TokenUtils {
         val ACCESS_TOKEN_EXPIRATION_TIME = Calendar.getInstance().apply { add(Calendar.HOUR, 6) }
         val REFRESH_TOKEN_EXPIRATION_TIME = Calendar.getInstance().apply { add(Calendar.DAY_OF_WEEK, 7) }
 
-        return when(tokenType) {
+        return when (tokenType) {
             "AccessToken" -> ACCESS_TOKEN_EXPIRATION_TIME.time // 6 hour
             "RefreshToken" -> REFRESH_TOKEN_EXPIRATION_TIME.time // 7 day
             else -> {
@@ -100,7 +103,7 @@ class TokenUtils {
     private fun createClaims(id: String, roles: MutableList<Role>, tokenType: String): Map<String, Any> {
         val claims = HashMap<String, Any>()
 
-        if(tokenType == "AccessToken") {
+        if (tokenType == "AccessToken") {
             claims["id"] = id
             claims["role"] = roles
         }
@@ -116,7 +119,7 @@ class TokenUtils {
     private fun getClaimsFormToken(token: String): Claims =
         Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY)).parseClaimsJws(token).body
 
-    fun createAccessToken(id: String, roles: MutableList<Role>): String = generateJwtToken(id, roles,"AccessToken")
+    fun createAccessToken(id: String, roles: MutableList<Role>): String = generateJwtToken(id, roles, "AccessToken")
 
     fun createRefreshToken(id: String, roles: MutableList<Role>): String = generateJwtToken(id, roles, "RefreshToken")
 }
