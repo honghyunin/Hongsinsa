@@ -1,6 +1,7 @@
 ### saveCoupon | 쿠폰 추가
-POST {{basic-url}}/coupon/save
+POST {{basic-url}}/coupons/save
 Content-Type: application/json
+Authorization: {{member-token}}
 
 {
   "name": "생일쿠폰",

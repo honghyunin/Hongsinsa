@@ -1,6 +1,6 @@
 ### BrandAvailable | 브랜드 입점
-POST {{basic-url}}/brand/available
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+POST {{basic-url}}/brands/available
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {
@@ -17,11 +17,12 @@ Content-Type: application/json
 }
 
 ### AuditAvailable | 브랜드 입점 심사
-PUT {{basic-url}}/brand/audit/available/gowl
+PUT {{basic-url}}/brands/audit/available/gowl
+Authorization: {{member-token}}
 
 ### BrandUpdate | 브랜드 업데이트
-PUT {{basic-url}}/brand/update
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+PUT {{basic-url}}/brands/update
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {

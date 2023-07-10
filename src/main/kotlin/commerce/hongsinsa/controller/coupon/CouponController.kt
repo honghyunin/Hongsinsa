@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/coupon")
+@RequestMapping("/api/v1/coupons")
 class CouponController(
     private val couponService: CouponService,
     private val brandService: BrandService

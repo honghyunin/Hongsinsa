@@ -18,6 +18,26 @@ Content-Type: application/json
   "birthday": "2000-02-14T11:44:30.327959"
 }
 
+### SignUp | 회원가입
+
+POST {{basic-url}}/members/signUp
+Content-Type: application/json
+
+{
+  "email": "email1234@gmail.com",
+  "id": "admin1020",
+  "password": "admin1020@",
+  "name": "관리자",
+  "nickname": "관리자",
+  "weight": 71,
+  "height": 180,
+  "gender": "M",
+  "age": 25,
+  "phoneNumber" : "01000000000",
+  "address": "address",
+  "birthday": "2000-02-14T11:44:30.327959"
+}
+
 ### SignIn | 로그인
 
 POST {{basic-url}}/members/signIn
@@ -25,13 +45,13 @@ Content-Type: application/json
 
 {
   "id": "7854",
-  "password": "pw12345678"
+  "password": "password1234"
 }
 
 ### ProfileUpdate | 프로필 업데이트
 
 PATCH {{basic-url}}/members/1
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {
@@ -47,7 +67,7 @@ Content-Type: application/json
 ### PasswordChange | 패스워드 변경
 
 PATCH {{basic-url}}/members/1/password
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {

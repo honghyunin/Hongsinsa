@@ -6,6 +6,7 @@ import commerce.hongsinsa.config.utils.TokenUtils
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -20,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val userDetailsService: UserDetailsServiceImpl,
     private val tokenUtils: TokenUtils
-){
+) {
 
     @Bean
     @Throws(Exception::class)
@@ -39,20 +40,34 @@ class SecurityConfig(
         http.formLogin().disable()
 
         http.authorizeRequests {
-            it.antMatchers("/api/v1/member/signUp").permitAll()
-                .antMatchers("/api/v1/member/signIn").permitAll()
+            it.antMatchers("/api/v1/members/signUp").permitAll()
+                .antMatchers("/api/v1/members/signIn").permitAll()
+                .antMatchers("/api/v1/members/**").hasRole("MEMBER")
+                .antMatchers("/api/v1/memberCoupons/**").hasRole("MEMBER")
+
+                .antMatchers("/api/v1/orders/**").hasRole("MEMBER")
+
+                .antMatchers("/api/v1/products/**").hasRole("SELLER")
+                .antMatchers(HttpMethod.GET, "/api/v1/products/**").hasRole("MEMBER")
 
                 .antMatchers("/api/v1/audit/available/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/brand/update").hasRole("SELLER")
-                .antMatchers("/api/v1/coupon/issued").hasRole("ADMIN")
-                .antMatchers("/api/v1/coupon/apply").hasRole("ADMIN")
-                .antMatchers("/api/v1/coupon/delete").hasRole("ADMIN")
+
+                .antMatchers("/api/v1/brands/**").hasRole("SELLER")
+
+                .antMatchers("/api/v1/coupons/save").hasRole("ADMIN")
+
+                .antMatchers("/api/v1/carts/**").hasRole("MEMBER")
+
+
                 .anyRequest().authenticated()
         }
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-        http.addFilterBefore(JwtAuthenticationFilter(userDetailsService, tokenUtils), UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(
+            JwtAuthenticationFilter(userDetailsService, tokenUtils),
+            UsernamePasswordAuthenticationFilter::class.java
+        )
 
         return http.build()
     }

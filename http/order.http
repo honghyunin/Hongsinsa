@@ -1,5 +1,5 @@
 ### 상품 주문하기
-POST {{basic-url}}/order
+POST {{basic-url}}/orders
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI4NTM2NjY2LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ1MDEzNn0.ypXwiz1AIJ2jCbAbdiV3H5ChA9Ic_WYjg0ghlJu8Spw
 Content-Type: application/json
 
@@ -20,10 +20,11 @@ Content-Type: application/json
 }
 
 ### 주문 조회
-GET {{basic-url}}/order/1
+GET {{basic-url}}/orders/1
 Content-Type: application/json
+Authorization: {{member-token}}
 
 ### 주문 취소하기
-DELETE {{basic-url}}/order/cancel/2
+DELETE {{basic-url}}/orders/cancel/2
 Authorization: Bearer eyJyZWdEYXRlIjoxNjc3ODM5NDE2NzU2LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3Nzg2MTAxNn0.Tfpkzjujy2I8xL7K2G2aZwA1SUG_f0FWrHIU9_S9Z8A
 Content-Type: application/json

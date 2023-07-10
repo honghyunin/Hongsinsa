@@ -1,6 +1,6 @@
 ### RegistrationProduct | 상품 등록
-POST {{basic-url}}/product
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+POST {{basic-url}}/products
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {
@@ -13,8 +13,8 @@ Content-Type: application/json
 }
 
 ### RegistrationProduct | 상품 등록 (브랜드 없는
-POST {{basic-url}}/product/
-Authorization: Bearer eyJyZWdEYXRlIjoxNjc5NDI0MTM1NzM1LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIk1FTUJFUiJdLCJpZCI6Ijc4NTQiLCJ0b2tlblR5cGUiOiJBY2Nlc3NUb2tlbiIsImV4cCI6MTY3OTQ0NTczNX0.MeoauFXWyniCgMKSbNwk0l4fFi00rtaRUbMXOLqqWiQ
+POST {{basic-url}}/products
+Authorization: {{member-token}}
 Content-Type: application/json
 
 {
@@ -26,8 +26,9 @@ Content-Type: application/json
 }
 
 ### AddProductOptions | 상품 정보 등록
-POST {{basic-url}}/product/option/2
+POST {{basic-url}}/products/option/2
 Content-Type: application/json
+Authorization: {{member-token}}
 
 [
   {
@@ -42,8 +43,9 @@ Content-Type: application/json
 
 ### UpdateProduct | 상품 업데이트
 
-PUT {{basic-url}}/product/
+PUT {{basic-url}}/products/
 Content-Type: application/json
+Authorization: {{member-token}}
 
 {
   "productIdx": 1,
@@ -55,8 +57,9 @@ Content-Type: application/json
 }
 
 ### UpdateProductOptions | 상품 정보 업데이트
-PUT {{basic-url}}/product/option/1
+PUT {{basic-url}}/products/option/1
 Content-Type: application/json
+Authorization: {{member-token}}
 
 [
   {
@@ -78,16 +81,21 @@ Content-Type: application/json
 ]
 
 ### UpdateIsSoldOut | 상품 품절 업데이트
-PUT {{basic-url}}/product/sold-out/1
+PUT {{basic-url}}/products/sold-out/1
+Authorization: {{member-token}}
 
 ### GetProduct | 상품 단일 조회
-GET {{basic-url}}/product/1
+GET {{basic-url}}/products/1
+Authorization: {{member-token}}
 
 ### GetProductOption | 상품 옵션 조회
-GET {{basic-url}}/product/option/1
+GET {{basic-url}}/products/option/1
+Authorization: {{member-token}}
 
 ### GetProducts | 상품 전체 태그 조회
-GET {{basic-url}}/product/?page=0&size=10
+GET {{basic-url}}/products/?page=0&size=10
+Authorization: {{member-token}}
 
 ### DeleteProduct | 상품 삭제
-DELETE {{basic-url}}/product/1
+DELETE {{basic-url}}/products/1
+Authorization: {{member-token}}

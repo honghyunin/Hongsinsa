@@ -1,6 +1,7 @@
 ### 장바구니 상품 추가
-POST {{basic-url}}/cart/add
+POST {{basic-url}}/carts/add
 Content-Type: application/json
+Authorization: {{member-token}}
 
 {
   "memberId": "1",
@@ -8,12 +9,11 @@ Content-Type: application/json
 }
 
 ### 장바구니 조회
-GET {{basic-url}}/cart/1
+GET {{basic-url}}/carts/1
 Content-Type: application/json
+Authorization: {{member-token}}
 
 ### 장바구니 상품 삭제
-DELETE {{basic-url}}/cart/1
+DELETE {{basic-url}}/carts/1
 Content-Type: application/json
-
-### Test
-GET {{basic-url}}/cart/test
+Authorization: {{member-token}}

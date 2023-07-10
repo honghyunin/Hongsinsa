@@ -31,6 +31,7 @@ dependencies {
     implementation("org.springframework.security:spring-security-config")
 
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
     implementation("io.jsonwebtoken:jjwt:0.9.1")
 
