@@ -2,6 +2,9 @@
 REPOSITORY=/home/ubuntu/app/step2
 PROJECT_NAME=Hongsinsa
 
+today=`date`
+echo "> 현재 시간 $today "
+
 echo "> Build 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
@@ -27,3 +30,5 @@ chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
 nohup java -jar $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+
+echo "> nohup java -jar $JAR_NAME > $REPOSITORY/nohup.out 2>&1 & "
