@@ -73,3 +73,7 @@ tasks {
         useJUnitPlatform()
     }
 }
+
+jar {
+    enabled = false
+}
