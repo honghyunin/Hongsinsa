@@ -1,6 +1,6 @@
 
 REPOSITORY=/home/ubuntu/app/step2
-PROJECT_NAME=hongsinsa
+PROJECT_NAME=Hongsinsa
 
 echo "> Build 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
