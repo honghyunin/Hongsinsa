@@ -5,12 +5,8 @@ env:
 name: Hongsinsa-CD
 
 on:
-  release:
-    types: [push]
   push:
     branches: [main]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 jobs:
   # This workflow contains a single job called "build"
