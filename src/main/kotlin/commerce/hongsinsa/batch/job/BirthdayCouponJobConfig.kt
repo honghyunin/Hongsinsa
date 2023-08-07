@@ -45,7 +45,7 @@ class BirthdayCouponJobConfig(
                 log.info("Member : ${it.id}, ${it.name} ")
             }
 
-            log.info("Coupon : ${coupon.id}, ${coupon.name} ")
+            log.info("Coupon : ${coupon.idx}, ${coupon.name} ")
 
             RepeatStatus.FINISHED
         }

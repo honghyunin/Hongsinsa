@@ -22,12 +22,12 @@ class Order(
     @Column(name = "request", nullable = true)
     val requestedMessage: String? = null,
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)
     var status: OrderStatus,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_idx")
     val member: Member
 
 ) : BaseTimeEntity() {

@@ -13,11 +13,11 @@ class MemberCoupon(
     val id: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member.id")
+    @JoinColumn(name = "member_id")
     val member: Member,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coupon.id")
+    @JoinColumn(name = "coupon_id")
     val coupon: Coupon,
 ) {
 

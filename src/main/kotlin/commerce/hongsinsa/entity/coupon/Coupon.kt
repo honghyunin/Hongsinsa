@@ -17,9 +17,9 @@ class Coupon(
     var brand: Brand? = null
 ) {
 
-    @Column(name = "id", nullable = false)
+    @Column(name = "idx", nullable = false)
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int? = null
+    val idx: Int? = null
 
     @Column(name = "is_delete", nullable = false)
     var isDelete: Boolean = false
