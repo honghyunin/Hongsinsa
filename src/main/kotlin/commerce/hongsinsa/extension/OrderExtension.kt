@@ -9,7 +9,7 @@ fun RequestDto.toOrder(member: Member) = Request(
     address = this.address,
     recipient = this.name,
     phoneNumber = this.phoneNumber,
-    requestedMessage = this.deliveryInstructions,
+    message = this.deliveryInstructions,
     member = member,
     status = RequestStatus.Request_RECEIVED
 )

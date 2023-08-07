@@ -20,8 +20,8 @@ class Request(
     val phoneNumber: String,
 
     @Comment(value = "요청사항")
-    @Column(name = "requestedMessage", nullable = true)
-    val requestedMessage: String? = null,
+    @Column(name = "message", nullable = true)
+    val message: String? = null,
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)
