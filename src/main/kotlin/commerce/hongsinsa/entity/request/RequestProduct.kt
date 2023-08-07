@@ -1,4 +1,4 @@
-package commerce.hongsinsa.entity.order
+package commerce.hongsinsa.entity.request
 
 import commerce.hongsinsa.entity.BaseTimeEntity
 import commerce.hongsinsa.entity.product.Product
@@ -7,15 +7,15 @@ import org.hibernate.annotations.Comment
 import javax.persistence.*
 
 @Entity
-@Table(name = "order_product")
-class OrderProduct(
+@Table(name = "request_product")
+class RequestProduct(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_idx", nullable = false)
     val product: Product,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_idx", nullable = false)
-    val order: Order,
+    @JoinColumn(name = "request_idx", nullable = false)
+    val request: Request,
 
     @Comment(value = "상품 수량")
     @Column(name = "count", nullable = false)

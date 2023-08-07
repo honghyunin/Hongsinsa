@@ -1,24 +1,24 @@
-package commerce.hongsinsa.order
+package commerce.hongsinsa.request
 
-import commerce.hongsinsa.dto.order.GetOrderDto
-import commerce.hongsinsa.dto.order.OrderRequestDto
+import commerce.hongsinsa.dto.request.GetRequestDto
+import commerce.hongsinsa.dto.request.RequestDto
 import commerce.hongsinsa.member.MEMBER
 import commerce.hongsinsa.product.*
 import commerce.hongsinsa.repository.member.MemberRepository
-import commerce.hongsinsa.repository.order.OrderProductQueryRepository
-import commerce.hongsinsa.repository.order.OrderProductRepository
-import commerce.hongsinsa.repository.order.OrderRepository
+import commerce.hongsinsa.repository.request.RequestProductQueryRepository
+import commerce.hongsinsa.repository.request.RequestProductRepository
+import commerce.hongsinsa.repository.request.RequestRepository
 import commerce.hongsinsa.repository.product.ProductRepository
-import commerce.hongsinsa.service.order.OrderService
-import commerce.hongsinsa.entity.order.OrderProduct
-import commerce.hongsinsa.entity.order.OrderStatus
+import commerce.hongsinsa.service.request.RequestService
+import commerce.hongsinsa.entity.request.RequestProduct
+import commerce.hongsinsa.entity.request.RequestStatus
 import commerce.hongsinsa.entity.product.ProductSize
 import commerce.hongsinsa.config.utils.CurrentMemberUtil
 import commerce.hongsinsa.extension.toOrder
 import io.mockk.mockk
 import java.time.LocalDateTime
 
-const val ORDER_IDX = 1
+const val REQUEST_IDX = 1
 const val QUANTITY = (2).toByte()
 const val ADDRESS = "ADDRESS"
 const val NAME = "NAME"
@@ -27,9 +27,9 @@ const val DELIVERY_INSTRUCTIONS = ""
 const val COUNT = (3).toByte()
 val PRODUCT_IDX_LIST = mutableListOf(1, 2, 3, 4)
 val PRODUCT_QUANTITIES = mutableMapOf(1 to (2).toByte(), 2 to (3).toByte())
-val ORDER_STATUS = OrderStatus.ORDER_RECEIVED
+val ORDER_STATUS = RequestStatus.Request_RECEIVED
 
-val ORDER_REQUEST_DTO = OrderRequestDto(
+val REQUEST_DTO = RequestDto(
     quantity = QUANTITY,
     address = ADDRESS,
     name = NAME,
@@ -41,7 +41,7 @@ val ORDER_REQUEST_DTO = OrderRequestDto(
     size = ProductSize.M
 )
 
-val EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO = OrderRequestDto(
+val EMPTY_PRODUCT_QUANTITIES_REQUEST_DTO = RequestDto(
     quantity = QUANTITY,
     address = ADDRESS,
     name = NAME,
@@ -53,22 +53,22 @@ val EMPTY_PRODUCT_QUANTITIES_ORDER_REQUEST_DTO = OrderRequestDto(
     size = ProductSize.M
 )
 
-val ORDER = ORDER_REQUEST_DTO.toOrder(MEMBER)
+val REQUEST = REQUEST_DTO.toOrder(MEMBER)
 
-val ORDER_PRODUCT = OrderProduct(
+val REQUEST_PRODUCT = RequestProduct(
     product = PRODUCT,
-    order = ORDER,
+    request = REQUEST,
     count = COUNT,
     size = PRODUCT_SIZE,
     color = COLOR
 )
 
-val GET_ORDER_RESPONSE = GetOrderDto(
-    orderIdx = ORDER_IDX,
+val REQUEST_RESPONSE = GetRequestDto(
+    requestIdx = REQUEST_IDX,
     productName = PRODUCT_NAME,
     brandName = BRAND_NAME,
     productIdx = PRODUCT_IDX,
-    orderCreatedAt = LocalDateTime.now(),
+    requestCreatedAt = LocalDateTime.now(),
     quantity = QUANTITY,
     price = PRICE,
     size = PRODUCT_SIZE,
@@ -76,20 +76,20 @@ val GET_ORDER_RESPONSE = GetOrderDto(
     status = ORDER_STATUS
 )
 
-val ORDER_PRODUCT_LIST = mutableListOf(ORDER_PRODUCT, ORDER_PRODUCT)
+val REQUEST_PRODUCT_LIST = mutableListOf(REQUEST_PRODUCT, REQUEST_PRODUCT)
 
-val GET_ORDER_RESPONSE_LIST = mutableListOf(GET_ORDER_RESPONSE, GET_ORDER_RESPONSE)
+val GET_REQUEST_RESPONSE_LIST = mutableListOf(REQUEST_RESPONSE, REQUEST_RESPONSE)
 
-fun deleteOrder(): MutableList<OrderProduct> = orderService.findAllByOrderAndIsDeleteFalse(ORDER)
+fun deleteOrder(): MutableList<RequestProduct> = requestService.findAllByOrderAndIsDeleteFalse(REQUEST)
     .map { orderProduct ->
         orderProduct.isDelete = true
         orderProduct
     }.toMutableList()
 
-val orderRepository = mockk<OrderRepository>()
-val orderProductRepository = mockk<OrderProductRepository>()
-val orderProductQueryRepository = mockk<OrderProductQueryRepository>()
+val requestRepository = mockk<RequestRepository>()
+val requestProductRepository = mockk<RequestProductRepository>()
+val requestProductQueryRepository = mockk<RequestProductQueryRepository>()
 val productRepository = mockk<ProductRepository>()
 val currentMemberUtil = mockk<CurrentMemberUtil>(relaxed = true)
 val memberRepository = mockk<MemberRepository>()
-val orderService = mockk<OrderService>()
+val requestService = mockk<RequestService>()

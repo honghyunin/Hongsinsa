@@ -1,8 +1,8 @@
-package commerce.hongsinsa.dto.order
+package commerce.hongsinsa.dto.request
 
 import commerce.hongsinsa.entity.product.ProductSize
 
-class OrderRequestDto(
+class RequestDto(
     val quantity: Byte,
     val address: String,
     val name: String,

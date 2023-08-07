@@ -3,7 +3,7 @@ package commerce.hongsinsa.entity.member
 import commerce.hongsinsa.entity.BaseTimeEntity
 import commerce.hongsinsa.entity.cart.Cart
 import commerce.hongsinsa.entity.coupon.MemberCoupon
-import commerce.hongsinsa.entity.order.Order
+import commerce.hongsinsa.entity.request.Request
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.DynamicUpdate
 import org.springframework.security.core.GrantedAuthority
@@ -89,7 +89,7 @@ class Member(
         fetch = FetchType.LAZY,
         mappedBy = "member"
     )
-    val order: MutableList<Order> = mutableListOf()
+    val request: MutableList<Request> = mutableListOf()
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
         roles.stream().map { role -> SimpleGrantedAuthority("ROLE_$role") }.collect(Collectors.toList())

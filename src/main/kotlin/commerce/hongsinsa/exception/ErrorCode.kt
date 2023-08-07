@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus.*
 
 enum class ErrorCode(val status: HttpStatus, val msg: String) {
 
-    // Order Exception
-    ORDER_NOT_FOUND(NOT_FOUND, "Order Not Found"),
+    // Request Exception
+    REQUEST_NOT_FOUND(NOT_FOUND, "Request Not Found"),
     PRODUCT_QUANTITY_NOT_FOUND(NOT_FOUND, "Product Quantity Not Found"),
 
     // Coupon Exception

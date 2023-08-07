@@ -1,12 +1,13 @@
-package commerce.hongsinsa.entity.order
+package commerce.hongsinsa.entity.request
 
 import commerce.hongsinsa.entity.BaseTimeEntity
 import commerce.hongsinsa.entity.member.Member
 import org.hibernate.annotations.Comment
 import javax.persistence.*
 
+@Table(name = "request")
 @Entity
-class Order(
+class Request(
     @Column(name = "address", nullable = false)
     val address: String,
 
@@ -19,12 +20,12 @@ class Order(
     val phoneNumber: String,
 
     @Comment(value = "요청사항")
-    @Column(name = "request", nullable = true)
+    @Column(name = "requestedMessage", nullable = true)
     val requestedMessage: String? = null,
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)
-    var status: OrderStatus,
+    var status: RequestStatus,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_idx")
