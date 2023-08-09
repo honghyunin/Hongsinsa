@@ -1,8 +1,6 @@
 env:
   S3_BUCKET_NAME: hongsinsa-bucket
   PROJECT_NAME: Hongsinsa
-  CODE_DEPLOY_APP_NAME: hongsinsa-server-codedeploy
-  CODE_DEPLOY_GROUP_NAME: hongsinsa-server-group
 
 name: Hongsinsa-CD
 
