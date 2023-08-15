@@ -1,5 +1,5 @@
 env:
-  S3_BUCKET_NAME: hongsinsa-bucket
+  S3_BUCKET_NAME: ${{ secrets.BUCKET }}
   PROJECT_NAME: Hongsinsa
 
 name: Hongsinsa-CD
@@ -69,7 +69,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
+          aws-region: ${{ secrets.REGION }}
   
       - name: Upload to S3
         run: aws s3 cp --region ap-northeast-2 ./$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/$PROJECT_NAME/$PROJECT_NAME.zip    #(14)
