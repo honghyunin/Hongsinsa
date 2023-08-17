@@ -1,5 +1,5 @@
 
-REPOSITORY=/home/ubuntu/app/step2
+REPOSITORY=/home/ubuntu/app/step2/zip/build/libs
 PROJECT_NAME=Hongsinsa
 
 today=`date`
