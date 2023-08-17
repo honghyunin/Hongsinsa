@@ -1,12 +1,13 @@
 
-REPOSITORY=/home/ubuntu/app/step2/zip/build/libs
+REPOSITORY=/home/ubuntu/app/step2
+JAR_PATH=/home/ubuntu/app/step2/zip/build/libs
 PROJECT_NAME=Hongsinsa
 
 today=`date`
 echo "> 현재 시간 $today "
 
 echo "> Build 파일 복사"
-cp $REPOSITORY/zip/*.jar $REPOSITORY/
+cp $JAR_PATH/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 CURRENT_PID=$(pgrep -f $PROJECT_NAME)
