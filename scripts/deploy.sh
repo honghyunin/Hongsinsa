@@ -7,7 +7,7 @@ today=`date`
 echo "> 현재 시간 $today "
 
 echo "> Build 파일 복사"
-cp $JAR_PATH/*.jar $REPOSITORY/
+cp $JAR_PATH/hongsinsa-0.0.1-SNAPSHOT.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 CURRENT_PID=$(pgrep -f $PROJECT_NAME)
