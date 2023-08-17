@@ -1,6 +1,8 @@
 env:
   S3_BUCKET_NAME: ${{ secrets.BUCKET }}
   PROJECT_NAME: Hongsinsa
+  CODE_DEPLOY_APP_NAME: ${{ secrets.CODE_DEPLOY_NAME }}
+  CODE_DEPLOY_GROUP_NAME: ${{ secrets.CODE_DEPLOY_GROUP_NAME }}
 
 name: Hongsinsa-CD
 
