@@ -7,7 +7,7 @@ today=`date`
 echo "> 현재 시간 $today "
 
 echo "> Build 파일 복사"
-cp $JAR_PATH/hongsinsa-0.0.1-SNAPSHOT.jar $REPOSITORY/
+cp $JAR_PATH/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 CURRENT_PID=$(pgrep -f $PROJECT_NAME)
@@ -30,8 +30,6 @@ echo "> $JAR_NAME 에 실행권한 추가"
 chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
-nohup java -jar $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
-
-echo "> nohup java -jar \
--Dspring.config.location=classpath:/application.yml
-$JAR_NAME > $REPOSITORY/nohup.out 2>&1 &"
+nohup java -jar \
+  -Dspring.config.location=classpath:/application.yml
+  $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
