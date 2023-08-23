@@ -38,6 +38,9 @@ dependencies {
     api("com.querydsl:querydsl-jpa")
     kapt(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
 
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("io.springfox:springfox-swagger-ui:3.0.0")
+
     implementation("org.springframework.boot:spring-boot-starter-batch")
     testImplementation("org.springframework.batch:spring-batch-test")
 
@@ -56,9 +59,9 @@ dependencies {
 extra["kotlin-coroutines.version"] = "1.6.0"
 
 allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.Embeddable")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 tasks {

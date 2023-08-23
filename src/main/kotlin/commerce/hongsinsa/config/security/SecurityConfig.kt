@@ -58,6 +58,12 @@ class SecurityConfig(
 
                 .antMatchers("/api/v1/carts/**").hasRole("MEMBER")
 
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/v2/api-docs/**").permitAll()
+
 
                 .anyRequest().authenticated()
         }
@@ -75,9 +81,7 @@ class SecurityConfig(
     @Bean
     fun configure(): WebSecurityCustomizer? = WebSecurityCustomizer { web: WebSecurity ->
         web.ignoring()
-            .antMatchers(
-                "/h2-console/**",
-            )
+            .antMatchers("/h2-console/**")
     }
 
     @Bean
