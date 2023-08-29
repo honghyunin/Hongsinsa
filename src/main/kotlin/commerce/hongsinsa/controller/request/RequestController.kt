@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/request")
-class RequestController(private val requestService: RequestService, private val currentMemberUtil: CurrentMemberUtil) {
+class RequestController(private val requestService: RequestService, private val currentMemberUtil: CurrentMemberUtil)
+    : RequestSwagger {
 
     @PostMapping()
-    fun request(@RequestBody requestDto: RequestDto): ResponseEntity<Any> {
+    override fun request(@RequestBody requestDto: RequestDto): ResponseEntity<Any> {
         val order = requestService.saveRequest(requestDto, currentMemberUtil.getCurrentMemberIfAuthenticated())
         requestService.processRequest(order, requestDto)
         requestService.decreaseStock(requestDto.productQuantities)
@@ -22,14 +23,14 @@ class RequestController(private val requestService: RequestService, private val 
     }
 
     @GetMapping("/{memberIdx}")
-    fun getRequest(@PathVariable memberIdx: Int): ResponseEntity<Any> {
+    override fun getRequest(@PathVariable memberIdx: Int): ResponseEntity<Any> {
         val request = requestService.getRequests(memberIdx)
 
         return ResponseEntity<Any>(request, HttpStatus.OK)
     }
 
     @DeleteMapping("/{requestIdx}")
-    fun cancelRequest(@PathVariable requestIdx: Int): ResponseEntity<Any> {
+    override fun cancelRequest(@PathVariable requestIdx: Int): ResponseEntity<Any> {
         val request = requestService.findByIdxAndStatusOrderReceived(requestIdx)
             .also { request -> request.status = RequestStatus.Request_CANCEL }
 

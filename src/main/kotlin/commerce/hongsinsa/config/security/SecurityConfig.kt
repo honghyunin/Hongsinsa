@@ -15,6 +15,10 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -35,9 +39,10 @@ class SecurityConfig(
     @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain? {
 
-        http.csrf().disable()
-
-        http.formLogin().disable()
+        http
+            .cors().disable()
+            .csrf().disable()
+            .formLogin().disable()
 
         http.authorizeRequests {
             it.antMatchers("/api/v1/members/signUp").permitAll()
@@ -58,11 +63,8 @@ class SecurityConfig(
 
                 .antMatchers("/api/v1/carts/**").hasRole("MEMBER")
 
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**").permitAll()
-                .antMatchers("/swagger-resources/**").permitAll()
-                .antMatchers("/v2/api-docs/**").permitAll()
+                .antMatchers( "/swagger-ui/**").permitAll()
+                .antMatchers("/v3/api-docs/**").permitAll()
 
 
                 .anyRequest().authenticated()

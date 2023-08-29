@@ -4,6 +4,8 @@ import commerce.hongsinsa.dto.coupon.SaveCouponDto
 import commerce.hongsinsa.service.brand.BrandService
 import commerce.hongsinsa.service.coupon.CouponService
 import commerce.hongsinsa.extension.toCoupon
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController
 class CouponController(
     private val couponService: CouponService,
     private val brandService: BrandService
-) {
+) : CouponSwagger {
 
     @PostMapping("/save")
-    fun saveCoupon(@RequestBody saveCouponDto: SaveCouponDto) {
+    override fun saveCoupon(@RequestBody saveCouponDto: SaveCouponDto): ResponseEntity<Any> {
 
         val coupon = saveCouponDto.let {
             if (it.brandName == null) it.toCoupon(null)
@@ -25,5 +27,7 @@ class CouponController(
         }
 
         couponService.saveCoupon(coupon)
+
+        return ResponseEntity<Any>(HttpStatus.OK)
     }
 }

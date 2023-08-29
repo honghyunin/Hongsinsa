@@ -3,6 +3,7 @@ package commerce.hongsinsa.controller.coupon
 import commerce.hongsinsa.dto.coupon.CouponDto
 import commerce.hongsinsa.service.member.MemberCouponService
 import commerce.hongsinsa.service.member.MemberService
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController
 class MemberCouponController(
     private val memberCouponService: MemberCouponService,
     private val memberService: MemberService
-) {
+) : MemberCouponSwagger {
 
     @GetMapping("/{memberIdx}")
-    fun getCoupons(@PathVariable memberIdx: Int): MutableList<CouponDto> {
+    override fun getCoupons(@PathVariable memberIdx: Int): ResponseEntity<Any> {
         memberService.existsByIdx(memberIdx)
 
-        return memberCouponService.getCoupons(memberIdx)
+        val coupons = memberCouponService.getCoupons(memberIdx)
+
+        return ResponseEntity.ok()
+            .body(coupons)
     }
 }

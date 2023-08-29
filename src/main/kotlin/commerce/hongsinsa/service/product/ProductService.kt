@@ -33,10 +33,6 @@ class ProductService(
         productRepository.findByIdxAndIsDeleteFalse(updateProductDto.productIdx)?.updateProduct(updateProductDto)
             ?: throw CustomException(PRODUCT_NOT_FOUND)
 
-    @Transactional(rollbackFor = [Exception::class])
-    fun updateIsSoldOut(productIdx: Int) =
-        productRepository.findByIdxAndIsDeleteFalse(productIdx)?.soldOut() ?: throw CustomException(PRODUCT_NOT_FOUND)
-
     @Transactional(readOnly = true)
     fun getProductResponse(productIdx: Int): GetProductDto =
         productRepository.findByIdxAndIsDeleteFalse(productIdx)
@@ -83,4 +79,7 @@ class ProductService(
     fun getProductOption(productIdx: Int): MutableList<ProductOption>
         = productOptionRepository.findByProductIdx(productIdx)
 
+    @Transactional(rollbackFor = [Exception::class])
+    fun updateIsSoldOut(productIdx: Int) =
+        productRepository.findByIdxAndIsDeleteFalse(productIdx)?.soldOut() ?: throw CustomException(PRODUCT_NOT_FOUND)
 }

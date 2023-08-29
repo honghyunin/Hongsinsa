@@ -14,5 +14,5 @@ class SignUpDto(
     val age: Short,
     val phoneNumber: String,
     val address: String,
-    val birthday: LocalDate = LocalDate.now()
+    val birthday: LocalDate
 )

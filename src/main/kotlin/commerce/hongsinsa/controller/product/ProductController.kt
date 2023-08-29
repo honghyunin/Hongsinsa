@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/products")
-class ProductController(private val productService: ProductService, private val brandService: BrandService) {
+class ProductController(private val productService: ProductService, private val brandService: BrandService)
+    : ProductSwagger {
 
     @PostMapping("/")
-    fun registrationProduct(@RequestBody registrationProductDto: RegistrationProductDto) {
+    override fun registrationProduct(@RequestBody registrationProductDto: RegistrationProductDto): ResponseEntity<Any> {
         val brand = ifThrowIsNotFoundBrand(registrationProductDto.brandName)
         val product = registrationProductDto.toProduct(brand)
 
         productService.registrationProduct(product)
+
+        return ResponseEntity<Any>(HttpStatus.OK)
     }
 
     private fun ifThrowIsNotFoundBrand(brandName: String?) =
@@ -30,30 +33,57 @@ class ProductController(private val productService: ProductService, private val 
         else brandService.findBrandByName(brandName)
 
     @PostMapping("/option/{productIdx}")
-    fun addProductOptions(@PathVariable productIdx: Int, @RequestBody newOptions: MutableList<ProductOptionDto>) =
-        productService.addProductOption(productIdx, newOptions)
+    override fun addProductOptions(
+        @PathVariable productIdx: Int,
+        @RequestBody newOptions: MutableList<ProductOptionDto>
+    ): ResponseEntity<Any> {
+        val productOption = productService.addProductOption(productIdx, newOptions)
+
+        return ResponseEntity.ok()
+            .body(productOption)
+    }
 
     @PutMapping("/")
-    fun updateProduct(@RequestBody updateProduct: UpdateProductDto): Unit = productService.updateProduct(updateProduct)
+    override fun updateProduct(@RequestBody updateProduct: UpdateProductDto): ResponseEntity<Any> {
+        productService.updateProduct(updateProduct)
+
+        return ResponseEntity<Any>(HttpStatus.OK)
+    }
 
     @PutMapping("/option/{productIdx}")
-    fun updateProductOption(@PathVariable productIdx: Int, @RequestBody newOptions: MutableList<ProductOptionDto>) =
+    override fun updateProductOption(
+        @PathVariable productIdx: Int,
+        @RequestBody newOptions: MutableList<ProductOptionDto>
+    ): ResponseEntity<Any> {
         productService.updateProductOption(productIdx, newOptions)
 
-    @PutMapping("/sold-out/{productIdx}")
-    fun updateIsSoldOut(@PathVariable productIdx: Int): Unit = productService.updateIsSoldOut(productIdx)
+        return ResponseEntity<Any>(HttpStatus.OK)
+    }
 
+    @PutMapping("/sold-out/{productIdx}")
+    override fun updateIsSoldOut(@PathVariable productIdx: Int): ResponseEntity<Any> {
+        productService.updateIsSoldOut(productIdx)
+
+        return ResponseEntity<Any>(HttpStatus.OK)
+    }
     @GetMapping("/{productIdx}")
-    fun getProduct(@PathVariable productIdx: Int) = productService.getProductResponse(productIdx)
+    override fun getProduct(@PathVariable productIdx: Int): ResponseEntity<Any> {
+        val productResponse = productService.getProductResponse(productIdx)
+
+        return ResponseEntity.ok().body(productResponse)
+    }
 
     @GetMapping("/")
-    fun getProducts(
+    override fun getProducts(
         getProductFilterDto: GetProductFilterDto,
         @PageableDefault(size = 20) pageable: Pageable
-    ) = productService.getProducts(getProductFilterDto, pageable)
+    ): ResponseEntity<Any> {
+        val products = productService.getProducts(getProductFilterDto, pageable)
 
+        return ResponseEntity.ok().body(products)
+    }
     @GetMapping("/option/{productIdx}")
-    fun getProductOption(@PathVariable("productIdx") productIdx: Int): ResponseEntity<*> {
+    override fun getProductOption(@PathVariable("productIdx") productIdx: Int): ResponseEntity<Any> {
         val productOption = productService.getProductOption(productIdx)
         val productOptionDto = productOption.map { ProductOptionDto(it) }.toMutableList()
 
@@ -61,5 +91,9 @@ class ProductController(private val productService: ProductService, private val 
     }
 
     @DeleteMapping("/{productIdx}")
-    fun deleteProduct(@PathVariable productIdx: Int): Unit = productService.deleteProduct(productIdx)
+    override fun deleteProduct(@PathVariable productIdx: Int): ResponseEntity<Any> {
+        productService.deleteProduct(productIdx)
+
+        return ResponseEntity<Any>(HttpStatus.OK)
+    }
 }

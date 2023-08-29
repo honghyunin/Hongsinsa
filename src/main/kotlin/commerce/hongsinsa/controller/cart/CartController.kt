@@ -19,10 +19,10 @@ class CartController(
     private val memberService: MemberService,
     private val currentMemberUtil: CurrentMemberUtil,
     private val productService: ProductService
-) {
+) : CartSwagger {
 
     @PostMapping("/add")
-    fun addProduct(@RequestBody addProductDto: AddProductDto): ResponseEntity<Any> {
+    override fun addProduct(@RequestBody addProductDto: AddProductDto): ResponseEntity<Any> {
         cartService.addProduct(
             member = memberService.getMember(addProductDto.memberIdx),
             product = productService.getProduct(addProductDto.productIdx)
@@ -32,7 +32,7 @@ class CartController(
     }
 
     @GetMapping("/{memberIdx}")
-    fun getCart(@PathVariable memberIdx: Int): ResponseEntity<Any> {
+    override fun getCart(@PathVariable memberIdx: Int): ResponseEntity<Any> {
         memberService.existsByIdx(memberIdx)
         val orders = cartService.getCart(memberIdx)
 
@@ -40,7 +40,7 @@ class CartController(
     }
 
     @DeleteMapping("/{productIdx}")
-    fun deleteCartProduct(@PathVariable productIdx: Int): ResponseEntity<Any> {
+    override fun deleteCartProduct(@PathVariable productIdx: Int): ResponseEntity<Any> {
         val memberIdx = currentMemberUtil.getCurrentMemberIfAuthenticated().idx!!
         val cart = cartService.findByProductIdxAndMemberIdxAndIsDeleteFalse(productIdx, memberIdx)
             ?: throw CustomException(ErrorCode.PRODUCT_NOT_FOUND)
