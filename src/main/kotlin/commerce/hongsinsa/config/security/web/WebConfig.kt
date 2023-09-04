@@ -16,15 +16,10 @@ class WebConfig: WebMvcConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
+            .allowCredentials(true)
+            .allowedOriginPatterns("*")
+            .allowedMethods("*")
             .allowedOrigins("http://localhost:8080", "http://$SERVER_IP:8080")
-            .allowedMethods(
-                HttpMethod.GET.name,
-                HttpMethod.HEAD.name,
-                HttpMethod.POST.name,
-                HttpMethod.PUT.name,
-                HttpMethod.DELETE.name,
-                HttpMethod.PATCH.name)
-            .allowCredentials(false)
             .maxAge(3000)
     }
 
