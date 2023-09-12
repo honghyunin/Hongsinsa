@@ -4,8 +4,6 @@ ROOT_PATH=/home/ubuntu
 JAR_PATH=/home/ubuntu/app/step2/zip/build/libs
 PROJECT_NAME=Hongsinsa
 
-echo "> Shell 파일 실행"
-
 echo "> Build 파일 복사"
 cp $JAR_PATH/*.jar $ROOT_PATH/
 
@@ -30,6 +28,4 @@ echo "> $JAR_NAME 에 실행권한 추가"
 chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
-nohup java -jar -Dspring.config.location=classpath:/application.yml,/home/ubuntu/app/application.yml $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
-
-echo "> Shell 파일 작업 종료"
+nohup java -jar -Dspring.config.location=classpath:/application.yml,$REPOSITORY/zip/application.yml $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
