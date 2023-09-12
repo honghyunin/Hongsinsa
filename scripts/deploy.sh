@@ -28,4 +28,4 @@ echo "> $JAR_NAME 에 실행권한 추가"
 chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
-nohup java -jar -Dspring.config.location=classpath:/application.yml,/home/ubuntu/app/application.yml hongsinsa-0.0.1-SNAPSHOT.jar > /home/ubuntu/app/step2/nohup.out 2>&1 &
+nohup java -jar -Dspring.config.location=classpath:/application.yml,/home/ubuntu/app/application.yml Hongsinsa-0.0.1-SNAPSHOT.jar > /home/ubuntu/app/step2/nohup.out 2>&1 &
