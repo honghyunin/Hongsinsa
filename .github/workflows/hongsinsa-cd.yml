@@ -64,7 +64,7 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p before-deploy
-          cp ${{ secrets.APPLICATION_YML }} before-deploy/
+          cp ./src/main/resources/application.yml before-deploy/
           cp scripts/*.sh before-deploy/
           cp appspec.yml before-deploy/
           cp build/libs/*.jar before-deploy/
