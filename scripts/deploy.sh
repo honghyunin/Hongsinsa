@@ -1,7 +1,7 @@
 
 REPOSITORY=/home/ubuntu/app/step2
 ROOT_PATH=/home/ubuntu
-JAR_PATH=/home/ubuntu/app/step2/zip/build/libs
+JAR_PATH=/home/ubuntu/app/step2/zip/
 PROJECT_NAME=Hongsinsa
 
 echo "> Build 파일 복사"
