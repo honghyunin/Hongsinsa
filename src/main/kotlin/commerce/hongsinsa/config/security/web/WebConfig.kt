@@ -19,7 +19,7 @@ class WebConfig: WebMvcConfigurer {
             .allowCredentials(true)
             .allowedOriginPatterns("*")
             .allowedMethods("*")
-            .allowedOrigins("http://localhost:8080", "http://$SERVER_IP:8080")
+            .allowedOrigins("http://localhost:8080", "http://$SERVER_IP:8080", "http://$SERVER_IP")
             .maxAge(3000)
     }
 
