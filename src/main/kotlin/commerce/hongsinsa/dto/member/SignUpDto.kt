@@ -1,5 +1,6 @@
 package commerce.hongsinsa.dto.member
 
+import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDate
 
 class SignUpDto(
@@ -10,6 +11,7 @@ class SignUpDto(
     val nickname: String,
     val weight: Short,
     val height: Short,
+    @Schema(example = "M")
     val gender: Char,
     val age: Short,
     val phoneNumber: String,
